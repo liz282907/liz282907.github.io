@@ -1,0 +1,767 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式,读书笔记,代理模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本章总结代理模式和迭代器模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript设计模式（二）">
+<meta property="og:url" content="http://yoursite.com/2017/01/31/design-principle2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本章总结代理模式和迭代器模式">
+<meta property="og:image" content="http://yoursite.com/media/14858468106117.jpg">
+<meta property="og:image" content="http://yoursite.com/media/14860890710793.jpg">
+<meta property="og:updated_time" content="2017-02-12T05:41:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript设计模式（二）">
+<meta name="twitter:description" content="本章总结代理模式和迭代器模式">
+<meta name="twitter:image" content="http://yoursite.com/media/14858468106117.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/31/design-principle2/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> javascript设计模式（二） | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javascript设计模式（二）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-31T09:34:58+08:00" content="2017-01-31">
+              2017-01-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/31/design-principle2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/31/design-principle2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><blockquote>
+<p>用户不方便直接访问一个对象或者不满足需要的时候，通过另一个对象B去进行代理控制访问。对用户来说，能操作的就是B，B再来转交请求给target，而不用用户来管B-&gt;target到底做了什么操作。</p>
+</blockquote>
+<p>最朴素的代理模式就是下面的代码，只是做一个转发请求</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">（<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> Flower = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">	<span class="keyword">var</span> xiaoming = &#123;</div><div class="line">		<span class="attr">sendFlower</span>:<span class="function"><span class="keyword">function</span>(<span class="params">receiver</span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> flower = <span class="keyword">new</span> Flower()</div><div class="line">			receiver.receiveFlower(flower)</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	<span class="keyword">var</span> proxier = &#123;</div><div class="line">		<span class="attr">receiveFlower</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="comment">//当然这边只是代理操作，实际上可能还会有保护检查，拒绝，性能优化等操作</span></div><div class="line">			target.receiveFlower(flower)</div><div class="line">		&#125;;</div><div class="line">	&#125;,</div><div class="line">	<span class="keyword">var</span> target = &#123;</div><div class="line">		<span class="attr">receiveFlower</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">" i receive the flower, thx!"</span>);</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line">&#125;）</div></pre></td></tr></table></figure>
+<h4 id="保护代理和虚拟代理"><a href="#保护代理和虚拟代理" class="headerlink" title="保护代理和虚拟代理"></a>保护代理和虚拟代理</h4><p>代理模式分为两种，按照他们的功能来分类：</p>
+<ul>
+<li>一种是做保护target的用途，接受sender的请求，然后进行一些校验，即保护代理，比如上面的代码就是保护代理。</li>
+<li>另一种是把一些开销大的操作延迟到真正需要它做的时候再处理，而sender本身不动，依然做最朴素的操作，代理去做优化措施，这种是虚拟代理。</li>
+</ul>
+<p>两者的调用不太一样，前者是<code>sender.sendTo(proxy)</code>,后者是<code>proxier.call(fn)</code>.</p>
+<p>日常接触的基本都是虚拟代理，（需要注意的是它的本体和代理要实现同样的方法，即接口要一致，这样才可以对用户透明，也方便调用，但JavaScript不像静态类型语言，不会进行编译检查，因此，只能在最末端进行throw异常抛出，但这个时候已经是执行期了，有一丢丢晚。）</p>
+<p>他的用途有比如实现图片预加载、合并http请求、</p>
+<h5 id="图片预加载"><a href="#图片预加载" class="headerlink" title="图片预加载"></a>图片预加载</h5><blockquote>
+<p>[备注]：<br>图片预加载的原理是预先设置一个占位图片，当真正的图片资源加载完后去进行替换操作。有一点点像ajax请求获取前放置一个loading层，数据返回后hide loading，显示最终的网页信息。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myImage = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">	<span class="keyword">var</span> imgNode = <span class="built_in">document</span>.createElement( <span class="string">'img'</span> );    </div><div class="line">	<span class="built_in">document</span>.body.appendChild( imgNode );    </div><div class="line">	<span class="keyword">return</span> &#123;        </div><div class="line">		<span class="attr">setSrc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> src </span>)</span>&#123;            </div><div class="line">			imgNode.src = src;        </div><div class="line">		&#125;    </div><div class="line">	&#125;&#125;)();</div><div class="line"><span class="keyword">var</span> proxyImage = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">	<span class="keyword">var</span> img = <span class="keyword">new</span> Image;    </div><div class="line">	img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;        </div><div class="line">		myImage.setSrc( <span class="keyword">this</span>.src );    </div><div class="line">	&#125;    </div><div class="line">	<span class="keyword">return</span> &#123;        </div><div class="line">		<span class="attr">setSrc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> src </span>)</span>&#123; </div><div class="line">		           myImage.setSrc( <span class="string">'file:// /C:/Users/svenzeng/Desktop/loading.gif'</span> );            </div><div class="line">		           img.src = src;        </div><div class="line">		       &#125;</div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line"></div><div class="line">proxyImage.setSrc(<span class="string">'realImage.png'</span>)</div></pre></td></tr></table></figure>
+<p>这边用代理的一个原因是遵守了单一职责原则，因为setSrc和设置预加载图片是两个职责，通过代理，让myimage只进行设置图片源的功能。做了任务分离。而且，后面我们会提到的性能优化（如缓存）的代理，也是这样，源请求者只做他本身要做的部分，后续的优化功能让代理来实现。（唔，也符合开放-封闭职责…）<br><strong>确切的说，大多数情况下，若违反其他任何原则，同时将违反开放-封闭原则。</strong></p>
+<h5 id="合并http请求"><a href="#合并http请求" class="headerlink" title="合并http请求"></a>合并http请求</h5><p>原理是设置一个代理函数，（利用闭包放置一个Cache[],存放给定时间段内的请求，当时间到达时，一同发送）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//本体</div><div class="line">sendAjax(req);</div><div class="line">//代理</div><div class="line">var proxyAjax = (function()&#123;</div><div class="line">    var reqQueue = [];</div><div class="line">    return function(req)&#123;</div><div class="line">        reqQueue.push(req);</div><div class="line">        if(timer) return;  //1</div><div class="line">        timer = setTimeout(function()&#123;</div><div class="line">            //把reqQueue的请求内容合并，比如原始req的post body是[obj1,obj2,obj3].现在要通过一定的方式去合并成一个大的bigObj,然后发送它。</div><div class="line">            var assignedObj = transform(reqQueue);</div><div class="line">            sendAjax(assignedObj);</div><div class="line">            reqQueue = [];</div><div class="line">            timer = null;//下一轮进来的入口条件,见1处</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">for(var i=0;i&lt;reqs.length;i++)&#123;</div><div class="line">    proxyAjax(reqs[i]);//楼主之前担心闭包，想了下，以前是在这边进行绑定事件，事件执行时间不定，所以要闭包把i穿进去，但是这边是直接进行操作。所以不要担心。。。。：）</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码特别是proxy的内部代码要仔细体会下，跟楼主之前写节流的代码思想一致，但是比较巧妙，不需要进行gap时间的计算。po一下<a href="https://www.zybuluo.com/lizlalala/note/495567" target="_blank" rel="external">节流</a>：<br><img src="/media/14858468106117.jpg" alt=""></p>
+<p>还有一点是，这边的合并请求跟之前的节流有点思想相似，只不过这边是特定场景的优化，节流是通用的对函数的操作。合并请求的优点很多，可以缓解服务端压力，而且当用户发送请求后又取消时，合并以后实际上是不发送请求的。当然这也可以在前端判断…</p>
+<h5 id="其他优化场景"><a href="#其他优化场景" class="headerlink" title="其他优化场景"></a>其他优化场景</h5><p>除此之外，代理还可以进行其他缓存操作，比如：</p>
+<ul>
+<li>动态规划里面的缓存数组= =</li>
+<li>ajax请求的数据这样使得本体函数可以只进行自己的操作，在代理中做完优化后直接sourceFun.apply()就可以了。</li>
+</ul>
+<p>【summary】代理分保护和虚拟代理，虚拟代理的使用场景是一些大型开销操作或者优化措施，case有预加载，合并请求，ajax数据缓存等等。</p>
+<hr>
+<h3 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h3><blockquote>
+<p>只要被迭代的对象有length属性并且可以用下标访问，就可以被迭代。</p>
+</blockquote>
+<p>书里面说迭代器分为两种：</p>
+<ul>
+<li><p>一种是内部迭代器，也就是说函数内部定义好了如何去进行迭代，如js原声的forEach,map等等，underscore里面也有实现</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var each = function(arr,fn)&#123;</div><div class="line">    for(var i=0;i&lt;arr.length;i++)&#123;</div><div class="line">        fn.call(null,arr[i],i,arr);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">each([1,2,3],function(v,index)&#123;</div><div class="line">    console.log(v)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>另一种是外部迭代器，即把所有遍历操作等等都放权给程序员，比如遍历规则是什么，比如step，何时终止等等，有点像java里面的iterator。之前看到es6里面也有简易版本的iterator，只要实现遍历器生成方法就行。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">const obj = &#123;</div><div class="line">  [Symbol.iterator] : function () &#123;</div><div class="line">    return &#123;</div><div class="line">      next: function () &#123;</div><div class="line">        return &#123;</div><div class="line">          value: 1,</div><div class="line">          done: true</div><div class="line">        &#125;;</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">//[Symbol.iterator]()返回的是一个遍历器对象。如果一个对象实现了它，并且index是数字，那么它也可以被用iterator遍历。可以用for of来访问值。</div><div class="line"></div><div class="line">    var $iterator = ITERABLE[Symbol.iterator]();</div><div class="line">var $result = $iterator.next();</div><div class="line">while (!$result.done) &#123;</div><div class="line">        var x = $result.value;</div><div class="line">            // ...</div><div class="line">        $result = $iterator.next();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>如代替if-else，上传方式的遍历：（浏览器上传控件、flash上传、原生表单上传input file）<br>示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var iteratorUploadObj = function()&#123;    </div><div class="line">    for ( var i = 0, fn; fn = arguments[ i++]; )&#123;        </div><div class="line">        var uploadObj = fn();        </div><div class="line">        if ( uploadObj !== false )&#123;            </div><div class="line">            return uploadObj;        </div><div class="line">        &#125;    </div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var uploadObj = iteratorUploadObj( getActiveUploadObj, getFlashUploadObj, getFormUpladObj );</div></pre></td></tr></table></figure>
+<p>【summary】<br>迭代器分为内部、外部两种类型。<br>迭代器遵循了单一职责模式，将遍历data的职责与其他的操作分离开（用回调）。</p>
+<hr>
+<h3 id="模版方法模式"><a href="#模版方法模式" class="headerlink" title="模版方法模式"></a>模版方法模式</h3><p>广义的模版方法模式主要是由抽象父类和具体实现父类方法的子类组成，父类中定义了方法，主要有两种：</p>
+<ul>
+<li>抽象方法： 需要字累实现的方法，包括模版方法：子类方法的执行顺序</li>
+<li>具体方法： 从子类中抽取的公共的方法，作复用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Coffee.prototype.init = function()&#123;    </div><div class="line">    this.boilWater();    </div><div class="line">    this.brewCoffeeGriends();    </div><div class="line">    this.pourInCup();    </div><div class="line">    this.addSugarAndMilk();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这边的init方法就是模版方法，因为它规定了子类需要实现的方法及执行顺序。对于javscript来说，没有抽象类的概念，一般用原型链来模拟父类子类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var Rectangle = function (id, x, y, width, height) &#123;</div><div class="line">    Shape.call(this, id, x, y);</div><div class="line">    this.width  = width;</div><div class="line">    this.height = height;</div><div class="line">&#125;;</div><div class="line">Rectangle.prototype = Object.create(Shape.prototype);//继承父类的方法</div><div class="line">Rectangle.prototype.constructor = Rectangle;</div></pre></td></tr></table></figure>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li>但是有一个问题是，由于javascript是动态语言，没有编译器检查子类是否实现了父类的方法，解决方案一种是在父类里面抛出异常，子类没有实现的话，会顺着原型链调用到父类方法，抛出异常就会发现。</li>
+<li>钩子函数： 有时候并不一定按照父类的顺序或者定义的模版方法来执行，需要有所变化，这个时候需要在父类挂一些钩子函数，让这些子类决定的钩子函数来决定子类真正的实现流程。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Beverage.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">    <span class="keyword">this</span>.boilWater();</div><div class="line">    <span class="keyword">this</span>.brew();    </div><div class="line">    <span class="keyword">this</span>.pourInCup();    </div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">this</span>.customerWantsCondiments() )&#123;    </div><div class="line">        <span class="comment">// 如果挂钩返回true，则需要调料 </span></div><div class="line">        <span class="keyword">this</span>.addCondiments();    </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">CoffeeWithHook.prototype.customerWantsCondiments =  </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.confirm( <span class="string">'请问需要调料吗？'</span> );</div><div class="line">    &#125;;</div><div class="line"><span class="keyword">var</span> coffeeWithHook = <span class="keyword">new</span> CoffeeWithHook();</div><div class="line">coffeeWithHook.init();</div></pre></td></tr></table></figure>
+<p>实际上可以用高阶函数的方法，子类把要覆盖的方法作为param传给父类的函数，然后类似于object.assign去生成一个子类的方法集合对象。</p>
+<p>嗯，react中的HOC（高阶组件）有点像这边的父类，好吧，本质上跟继承没差啦。</p>
+<h3 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h3><p>外观模式对客户提供一个简单易用的高层接口，高层接口会把客户的请求转发给子系统来完成具体的功能实现。<br>概况来说就是：<br>客户-&gt;高层接口-&gt; 子系统<br>(内心OS，感觉有点像反向代理…)<br><img src="/media/14860890710793.jpg" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag">#设计模式</a>
+          
+            <a href="/tags/读书笔记/" rel="tag">#读书笔记</a>
+          
+            <a href="/tags/代理模式/" rel="tag">#代理模式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/30/web-secure1-md/" rel="next" title="读书笔记——白帽子讲web安全（一）">
+                <i class="fa fa-chevron-left"></i> 读书笔记——白帽子讲web安全（一）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/31/design-principle3/" rel="prev" title="javascript设计模式（三）">
+                javascript设计模式（三） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/31/design-principle2/"
+           data-title="javascript设计模式（二）" data-url="http://yoursite.com/2017/01/31/design-principle2/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代理模式"><span class="nav-number">1.</span> <span class="nav-text">代理模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保护代理和虚拟代理"><span class="nav-number">1.1.</span> <span class="nav-text">保护代理和虚拟代理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#图片预加载"><span class="nav-number">1.1.1.</span> <span class="nav-text">图片预加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#合并http请求"><span class="nav-number">1.1.2.</span> <span class="nav-text">合并http请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#其他优化场景"><span class="nav-number">1.1.3.</span> <span class="nav-text">其他优化场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器模式"><span class="nav-number">2.</span> <span class="nav-text">迭代器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用场景"><span class="nav-number">2.1.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模版方法模式"><span class="nav-number">3.</span> <span class="nav-text">模版方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点"><span class="nav-number">3.1.</span> <span class="nav-text">注意点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外观模式"><span class="nav-number">4.</span> <span class="nav-text">外观模式</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

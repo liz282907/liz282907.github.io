@@ -1,0 +1,763 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="vue,组件,upload," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一个强烈依赖图床的girl对经常挂的图床表示痛心疾首,就开始了一波vue组件开发——upload，想在此基础上做自己的图床。借鉴了ant-design的api接口以及element的相关实现：）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue组件学习-upload">
+<meta property="og:url" content="http://yoursite.com/2016/10/31/vue组件学习-upload-md/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一个强烈依赖图床的girl对经常挂的图床表示痛心疾首,就开始了一波vue组件开发——upload，想在此基础上做自己的图床。借鉴了ant-design的api接口以及element的相关实现：）">
+<meta property="og:image" content="http://p1.bpimg.com/567571/1c76a01c422e252e.png">
+<meta property="og:image" content="http://p1.bpimg.com/4851/fd64b072dfef992f.png">
+<meta property="og:image" content="http://p1.bpimg.com/4851/7a1e45cb247591d2.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/57fd4d2c8e52c3fc.png">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/13054937.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/59604290.jpg">
+<meta property="og:updated_time" content="2017-02-02T14:22:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue组件学习-upload">
+<meta name="twitter:description" content="一个强烈依赖图床的girl对经常挂的图床表示痛心疾首,就开始了一波vue组件开发——upload，想在此基础上做自己的图床。借鉴了ant-design的api接口以及element的相关实现：）">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/1c76a01c422e252e.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/31/vue组件学习-upload-md/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> vue组件学习-upload | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                vue组件学习-upload
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T09:35:54+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/开发日常/" itemprop="url" rel="index">
+                    <span itemprop="name">开发日常</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/31/vue组件学习-upload-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/31/vue组件学习-upload-md/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>楼主最近项目结束无所事事=。=，加上之前用element的上传组件，用着有一点点不爽…就试着自己写了下上传组件，啊，写完的心理活动就是，虽然一直吐槽element的upload，但是真正轮到自己写才发现too young =。=。他们还是挺厉害的，特别是生命周期的封装上。<br>回归正题，楼主的组件，参照着element和ant-design的upload api，大致实现了如下功能：</p>
+<ul>
+<li>单文件/多文件上传</li>
+<li>文件预览，可选预览方式：列表/卡片，卡片主要是针对img（用URL.createObjectURL）</li>
+<li><p>progress进度条<br>  代码中实际上有两种：</p>
+<ul>
+<li>一种是读到内存，用fileReader的progress事件</li>
+<li><p>还有一种是xhr的upload.onprogress事件</p>
+<p>最终进度条是按照post到服务器的进度来显示的）</p>
+</li>
+</ul>
+</li>
+<li>accept 限定所能接受的文件类型</li>
+<li>可以支持拖拽上传、粘贴上传</li>
+</ul>
+<p>源码请戳<a href="https://github.com/liz282907/net-project-v2/tree/upload/src/components/upload" target="_blank" rel="external">upload组件</a>，upload分支哟</p>
+<hr>
+<h4 id="1-fileReader"><a href="#1-fileReader" class="headerlink" title="1. fileReader"></a>1. fileReader</h4><p>内置了几个事件，包括onprogress,onloadstart,onabort,onerror,onload,onloadend等几个事件，其中onloadend类似于finally操作，不管onerror还是onload，结束都会执行。在这边我们需要处理进度条，那么先看onprogress事件。event对象有这么几个有用的属性：<br><img src="http://p1.bpimg.com/567571/1c76a01c422e252e.png" alt=""></p>
+<ul>
+<li>lengthComputable：决定浏览器是否可以对进度进行计算</li>
+<li>total: 文件大小</li>
+<li>loaded:已经上传的大小</li>
+<li>result: 读取的结果，以data:url格式，可以用来作为src实现预览功能，当然我们也可以对file对象直接用<a href="URL.createObjectURL(">URL.createObjectURL()</a>)来获取实现。</li>
+</ul>
+<h4 id="2-文件上传"><a href="#2-文件上传" class="headerlink" title="2. 文件上传"></a>2. 文件上传</h4><p>新版本的XMLHttpRequest对象，传送数据的时候，有一个progress事件，用来返回进度信息。<br>它分成上传和下载两种情况。下载的progress事件属于XMLHttpRequest对象，上传的progress事件属于XMLHttpRequest.upload对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xhr.onprogress</div><div class="line">xhr.upload.onprogress</div></pre></td></tr></table></figure>
+<p>要显示进度的话，可以在onprogress事件中获取信息。具体的跟上面一样。主要就是xhr和filereader其实都实现了<a href="https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent" target="_blank" rel="external">progressEvent</a>。具体的可以通过给event对象打log看下event.target就知道了。<br>在filereader的onprogress中，e.target就是filereader，所以当freader.onload事件中可以调用e.target.result来获取src实现预览。如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//filereader实现预览</div><div class="line">var reader = new FileReader();</div><div class="line">   reader.onload = (function(aImg) &#123; </div><div class="line">     return function(e) &#123; </div><div class="line">      //e.target=== reader</div><div class="line">       aImg.src = e.target.result; </div><div class="line">     &#125;; </div><div class="line">   &#125;)(img);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//xhr中显示进度</div><div class="line">xhr.upload.onprogress = function updateProgress(e)&#123;</div><div class="line">//e.target===XMLHttpRequestUpload，即xhr.upload对象</div><div class="line">       if(e.lengthComputable)&#123;</div><div class="line">           e.percent = e.loaded/e.total*100;</div><div class="line">           if(options.onProgress) options.onProgress(e);</div><div class="line">       &#125;</div><div class="line">   &#125;;</div></pre></td></tr></table></figure>
+<h4 id="3-xhr"><a href="#3-xhr" class="headerlink" title="3. xhr"></a>3. xhr</h4><p><img src="http://p1.bpimg.com/4851/fd64b072dfef992f.png" alt="xhr的时间周期"><br>执行顺序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. xhr open。打开连接</div><div class="line">2. xhr send ：在这个过程中，追踪请求xhr当前状态，用xhr.readyState来访问。</div><div class="line">    - case 0: xhr对象刚被创建，尚未open</div><div class="line">    - case 1: //opened </div><div class="line">    - case 2: // headers_received。收到响应头</div><div class="line">    - case 3: //loading 下载阶段</div><div class="line">    - case 4: //done</div></pre></td></tr></table></figure>
+<p>只有当 responseType     为”text”、””时，xhr对象上才有此属性，此时才能调用xhr.responseText</p>
+<blockquote>
+<p>从上面介绍的事件中，可以知道若xhr请求成功，就会触发xhr.onreadystatechange和xhr.onload两个事件。 一般倾向于 xhr.onload事件，因为xhr.onreadystatechange是每次xhr.readyState变化时都会触发，而不是xhr.readyState=4时才触发。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//onload    当请求成功完成时触发，此时xhr.readystate=4</span></div><div class="line"><span class="keyword">const</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.onload = <span class="function"><span class="keyword">function</span> <span class="title">onload</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="keyword">if</span>(xhr.status&lt;<span class="number">200</span> ||(xhr.status&gt;=<span class="number">300</span> &amp;&amp; xhr.status!== <span class="number">304</span>))</div><div class="line">       <span class="keyword">if</span>(options.onError)</div><div class="line">               options.onError(getError(action,xhr));</div><div class="line">       <span class="keyword">else</span></div><div class="line">           options.onSuccess(getResponseBody(xhr));</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>补充一条，xhr.send在xmlhttprequest2中data type其实是可以有formdata的，这个就有利于我们上传文件。它会自动将文件转变为字节流对象，然后后台可以进行解析。如果是单纯的obj data,里面放 file的话，无法传输过去。也没法解析。</p>
+<h4 id="4-html5-drag-drop"><a href="#4-html5-drag-drop" class="headerlink" title="4. html5 drag drop"></a>4. html5 drag drop</h4><ul>
+<li>一定要在dragover的处理事件中preventDefault(),否则默认行为是会跳转到另一个页面预览文件的。</li>
+<li>获取文件列表: e.dataTransfer.files<br><img src="http://p1.bpimg.com/4851/7a1e45cb247591d2.png" alt="e"></li>
+<li>不会触发到input的change事件</li>
+</ul>
+<h4 id="5-file上传"><a href="#5-file上传" class="headerlink" title="5. file上传"></a>5. file上传</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">style</span>=<span class="string">"display:none"</span> <span class="attr">id</span>=<span class="string">"fileInput"</span> <span class="attr">ref</span>=<span class="string">"fileInput"</span> <span class="attr">multiple</span> @<span class="attr">change</span>=<span class="string">"handleChange"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>  @<span class="attr">click</span>=<span class="string">"clickToChooseFile"</span> <span class="attr">for</span>=<span class="string">"fileInput"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"upload-hint"</span>&gt;</span>支持单文件/多文件上传，请选择image类型<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//模拟input点击</span></div><div class="line">clickToChooseFile()&#123;</div><div class="line">     <span class="keyword">this</span>.$refs.fileInput.click();</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>一般是把input进行隐藏，用另一个自定义样式的div代替它，然后在click事件中去手动click该input。</p>
+<p>而监听文件变化的事件 onchange事件的参数是本地新变更（增加的files数组）。</p>
+<h4 id="6-粘贴上传"><a href="#6-粘贴上传" class="headerlink" title="6. 粘贴上传"></a>6. 粘贴上传</h4><p><img src="http://i1.piimg.com/567571/57fd4d2c8e52c3fc.png" alt=""><br>我们需要对items的每一项转化为file对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const imageFiles = Array.prototype.slice.call(e.clipboardData.items).filter(item=&gt;&#123;</div><div class="line">          return (item.kind == &apos;file&apos; &amp;&amp; item.type.indexOf(&apos;image/&apos;) &gt;= 0);</div><div class="line">      &#125;).map(item=&gt; item.getAsFile());</div><div class="line">      this.handleFiles(imageFiles);</div><div class="line">      e.clipboardData.items.clear();//实际上是不会生效的</div></pre></td></tr></table></figure>
+<p>然后就可以继续用之前的方法（URL.createObjURL(file)）读取，预览等等操作。<br>其实它内置了两个方法，一个是getAsFile，一个是getAsString。转换完后会成为blob对象（file也是一个blob对象）。<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/13054937.jpg" alt=""></p>
+<p><strong>注意点</strong>： 楼主本来是想粘贴完以后清空剪贴板的。但是貌似看了下<a href="https://html.spec.whatwg.org/multipage/interaction.html#concept-dnd-rw" target="_blank" rel="external">w3c的文档</a>，只有在read/write mode下才可以进行操作，而read对应于drag event,write对应于drop事件，其他对应于protected mode。<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/59604290.jpg" alt=""></p>
+<p>而平时我们所说的比如知乎的剪贴版权信息，则是用e.clipboardData.setData()这些来进行操作的。既然可以set，那么也可以用它来清空。e.clipboardData.clearData(“text”)也可以实现。</p>
+<h3 id="references"><a href="#references" class="headerlink" title="references"></a>references</h3><ol>
+<li><a href="https://segmentfault.com/a/1190000004322487" target="_blank" rel="external">你真的会使用XMLHttpRequest吗？</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-%E6%8B%96%E6%8B%BD%E4%B8%8E%E6%8B%96%E6%94%BE%E7%AE%80%E4%BB%8B/" target="_blank" rel="external">HTML5 drag &amp; drop 拖拽与拖放简介</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag">#vue</a>
+          
+            <a href="/tags/组件/" rel="tag">#组件</a>
+          
+            <a href="/tags/upload/" rel="tag">#upload</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/30/日常笔记/" rel="next" title="日常笔记">
+                <i class="fa fa-chevron-left"></i> 日常笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/31/日常笔记-二/" rel="prev" title="日常笔记-二">
+                日常笔记-二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/31/vue组件学习-upload-md/"
+           data-title="vue组件学习-upload" data-url="http://yoursite.com/2016/10/31/vue组件学习-upload-md/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-fileReader"><span class="nav-number">1.</span> <span class="nav-text">1. fileReader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-文件上传"><span class="nav-number">2.</span> <span class="nav-text">2. 文件上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-xhr"><span class="nav-number">3.</span> <span class="nav-text">3. xhr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-html5-drag-drop"><span class="nav-number">4.</span> <span class="nav-text">4. html5 drag drop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-file上传"><span class="nav-number">5.</span> <span class="nav-text">5. file上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-粘贴上传"><span class="nav-number">6.</span> <span class="nav-text">6. 粘贴上传</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#references"><span class="nav-number"></span> <span class="nav-text">references</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

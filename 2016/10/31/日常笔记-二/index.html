@@ -1,0 +1,756 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="开发,好玩的," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，还包括自己在开发过程中遇到的一些很有意思的功能点。不定期更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日常笔记-二">
+<meta property="og:url" content="http://yoursite.com/2016/10/31/日常笔记-二/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，还包括自己在开发过程中遇到的一些很有意思的功能点。不定期更新">
+<meta property="og:image" content="http://i1.piimg.com/567571/519ba7ba77f69c94.png">
+<meta property="og:updated_time" content="2017-02-02T14:21:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日常笔记-二">
+<meta name="twitter:description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，还包括自己在开发过程中遇到的一些很有意思的功能点。不定期更新">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/519ba7ba77f69c94.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/31/日常笔记-二/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> 日常笔记-二 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                日常笔记-二
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T11:20:47+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/日常阅读笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">日常阅读笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/31/日常笔记-二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/31/日常笔记-二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="JavaScript-和事件"><a href="#JavaScript-和事件" class="headerlink" title="JavaScript 和事件"></a><a href="http://yujiangshui.com/javascript-event/" target="_blank" rel="external">JavaScript 和事件</a></h3><p>划重点就是：</p>
+<h4 id="1-监听事件方法："><a href="#1-监听事件方法：" class="headerlink" title="1. 监听事件方法："></a>1. 监听事件方法：</h4><ul>
+<li><p>html内联属性<br>避免使用，因为与html耦合</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button onclick=&quot;alert(&apos;你点击了这个按钮&apos;);&quot;&gt;点击这个按钮&lt;/button&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>dom属性绑定<br>缺点：多次绑定是覆盖，非添加</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">element.onclick = function(event)&#123;</div><div class="line">    alert(&apos;你点击了这个按钮&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>事件监听函数</p>
+</li>
+</ul>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">element.addEventListener(&lt;event-name&gt;, &lt;callback&gt;, &lt;use-capture&gt;);</div><div class="line">element.removeEventListener(&quot;click&quot;,funcName,false)</div><div class="line">//ie</div><div class="line">element.attachEvent(&lt;event-name&gt;, &lt;callback&gt;);//event-name: on+name</div></pre></td></tr></table></figure>
+
+use-capture设为false主要是因为ie不支持捕获阶段的事件响应。所以统一在冒泡阶段处理。
+</code></pre><h4 id="2-事件代理"><a href="#2-事件代理" class="headerlink" title="2. 事件代理"></a>2. 事件代理</h4><p>需要注意的时，事件触发的目标总是最底层的节点。比如你点击一段文字，你以为你的事件目标节点在 div 上，但实际上触发在p,span等子节点上。</p>
+<p>事件代理优点：</p>
+<ul>
+<li>减少事件绑定，提升性能。</li>
+<li>动态变化的 DOM 结构，仍然可以监听。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//原生</div><div class="line">element.addEventListener(&apos;click&apos;, function(event) &#123;</div><div class="line">   // 判断是否是 a 节点</div><div class="line">   if ( event.target.tagName == &apos;A&apos; ) &#123;</div><div class="line">       // a 的一些交互操作</div><div class="line">   &#125;</div><div class="line">&#125;, false);</div><div class="line">//jquery</div><div class="line">$(parent).on(&quot;click&quot;,&quot;a&quot;,function(e)&#123;...&#125;)</div></pre></td></tr></table></figure>
+<h4 id="3-停止冒泡"><a href="#3-停止冒泡" class="headerlink" title="3. 停止冒泡"></a>3. <strong>停止冒泡</strong></h4><p>这个hin有用呀，特别是用于弹窗的交互上，如果希望点击弹窗以外的部分让弹窗消失，就需要给弹窗设置阻止冒泡</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var overlay = document.querySelector(&apos;.overlay&apos;);</div><div class="line">    </div><div class="line">    overlay.addEventListener(&apos;click&apos;, function(event) &#123;</div><div class="line">      event.stopPropagation();</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">    // Remove the overlay when a &apos;click&apos;</div><div class="line">    // is heard on the document (&lt;html&gt;) element</div><div class="line">    document.addEventListener(&apos;click&apos;, function(event) &#123;</div><div class="line">      overlay.parentNode.removeChild(overlay);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h4 id="4-其他注意事项"><a href="#4-其他注意事项" class="headerlink" title="4. 其他注意事项"></a>4. 其他注意事项</h4><ul>
+<li><strong>事件回调函数的作用域问题</strong>，详见另一篇楼主的博文<a href="https://www.zybuluo.com/lizlalala/note/508748" target="_blank" rel="external">日常笔记</a>的第2条<strong>this总结</strong>。</li>
+<li><p>resize事件，相关的timing function: <strong>debounce throttle immediate</strong></p>
+<p>  总结来说，<strong>throttle</strong>和<strong>debounce</strong>都是为了限制在某段时间内大量连续的触发某一事件而进行的优化函数，两者区别在于：</p>
+<ul>
+<li>前者只是减少触发频率，比如每隔200ms,500ms触发一次，但还是要执行多次的。如mousemove</li>
+<li><p>而后者是某段时间只需要执行一次，把那些同样的操作认为是一次操作的抖动部分，去抖。等不再进行某项操作时（比如滚动）才会去执行它。eg。keydown-&gt;keyup。<br>后者的一个<strong>栗子</strong>就是 百度首页上input框 监听用户的输入，不需要用户回车才发送请求，而是间隔比如500ms才会发送一次。需要体会的是，并不是每隔500ms就发送一次，因此这边用的是debounce。还有一个栗子就是列表滚动的时候，如果交互是等用户停下来再自动加载那么是debounce,如果是在滚动的过程中一直会自动加载下面的内容，那就是throttle<br>具体的例子可以看 上一篇文章<a href="https://www.zybuluo.com/lizlalala/note/508748" target="_blank" rel="external">5.及时搜索</a>。等有空，楼主再仔细看下下面的文章，然后po一个在线demo好了。。之前的项目中有用到，但是不太好放到codepen里面…</p>
+<ul>
+<li>忘了还有一个<strong>immediate</strong>..它其实就是debounce，只是把回调中要执行的操作提出来先进行了。debounce中我们可以看到，是先等啊等，等到delta 时间到了，我们才去执行 比如 fetchKeywordList(),但是immediate是先执行，然后再等啊等。有点类似于while(){}和do{} while()。<br>to read :</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><a href="https://zhirzh.github.io/2016/10/11/timing-controls/" target="_blank" rel="external">timing controls</a></li>
+<li><a href="https://github.com/hanzichi/underscore-analysis/issues/20?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">JavaScript 函数节流和函数去抖应用场景辨析</a></li>
+<li><a href="http://www.cnblogs.com/fsjohnhuang/p/4147810.html" target="_blank" rel="external">JS魔法堂：函数节流（throttle）与函数去抖（debounce）</a></li>
+<li><p><a href="https://css-tricks.com/debouncing-throttling-explained-examples/" target="_blank" rel="external">Debouncing and Throttling Explained Through Examples</a></p>
+<p><strong>楼主来更新了，打个小广告，之前说的throtte，最近也做了demo,具体是写cnode列表时想实现无限滚动而做的。具体请戳<a href="https://www.zybuluo.com/lizlalala/note/495567" target="_blank" rel="external">无限滚动</a></strong> </p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="webpack-全局变量配置"><a href="#webpack-全局变量配置" class="headerlink" title="webpack 全局变量配置"></a>webpack 全局变量配置</h3><pre><code>![](http://p1.bpimg.com/567571/b00272bb9e65ec16.png)
+</code></pre><p>因为项目中很多页面都需要发送ajax请求，不可能在每一页都import axios from ‘axios’。因此需要webpack全局配置一下。<br>补充一下之前开发react项目的几个知识点：</p>
+<ul>
+<li>如果只有有限几个import,可以用resolve.alias指定路径，加快搜索速度。</li>
+<li>如果想打包的话，但是公用库不想打包进去，可以用externals指定。同时在html里面引用一下外部cdn。<br>其他的芝士看前端外刊，以及<a href="https://github.com/lcxfs1991/blog" target="_blank" rel="external">这个博客</a></li>
+</ul>
+<h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p><img src="http://i1.piimg.com/567571/519ba7ba77f69c94.png" alt=""></p>
+<h3 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function format(time,fmt)&#123;</div><div class="line">  let dateObj = new Date(parseInt(time));</div><div class="line">  var o = &#123;</div><div class="line">        &quot;M+&quot;: dateObj.getMonth() + 1, //月份</div><div class="line">        &quot;d+&quot;: dateObj.getDate(), //日</div><div class="line">        &quot;h+&quot;: dateObj.getHours(), //小时</div><div class="line">        &quot;m+&quot;: dateObj.getMinutes(), //分</div><div class="line">        &quot;s+&quot;: dateObj.getSeconds(), //秒</div><div class="line">    &#125;;</div><div class="line">    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (dateObj.getFullYear() + &quot;&quot;).substr(4 - RegExp.$1.length));</div><div class="line">    for (let k in o)</div><div class="line">    if (new RegExp(&quot;(&quot; + k + &quot;)&quot;).test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : ((&quot;00&quot; + o[k]).substr((&quot;&quot; + o[k]).length)));</div><div class="line">    return fmt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/开发/" rel="tag">#开发</a>
+          
+            <a href="/tags/好玩的/" rel="tag">#好玩的</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/31/vue组件学习-upload-md/" rel="next" title="vue组件学习-upload">
+                <i class="fa fa-chevron-left"></i> vue组件学习-upload
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/31/FE玩耍专栏/" rel="prev" title="FE玩耍专栏(一)">
+                FE玩耍专栏(一) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/31/日常笔记-二/"
+           data-title="日常笔记-二" data-url="http://yoursite.com/2016/10/31/日常笔记-二/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-和事件"><span class="nav-number">1.</span> <span class="nav-text">JavaScript 和事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-监听事件方法："><span class="nav-number">1.1.</span> <span class="nav-text">1. 监听事件方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-事件代理"><span class="nav-number">1.2.</span> <span class="nav-text">2. 事件代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-停止冒泡"><span class="nav-number">1.3.</span> <span class="nav-text">3. 停止冒泡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-其他注意事项"><span class="nav-number">1.4.</span> <span class="nav-text">4. 其他注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-全局变量配置"><span class="nav-number">2.</span> <span class="nav-text">webpack 全局变量配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数声明"><span class="nav-number">3.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期格式化"><span class="nav-number">4.</span> <span class="nav-text">日期格式化</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Vue,Vuex,坑," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="基本知识stateVuex提供了机制，使得设置 store选项（启用Vue.use(Vuex)）会将 store 从根组件『注入』到每一个子组件中。
+1234567891011const app = new Vue(&amp;#123; el: &amp;apos;#app&amp;apos;, // 使用 &amp;quot;store&amp;quot; 选项后，可以注册 store 对象。将会把 store 实例注入到所有子组件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue实践——Vuex">
+<meta property="og:url" content="http://yoursite.com/2017/02/01/Vue实践——Vuex/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基本知识stateVuex提供了机制，使得设置 store选项（启用Vue.use(Vuex)）会将 store 从根组件『注入』到每一个子组件中。
+1234567891011const app = new Vue(&amp;#123; el: &amp;apos;#app&amp;apos;, // 使用 &amp;quot;store&amp;quot; 选项后，可以注册 store 对象。将会把 store 实例注入到所有子组件。">
+<meta property="og:image" content="http://p1.bqimg.com/567571/224909d23fb9c88b.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/c0a0d356fdf15657.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/8934d0e6c2af7b52.png">
+<meta property="og:updated_time" content="2017-02-02T14:26:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue实践——Vuex">
+<meta name="twitter:description" content="基本知识stateVuex提供了机制，使得设置 store选项（启用Vue.use(Vuex)）会将 store 从根组件『注入』到每一个子组件中。
+1234567891011const app = new Vue(&amp;#123; el: &amp;apos;#app&amp;apos;, // 使用 &amp;quot;store&amp;quot; 选项后，可以注册 store 对象。将会把 store 实例注入到所有子组件。">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/224909d23fb9c88b.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/01/Vue实践——Vuex/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> Vue实践——Vuex | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Vue实践——Vuex
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-01T13:34:10+08:00" content="2017-02-01">
+              2017-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/日常开发/" itemprop="url" rel="index">
+                    <span itemprop="name">日常开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/01/Vue实践——Vuex/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/01/Vue实践——Vuex/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h3><h4 id="state"><a href="#state" class="headerlink" title="state"></a>state</h4><p>Vuex提供了机制，使得设置 store选项（启用Vue.use(Vuex)）会将 store 从根组件『注入』到每一个子组件中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">const app = new Vue(&#123;</div><div class="line"> el: &apos;#app&apos;,</div><div class="line"> // 使用 &quot;store&quot; 选项后，可以注册 store 对象。将会把 store 实例注入到所有子组件。</div><div class="line"> store,</div><div class="line"> components: &#123; Counter &#125;,</div><div class="line"> template: `</div><div class="line">   &lt;div class=&quot;app&quot;&gt;</div><div class="line">     &lt;counter&gt;&lt;/counter&gt;</div><div class="line">   &lt;/div&gt;</div><div class="line"> `</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>子组件中可以通过<code>this.$store.state.someprop</code>访问<br>mapState:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">computed: mapState(&#123;</div><div class="line">   count: state =&gt; state.count,</div><div class="line">   countAlias: &apos;count&apos;,</div><div class="line">   &apos;count&apos;,</div><div class="line">   countPlusLocalState (state) &#123;</div><div class="line">     return state.count + this.localCount</div><div class="line">   &#125;</div><div class="line"> &#125;)</div><div class="line"> 或者用对象扩展方法将mapState作为computed的部分</div><div class="line"> computed:&#123;</div><div class="line">   test1()&#123;..&#125;,</div><div class="line">   ...mapState(&#123;&#125;)</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h4 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h4><p>类似于store的计算属性函数,接受state作为第一个参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">const store = new Vuex.Store(&#123;</div><div class="line"> state: &#123;</div><div class="line"> &#125;,</div><div class="line"> getters: &#123;</div><div class="line">   doneTodos: state =&gt; ...</div><div class="line"> &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>组件中用this.$store.getters.blah访问</p>
+<h4 id="Mutations"><a href="#Mutations" class="headerlink" title="Mutations"></a>Mutations</h4><ul>
+<li>遵循响应式规则，即预先初始化，需要增加属性时，用set或者新对象来替换旧对象。</li>
+<li>常量命名Mutation，统一管理</li>
+<li>同步函数</li>
+<li>每个mutation都有一个type和一个回调函数。回调函数的参数为state，也接受payload</li>
+</ul>
+<h4 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h4><ul>
+<li>不改变state,只commit，类似于emit一个事件。</li>
+<li>可以处理异步操作，弥补mutation只能是同步函数的问题。</li>
+<li>处理参数接受context为参数。context包括与store实例相同的方法和属性。可以用es6参数解构来获得里面的commit等</li>
+</ul>
+<hr>
+<h3 id="更新1-vuex重构了todo-见github"><a href="#更新1-vuex重构了todo-见github" class="headerlink" title="更新1,vuex重构了todo,见github"></a>更新1,<a href="https://github.com/liz282907/TODO-/tree/master/todo_vue2_vuex" target="_blank" rel="external">vuex重构了todo,见github</a></h3><hr>
+<h3 id="更新2"><a href="#更新2" class="headerlink" title="更新2"></a>更新2</h3><ol>
+<li>需要注意的是，整个操作中只通过在store里面提交mutations来实现数据的更改，（便于用dev-统一tool去统一跟踪）。</li>
+<li>总的来说，vuex解决的是用纯数据交互的方式来处理原本属于组件间（sibling组件）的通信，有人会说那我用event也可以做到通信啊，但是当组件创建、销毁时，这些状态也随之变动，因此需要有一个独立于组件的状态树来进行维护。在知乎上<a href="https://www.zhihu.com/question/38209295" target="_blank" rel="external">看到一个回答</a>，挺好的：<blockquote>
+<p>Vuex的主要作用是各组件间的状态同步（以及同一组件再次显示时的状态保持）。<br>特别是非数据库内容。比如网页右上角的搜索框，并不像日志列表那样对应数据库内容。<br>如果不希望每次进入有搜索框的模板页面，搜索框内容都被重置，那么就需要高于组件的架构</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>题外话：</p>
+<p>以往的操作是:</p>
+<ul>
+<li>parentA<ul>
+<li>childB</li>
+<li>childC<br>子组件（B,C）要调用A的回调，那么通过props传递到B,C即可。<br>A中要调用B.C的方法/属性，那么也可以通过props回调，然后把B,C的属性/方法作为参数 this.props.Afn(bVal,cVal,bFn,cFn)这样。（当然这是在B,C内部操作）。如果一定要在A中执行，可以this.ref.B.blah(以react为例)<br>在vue中，通信中props的部分跟react一样，当然也可以通过(特别是孙孙组件这种层级特别多的)事件，B,C中emit,A中on<br>而事件也适用于sibling之间的通信，如B,C。<br><a href="http://www.tuicool.com/articles/AzQzEbq" target="_blank" rel="external">栗子可以看react</a></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="以shopping-cart为例来分析vuex的goods"><a href="#以shopping-cart为例来分析vuex的goods" class="headerlink" title="以shopping-cart为例来分析vuex的goods"></a>以shopping-cart为例来分析vuex的goods</h3><p>子组件为cart和products。购物车和商品列表。</p>
+<ul>
+<li><strong>event-bus功能</strong>：当商品需要加入购物车的时候，需要在商品列表中-1,购物车中添加。那么就应该dispatch一个add_to_cart action到根store。然后根storecommit一个mutation，而这个时候，购物车和商品列表中都有同名ADD_TO_CART mutation，就会同时执行。变相的实现event-bus的功能。</li>
+<li><strong>避免数据冗余</strong>：除此之外，cart中只存变动的added products的id,quantity数量，虽然cart组件中有added product的信息，但是这些不存在cart store中，而是存放在根store,根据added数组中的id去查询products，然后得到products getters供cart组件使用。使得数据冗余减少了很多，组件不存储无关state.</li>
+<li><strong>全局提升</strong>。虽然有module，但是它们都是注册在全局上的，也就是会被提升，保证了同一个action有可能调用多个同名mutation（是通过维护数组来实现的）<br><img src="http://p1.bqimg.com/567571/224909d23fb9c88b.png" alt=""><br>mutations中其实是包括了两个module+根的mutation，但是可以看到这边都被合并了，维护一个队列来进行分发。<br>(一个dispatch也可能会触发多个模块的同名action，如果action中返回的是promise,那么等所有的action都结束完才会执行then)</li>
+</ul>
+<hr>
+<h3 id="需要用vuex-Immutable的原因"><a href="#需要用vuex-Immutable的原因" class="headerlink" title="需要用vuex/Immutable的原因"></a>需要用vuex/Immutable的原因</h3><ol>
+<li>vue踩下的坑： props传递引用对象（浅复制）<br><img src="http://p1.bqimg.com/567571/c0a0d356fdf15657.png" alt=""><br>比如这边的wigetList就是一个数组对象，是作为editModal这个子组件的props进行传递的，而子组件的一个data:list以wigetList为初始值，当点击multiSelect（即传进来的是protocol:[]数组，变动这个数组时）等变动list的时候，由于传递引用，会导致外层的wigetList变动，造成新一轮的props更新，所有list中<strong>非引用的对象</strong>都会被重新初始化掉，（注意是非引用对象，像input值传进来，内部变动是不会影响外部的）<br>应该是传类似于这种：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[&#123;</div><div class="line">    input: &apos;tet&apos;,       //不会改变外部</div><div class="line">    select: [&apos;test1&apos;,&apos;test2&apos;]//会作用于外部</div><div class="line">&#125;]</div></pre></td></tr></table></figure>
+<p>这样就违背了数据单向传递的目的，那么所有引用这个wigetList的值都会相应的被变化。<br>应该是props传递进来的时候用的浅复制，类似于Object.assign.<br><img src="http://i1.piimg.com/567571/8934d0e6c2af7b52.png" alt=""><br>对每个key遍历赋值，然后基本类型都赋值，但是引用赋的还是对象。<br>一种解决方案是传递immutable数据（蠢蠢的方法是JSON序列化掉然后传进来…）。<br>还有一种是虽然传引用，但是赋值（data用props初始化的时候）用深拷贝(这边用的lodash的深拷贝)。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">import  cloneDeep from &apos;lodash/cloneDeep&apos;</div><div class="line">data() &#123;</div><div class="line">return &#123;</div><div class="line"> showModal: this.show,</div><div class="line"> wigets: cloneDeep(this.wigetList),      //here</div><div class="line"> form: &#123;...wigetTest&#125;</div><div class="line">&#125;;</div><div class="line">&#125;,</div><div class="line">watch:&#123;</div><div class="line">show(val)&#123;</div><div class="line"> this.showModal = val;</div><div class="line">&#125;,</div><div class="line">wigetList(val)&#123;</div><div class="line"> this.wigets = cloneDeep(val);    //here ~</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><hr>
+<p>case </p>
+<ol>
+<li><p>全局维护tab. 当click tab时，dispatch一个“changeTab”的action,根store响应，根commit一个CHANGE_TAB的mutation（tab = newTab），然后同名的module里面的mutation执行（比如reset等等）。</p>
+<p> 之前的方法是这样处理的：在page1中监听tab变动，等根的tab state变动完后reset.</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//page1: </div><div class="line">watch: &#123;</div><div class="line">        &apos;$route&apos;(to,from) &#123;</div><div class="line">            //监听tab导致的路由变动</div><div class="line">            if(to.query &amp;&amp; to.query.tab)&#123;</div><div class="line">              this.$store.dispatch(&apos;changeTab&apos;,to.query.tab).then(()=&gt;&#123;</div><div class="line">                this.reset();</div><div class="line">              &#125;)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">//根store</div><div class="line">const actions = &#123;</div><div class="line">    changeTab(&#123;commit&#125;,tab)&#123;</div><div class="line">    //返回一个promise</div><div class="line">        return new Promise((resolve,reject)=&gt;&#123;</div><div class="line">            commit(types.CHANGE_TAB,tab);</div><div class="line">            resolve();</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag">#Vue</a>
+          
+            <a href="/tags/Vuex/" rel="tag">#Vuex</a>
+          
+            <a href="/tags/坑/" rel="tag">#坑</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/01/FE玩耍专栏（二）之缩小版/" rel="next" title="FE玩耍专栏（二）之缩小版">
+                <i class="fa fa-chevron-left"></i> FE玩耍专栏（二）之缩小版
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/01/util笔记/" rel="prev" title="util笔记">
+                util笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/01/Vue实践——Vuex/"
+           data-title="Vue实践——Vuex" data-url="http://yoursite.com/2017/02/01/Vue实践——Vuex/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本知识"><span class="nav-number">1.</span> <span class="nav-text">基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#state"><span class="nav-number">1.1.</span> <span class="nav-text">state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getters"><span class="nav-number">1.2.</span> <span class="nav-text">getters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mutations"><span class="nav-number">1.3.</span> <span class="nav-text">Mutations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#actions"><span class="nav-number">1.4.</span> <span class="nav-text">actions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新1-vuex重构了todo-见github"><span class="nav-number">2.</span> <span class="nav-text">更新1,vuex重构了todo,见github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新2"><span class="nav-number">3.</span> <span class="nav-text">更新2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以shopping-cart为例来分析vuex的goods"><span class="nav-number">4.</span> <span class="nav-text">以shopping-cart为例来分析vuex的goods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要用vuex-Immutable的原因"><span class="nav-number">5.</span> <span class="nav-text">需要用vuex/Immutable的原因</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

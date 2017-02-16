@@ -1,0 +1,804 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="开发,好玩的,css,js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这个专栏主要写自己看到的很有意思的小demo，日常玩耍类型哈哈。更新的频率会比较低哟，and 平时都记在作业部落，不定期迁移到博客中...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FE玩耍专栏(一)">
+<meta property="og:url" content="http://yoursite.com/2016/10/31/FE玩耍专栏/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这个专栏主要写自己看到的很有意思的小demo，日常玩耍类型哈哈。更新的频率会比较低哟，and 平时都记在作业部落，不定期迁移到博客中...">
+<meta property="og:image" content="http://p1.bpimg.com/567571/7ba4b3bf40515899.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/1fe437cbb8f572c6.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/8a8cb2415343fef6.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/4a21e4050ee4e016.png">
+<meta property="og:updated_time" content="2017-02-02T14:23:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FE玩耍专栏(一)">
+<meta name="twitter:description" content="这个专栏主要写自己看到的很有意思的小demo，日常玩耍类型哈哈。更新的频率会比较低哟，and 平时都记在作业部落，不定期迁移到博客中...">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/7ba4b3bf40515899.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/31/FE玩耍专栏/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> FE玩耍专栏(一) | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                FE玩耍专栏(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T11:25:46+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/31/FE玩耍专栏/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/31/FE玩耍专栏/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-toggle-button"><a href="#1-toggle-button" class="headerlink" title="1. toggle button"></a>1. <a href="http://codepen.io/luchen/pen/dpoJZa" target="_blank" rel="external">toggle button</a></h3><p></p><p data-height="265" data-theme-id="dark" data-slug-hash="dpoJZa" data-default-tab="html,result" data-user="luchen" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/dpoJZa/" target="_blank" rel="external">toggle button via css</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>小记：<br>有几个重要点呐：</p>
+<ul>
+<li>input 的id与 label的for属性对应，使得label可以检测input的check事件，否则点label是不能触发check的。</li>
+<li>css3中：checked 属性，” + “兄弟选择符。使得可以对选中状态下的label进行css编写 </li>
+<li>todo 用transform,尽量不用left这些。以达到平滑效果 【done】<br>  确实过渡会平滑很多。</li>
+</ul>
+<hr>
+<h3 id="2-scrollbar"><a href="#2-scrollbar" class="headerlink" title="2. scrollbar"></a>2. scrollbar</h3><p></p><p data-height="265" data-theme-id="dark" data-slug-hash="wzdjWv" data-default-tab="html,result" data-user="luchen" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/wzdjWv/" target="_blank" rel="external">js实现滚动条</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p><strong>recipe</strong>:</p>
+<ul>
+<li>scrollTop</li>
+<li>height(div高度)</li>
+<li>文档内容高度（如果是普通的box里面的，则ele.scrollHeight）</li>
+</ul>
+<p>这边是以一个小的div为例。</p>
+<p>如果想全局滚动条，类似于阮一峰es6教程上的那种效果。<br><img src="http://p1.bpimg.com/567571/7ba4b3bf40515899.png" alt=""><br>则应该相应的变为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(window).scrollTop()</div><div class="line">$(window).height()</div><div class="line">$(document).height()</div></pre></td></tr></table></figure>
+<p>补充知识：</p>
+<ul>
+<li><p>element.scrollTop是滚动过程中文档超出视窗的部分，它的最大值就是document.height-element.height,即为progressbar为100%的时候。<br>两幅图可以说明：<br><img src="http://i1.piimg.com/567571/1fe437cbb8f572c6.png" alt=""><br><img src="http://p1.bqimg.com/567571/8a8cb2415343fef6.png" alt=""></p>
+</li>
+<li><p>还有一种纯css做的方法<br><a href="http://codepen.io/airen/details/BzvzVg/" target="_blank" rel="external">CSS only scroll indicator</a>。思路主要就是用一个斜对角的图形，然后z-index =-1，只留出height为比如2px的区域，这样滚动条动时，显示的部分就在慢慢变宽。</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-模拟操作"><a href="#3-模拟操作" class="headerlink" title="3. 模拟操作"></a>3. 模拟操作</h3><p>很久以前我萌还在用jquery的时候，很喜欢用的一个函数是trigger，但是离开了jquery，还有什么方法可以实现同样的问题，楼主一直很困惑…一直到看了mdn的相关api，具体demo请戳<a href="http://codepen.io/luchen/pen/mrNmqJ?editors=1111" target="_blank" rel="external">自定义事件及触发</a><br>划重点就是： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var event = new Event()</div><div class="line">target.addEventListener(&quot;自定义名称&quot;)</div><div class="line">target.dispatchEvent(event);</div></pre></td></tr></table></figure>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="mrNmqJ" data-default-tab="js,result" data-user="luchen" data-embed-version="2" data-pen-title="trigger event" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/mrNmqJ/" target="_blank" rel="external">trigger event</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>references:</p>
+<ol>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Creating_and_triggering_events" target="_blank" rel="external">创建和触发 events</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/MouseEvent" target="_blank" rel="external">mouseevent</a></li>
+</ol>
+<hr>
+<h3 id="4-css做tab切换"><a href="#4-css做tab切换" class="headerlink" title="4. css做tab切换"></a>4. <a href="http://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651551413&amp;idx=2&amp;sn=abb3bc58dc7e9d4f64909f48edab59e8&amp;chksm=8025a174b7522862920744fd207323c29017566ce123515e8f7191517360049746e71cba6e32&amp;scene=0#wechat_redirect" target="_blank" rel="external">css做tab切换</a></h3><p>todo</p>
+<ul>
+<li>background-clip: 裁剪，从 border-box开始。</li>
+<li>background-origin: 显示图片，从padding-box开始<br>to summary:</li>
+</ul>
+<ol>
+<li><a href="http://m.wufangbo.com/css3-backgrounds-details/" target="_blank" rel="external">background详解</a></li>
+<li>css div p(div下的所有子元素，包括孙子), div&gt;p(div的直接子元素中的p)，div+p(div的直接后兄弟,1个)，div~p（div后面的所有p兄弟）</li>
+</ol>
+<hr>
+<h3 id="5-slider"><a href="#5-slider" class="headerlink" title="5. slider"></a>5. slider</h3><p>楼主在开发这部分组件，用的是原生的html5的input中的type=range，实现了这么几个功能：</p>
+<ul>
+<li>滑动+tooltip</li>
+<li>左侧部分高亮</li>
+<li>step滑动</li>
+<li>显示step tick<br>基本按照ant-design的接口来写的。但是遇到一个尴尬的问题就是…没有办法实现范围选择…需要重新开发..</li>
+</ul>
+<h4 id="recipe"><a href="#recipe" class="headerlink" title="recipe:"></a>recipe:</h4><p>html5 input(type:range)<br>选择器：</p>
+<hr>
+<h3 id="6-无限滚动"><a href="#6-无限滚动" class="headerlink" title="6. 无限滚动"></a>6. 无限滚动</h3><p>楼主最近在用vue开发cnode的移动端，首页部分有滚动列表，因为我们之前提到过debounce延缓input框发送ajax联想请求。那么这边我们就需要用throtte去实现无限滚动。（无限滚动的原理就是在滚动事件+分页请求+节流）<br>具体为什么不用debounce，需要体会的是debounce是在停止项某事件或者超过某个限时时才执行一次。滚动并不需要用户在停止scroll才去加载，而是应该在滚动的过程中定时去请求。所以用throtte。<br>throtte的实现是最简单的版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">function throtte(func,wait,options)&#123;</div><div class="line"></div><div class="line">    let lastTime = Date.now();</div><div class="line">    return function next()&#123;</div><div class="line">        const now = Date.now();</div><div class="line">        const gap = now - lastTime;</div><div class="line">        if( gap &gt;= wait )&#123;</div><div class="line">            func.apply(this,arguments);</div><div class="line">            // if(param===options.terminal) return;</div><div class="line">            lastTime = now;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//调用</div><div class="line">created()&#123;</div><div class="line">    this.fetchPage(1);</div><div class="line">    this.infiniteScroll = this.infiniteScroll.bind(this);</div><div class="line">    window.addEventListener(&quot;scroll&quot;,this.infiniteScroll());</div><div class="line">  &#125;,</div><div class="line">infiniteScroll()&#123;</div><div class="line">    return throtte(this.fetchWhenScroll.bind(this),1000);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>在实现过程中，还有这么几个问题：</p>
+<ul>
+<li><p>楼主最开始的思路：方向检测+缓存。直接在滚动时发送请求(给定page初始值，根据上下滑动方向page++/page–)，同时把每一页的数据存储下来。下次发送请求前，先根据页数判断是否已有缓存。上滑的话，不请求，满足需求。上滑一段时间后下滑，因为该页数已经访问过，数据已有，那么也不请求。满足需求。</p>
+<p>  所以，现在的关键问题在于：怎么检测这个scroll的上下顺序<br>  查阅了资料，发现普遍是通过前后两次的scrollTop来检测的。楼主写了一个</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function isScrollDown(initTop,cb)&#123;</div><div class="line">    const curTop = document.documentElement.scrollTop;</div><div class="line">    let isDown = false;</div><div class="line">    if(curTop&gt;initTop)&#123;</div><div class="line">        isDown = true;</div><div class="line">    cb(curTop);</div><div class="line">    return isDown;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">//调用，滚动检测</div><div class="line">fetchWhenScroll()&#123;</div><div class="line">  const isDown = isScrollDown(this.initTop,(curTop)=&gt;&#123;</div><div class="line">    this.initTop = curTop;</div><div class="line">  );</div><div class="line">  isDown? this.page++ : this.page--; //1，方向检测</div><div class="line">  this.fetchPage(this.page);</div><div class="line">&#125;,</div><div class="line"></div><div class="line">fetchPage(page)&#123;</div><div class="line">  if(responseDict[page]) return; //2，缓存判断</div><div class="line"></div><div class="line">  axios.get(&apos;https://cnodejs.org/api/v1/topics&apos;,&#123;</div><div class="line">      params:&#123;</div><div class="line">        page,</div><div class="line">        ...</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  .then(response=&gt;&#123;</div><div class="line">      if(response.data)&#123;</div><div class="line">        const appendedList = this.getTransformedResponse(response.data);</div><div class="line">        responseDict[page] = appendedList; //3，缓存数据</div><div class="line">        this.postList = [...this.postList,...appendedList];</div><div class="line">      &#125;</div><div class="line"></div><div class="line">  &#125;)</div><div class="line">  .catch(err=&gt; console.log(err));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p>scrollTop是文档的top=0处位置，到window的top=0位置的间距。具体的可以看<strong>上面scrollbar的示意图</strong>。<br>但是仔细一想，实际上是有问题的。当下滑时，会不停的page++,fetch serverlist。当文档实际上已经结束时。由于还在滚动，page会继续++。，所以要加一个if(response.data)的判断。如果没有数据，就啥也不干。</p>
+<ul>
+<li><p>第二种思路，是看一篇无限滚动的文章看到的(<a href="https://css-tricks.com/debouncing-throttling-explained-examples/" target="_blank" rel="external">Debouncing and Throttling Explained Through Examples</a>)。主要原理是检测离底部的距离。当快接近底部时发送请求。</p>
+<blockquote>
+<p>视窗底部距离文档底部的距离：<br>let height = \$(document).height() - \$(window).scrollTop() -$(window).height();<br><img src="http://p1.bpimg.com/567571/4a21e4050ee4e016.png" alt=""></p>
+</blockquote>
+<p>  <strong>应用场景</strong>： </p>
+<ul>
+<li>实现回到顶部： scrollTop ===0</li>
+<li>检测底部： scrollTop === documentHeight- windowHeight<br>具体的关于scroll，楼主上面的<strong>scrollbar</strong>里面也有介绍。可以瞄一眼。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">function check_if_needs_more_content()&#123;</div><div class="line">//1</div><div class="line">    const scrollTop = document.body.scrollTop||document.documentElement.scrollTop;</div><div class="line"></div><div class="line">//2 </div><div class="line">    const doc = document.documentElement;</div><div class="line">    const name = &apos;Height&apos;;</div><div class="line">    const docHeight = Math.max(</div><div class="line">        document.body[ &quot;scroll&quot; + name ], doc[ &quot;scroll&quot; + name ],</div><div class="line">        document.body[ &quot;offset&quot; + name ], doc[ &quot;offset&quot; + name ],</div><div class="line">        doc[ &quot;client&quot; + name ]</div><div class="line">                    );</div><div class="line">//3</div><div class="line">    const windowHeight = window.innerHeight  || document.documentElement.clientHeight;</div><div class="line">      let distanceToDocBottom = docHeight-windowHeight-scrollTop;</div><div class="line">      if(Math.abs(distanceToDocBottom)&lt;300) return true;</div><div class="line">      return false;</div><div class="line">    &#125;</div><div class="line">//调用</div><div class="line">fetchWhenScroll()&#123;</div><div class="line">      if(check_if_needs_more_content())&#123;</div><div class="line">            this.fetchPage(this.page);</div><div class="line">            this.page++;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div></pre></td></tr></table></figure>
+<p>这种方法的好处在于，避免方向的判断，上滑的时候 distanceToDocBottom实际上是变大的，那么就不需要进行请求。同时由于距离底部的距离限定好，那么从本次加载数据，到下次加载数据，实际上是把本次获得的数据滚动完以后再进行加载的。但是有一点问题是，貌似滑动到最下面的时候会停止，需要上滑一部分才会响应。而且当滚动很多页的时候，distanceToBottom会大于设定的gap。就不会发送请求。待解决。<br>除此之外，因为公式是jquery版本的。楼主试了很多兼容的原生版本，但是都不太对…就暗搓搓的去github上面搜了jquery这部分的源码…捂脸。<br><strong>补充</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">if ( jQuery.isWindow( elem ) ) &#123;</div><div class="line">    return elem.document.documentElement[ &quot;client&quot; + name ];</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Get document width or height</div><div class="line">if ( elem.nodeType === 9 ) &#123;</div><div class="line">	doc = elem.documentElement;</div><div class="line"></div><div class="line">	// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height], whichever is greatest</div><div class="line">	// unfortunately, this causes bug #3838 in IE6/8 only, but there is currently no good, small way to fix it.</div><div class="line">	return Math.max(</div><div class="line">		elem.body[ &quot;scroll&quot; + name ], doc[ &quot;scroll&quot; + name ],</div><div class="line">		elem.body[ &quot;offset&quot; + name ], doc[ &quot;offset&quot; + name ],</div><div class="line">		doc[ &quot;client&quot; + name ]</div><div class="line">	);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>优化（todo）： <ul>
+<li>缓存dom节点。</li>
+<li>用raf代替throtte，比较滑动的平滑效果。用debounce对比下效果。</li>
+</ul>
+</li>
+</ul>
+<p><strong>===2016/11/23 更新</strong><br>楼主的throtte是有点问题的，看了下underscore的函数说明，有两点：</p>
+<ul>
+<li>lastTime的初始值：<br>api的本意是一调用这个throtte才会设置lasttime,然后在此基础上去进行+wait.而楼主是在创建这个闭包的时候就把lasttime给定义了。也就是说如果<br>let test = throtte(console.log.bind(this,3),3000)。<br>在新建test后立刻test()执行。是不会运行的。因为达不到时间。<br>如果过一段时间test().那么才会执行。违背了立刻执行的本意。</li>
+<li><p>2.原api中有leading,trailing的设置:<br>leading是指一调用test()，是否会立即执行（false表明不立即执行）。trailing是指，(<strong>trailing的前提是设置了settimeout，在0-wait内进入的函数都会被取消到最后再执行</strong>)。那么是否在最后真正执行，就是靠这个trailing。注意。leaing和trailing是不可以同时设置false的。因为这样的话介个函数永远都不会执行=。=，头尾都拒绝了呢。。。下面po下楼主现在的版本。</p>
+</li>
+<li><ol>
+<li>next函数中的this丢失，fix</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">function throtte(func,wait,options)&#123;</div><div class="line"></div><div class="line">    let isFirst = true;</div><div class="line">    let funcId,gap,lastTime,duration = 0;</div><div class="line"></div><div class="line">    const finalOptions = Object.assign(&#123;&#125;,&#123;</div><div class="line">        leading: true,</div><div class="line">        trailing: true</div><div class="line">    &#125;,options);</div><div class="line"></div><div class="line">    if(!finalOptions.leading &amp;&amp; !finalOptions.trailing) &#123;</div><div class="line">        alert(&quot;不可以同时设置leading,trailing为负&quot;);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return function next()&#123;</div><div class="line"></div><div class="line">        const now = Date.now();</div><div class="line">        const context = this;</div><div class="line"></div><div class="line">        if( isFirst || (gap = now -lastTime) &gt;= wait )&#123;</div><div class="line">            //=====更新 2017.1.5</div><div class="line">            lastTime = now;</div><div class="line">            if(isFirst)&#123;</div><div class="line">                isFirst = false;</div><div class="line">                //leading:false时，不执行，等下一次wait的时间以后</div><div class="line">                if(finalOptions.leading) </div><div class="line">                    func.apply(context,arguments);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        else&#123;</div><div class="line">        // lastTime-lastTime+wait间进入的函数，需要取消。结束再执行</div><div class="line">            clearTimeout(funcId);</div><div class="line">            //trailing true时才执行。</div><div class="line">            if(finalOptions.trailing)</div><div class="line">                funcId = setTimeout(function()&#123;</div><div class="line">                    func.apply(context,arguments); //!!context</div><div class="line">                    lastTime = now;</div><div class="line">            &#125;, wait-gap);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>css3常用</p>
+<ul>
+<li>伪类<ul>
+<li>:focus</li>
+<li>:checked</li>
+<li>:target</li>
+</ul>
+</li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/开发/" rel="tag">#开发</a>
+          
+            <a href="/tags/好玩的/" rel="tag">#好玩的</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/31/日常笔记-二/" rel="next" title="日常笔记-二">
+                <i class="fa fa-chevron-left"></i> 日常笔记-二
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/31/掉过的坑总得自己填起来-md/" rel="prev" title="掉过的坑总得自己填起来">
+                掉过的坑总得自己填起来 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/31/FE玩耍专栏/"
+           data-title="FE玩耍专栏(一)" data-url="http://yoursite.com/2016/10/31/FE玩耍专栏/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-toggle-button"><span class="nav-number">1.</span> <span class="nav-text">1. toggle button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-scrollbar"><span class="nav-number">2.</span> <span class="nav-text">2. scrollbar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-模拟操作"><span class="nav-number">3.</span> <span class="nav-text">3. 模拟操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-css做tab切换"><span class="nav-number">4.</span> <span class="nav-text">4. css做tab切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-slider"><span class="nav-number">5.</span> <span class="nav-text">5. slider</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#recipe"><span class="nav-number">5.1.</span> <span class="nav-text">recipe:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-无限滚动"><span class="nav-number">6.</span> <span class="nav-text">6. 无限滚动</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

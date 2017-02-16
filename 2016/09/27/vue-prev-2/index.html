@@ -1,0 +1,783 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="vue,学习杂项," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="vue学习前传之杂,本篇更新时间不一，前半部分大概还是暑假的时候Vue还只有1.0版本的时候，后半部分是在后续的开发过程中慢慢添加进来的，前半部分应该有比较多错误..to fix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue学习前传(二)">
+<meta property="og:url" content="http://yoursite.com/2016/09/27/vue-prev-2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="vue学习前传之杂,本篇更新时间不一，前半部分大概还是暑假的时候Vue还只有1.0版本的时候，后半部分是在后续的开发过程中慢慢添加进来的，前半部分应该有比较多错误..to fix">
+<meta property="og:image" content="http://i1.piimg.com/4851/80f98b174f2b3f6f.png">
+<meta property="og:updated_time" content="2017-02-02T14:23:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue学习前传(二)">
+<meta name="twitter:description" content="vue学习前传之杂,本篇更新时间不一，前半部分大概还是暑假的时候Vue还只有1.0版本的时候，后半部分是在后续的开发过程中慢慢添加进来的，前半部分应该有比较多错误..to fix">
+<meta name="twitter:image" content="http://i1.piimg.com/4851/80f98b174f2b3f6f.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/27/vue-prev-2/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> vue学习前传(二) | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                vue学习前传(二)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T13:36:28+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/开发日常/" itemprop="url" rel="index">
+                    <span itemprop="name">开发日常</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/27/vue-prev-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/vue-prev-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h2><p>之前的博客里面，我们讲了vue的数据绑定以及它的用法，而由于之前一直用react开发，难免会进行相互比较，那么这一篇就以与react联系的角度来看看vue的一些特性。<br>ps：之前的数据绑定，因为当时公司的版本是旧的，为了继续在前fe的基础上继续写，不得已用的是0.12的版本，今天这篇的版本是1.0：）</p>
+<h3 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h3><h4 id="props"><a href="#props" class="headerlink" title="props:"></a>props:</h4><p>查看<a href="http://cn.vuejs.org/guide/components.html" target="_blank" rel="external">vue component教程</a>，总结来说，它是react props的扩展版本。<br>（1）相同的地方在于：props也是<strong>默认单向</strong>数据流，从父组件传递属性到子组件。<br>（2）之所以说扩展，体现在两个方面：</p>
+<ul>
+<li>扩展一：props in vue == [伪]props in react;</li>
+<li>扩展二：props in vue 可单向，可双向绑定数据。<br><br></li>
+</ul>
+<p>让我们看第一个扩展。</p>
+<p>vue的props提供了两种使用方法，静态的+动态绑定。<br>用react的方式来理解的话：</p>
+<ul>
+<li>props == 子组件默认的不可变属性。 </li>
+<li>绑定的props== props in react。<br>默认情况下，props只负责传递父组件传给它的属性，且当组件加载后只传递一次，我们可以看到，下面的静态绑定demo中，虽然跟父model同名，但是只解析为字符串，只有变成动态绑定的props，才会解析为从父元素传递下来的变量。每次父组件的相关数据进行变化时，子组件便会随之更改，类似于react中的props.</li>
+</ul>
+<p></p><p data-height="265" data-theme-id="dark" data-slug-hash="vKwOAo" data-default-tab="js,result" data-user="luchen" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/vKwOAo/" target="_blank" rel="external">vue组件化demo</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//html</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"childWrapper"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"dynamicMsg"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>静态绑定：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">child</span> <span class="attr">parent-msg</span>=<span class="string">"dynamicMsg"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></div><div class="line">  </div><div class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>动态绑定到父元素：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">child</span> <span class="attr">:parent-msg</span>=<span class="string">"dynamicMsg"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//javascript</span></div><div class="line">Vue.component(<span class="string">'child'</span>, &#123;</div><div class="line">  <span class="attr">props</span>: [<span class="string">'parentMsg'</span>],</div><div class="line">  <span class="attr">template</span>: <span class="string">'&lt;span&gt;&#123;&#123; parentMsg &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125;)</div><div class="line"><span class="keyword">var</span> parent = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>:<span class="string">".childWrapper"</span>,</div><div class="line">  <span class="attr">data</span>:&#123;</div><div class="line">    <span class="attr">dynamicMsg</span>:<span class="string">"hello"</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>注意点：</p>
+<ol>
+<li>js中的camel写法对应于html中的kebab-case</li>
+<li>如果 prop 是一个对象或数组，是按引用传递。在子组件内修改它会影响父组件的状态，不管是使用哪种绑定类型。就变成了双向绑定了</li>
+<li>如果props是数组，则需要按照动态绑定来写，使得看成变量、表达式，否则会以字符串传递。<br><strong>===更新2017/1/4</strong></li>
+<li>父组件传进来的props作为子组件data的初始值存在的话，如果它变动，内部data是不能响应的，需要设置watch（props），保持data始终在props的基础上变动</li>
+</ol>
+<p>再看看第二个扩展<br>react的props是单向数据流，而vue中还可以实现双向的绑定。<br>但是最好还是不要这么做，因为父组件有很多子组件，每个都进行双向绑定的话，会有各种冲突问题，而且光看父组件的信息，很难理解父组件的状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;child :msg.sync=&quot;parentMsg&quot;&gt;&lt;/child&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p>通常是用v-bind来绑定数据，实现js中传值使得数据渲染，在交互频繁的表单上，可以用v-model进行双向绑定。</p>
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>也有双向绑定的含义，watch+反向set</p>
+<h3 id="双向props示例"><a href="#双向props示例" class="headerlink" title="双向props示例"></a>双向props示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//child</div><div class="line">&lt;modal :category=&quot;category&quot; title=&quot;禁发&quot; :order=&quot;order&quot; :show.sync=&quot;showModal&quot;&gt;&lt;/modal&gt;</div></pre></td></tr></table></figure>
+<p>parent会对showModal这个变量进行变动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//parent button点击响应事件</div><div class="line">showDetail()&#123;</div><div class="line">      console.log(&quot; ==== &quot;, this.showModal);</div><div class="line">      this.showModal = true;</div><div class="line">    &#125;,</div></pre></td></tr></table></figure>
+<p>在modal内部</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal"</span> <span class="attr">v-show</span>=<span class="string">"show"</span>&gt;</span>      //here</div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-dialog"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-content"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-header"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"close"</span> <span class="attr">data-dismiss</span>=<span class="string">"modal"</span> <span class="attr">aria-hidden</span>=<span class="string">"true"</span> @<span class="attr">click</span>=<span class="string">"closeModal"</span>&gt;</span>&amp;times;<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </div><div class="line">        <span class="tag">&lt;<span class="name">h4</span> <span class="attr">class</span>=<span class="string">"modal-title"</span>&gt;</span>&#123;&#123;category&#125;&#125;<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">export default &#123;</div><div class="line"></div><div class="line">  name:&quot;PopModal&quot;,</div><div class="line"></div><div class="line">  props:[&quot;category&quot;,&quot;order&quot;,&quot;show&quot;],     //表明从父元素传递下来</div><div class="line"></div><div class="line">  data () &#123;</div><div class="line">    return&#123;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">method()&#123;</div><div class="line">closeModal()&#123;</div><div class="line">        this.show = false;</div><div class="line">    &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要注意的是，如果modal绑定的时候是单向的，即 ：show = “showModal”，那么子组件内部使得show = false的时候，父组件的showModal还是保持true的状态。那么会导致父的状态是显示，子状态是不显示，那么点击 showPop按钮的时候是无法显示的。应该改为双向上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//update</div><div class="line">&lt;modal :category=&quot;category&quot; title=&quot;禁发&quot; :order=&quot;order&quot; :show.sync=&quot;showModal&quot;&gt;&lt;/modal&gt;</div></pre></td></tr></table></figure>
+<h3 id="开发杂项"><a href="#开发杂项" class="headerlink" title="开发杂项"></a>开发杂项</h3><ol>
+<li><p>scope 限制css<br>A组件，B组件都引入到组件C中，但是A,B都有同样的样式.class name，那么会冲突，因此需要用scope 去进行限制，而且需要注意的是在style里面进行 import，scope是不起作用的。只能inline css</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</div><div class="line"></div><div class="line">.modal&#123;</div><div class="line">    display: block;</div><div class="line">    display: flex;</div><div class="line">    align-items:center;</div><div class="line">    justify-content:center;</div><div class="line">    background-color: rgba(11, 11, 11, 0.6);</div><div class="line">    .action&#123;</div><div class="line">        cursor: pointer;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">.modal-dialog&#123;</div><div class="line">    max-width: 30%;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>vue-router 注意事项</p>
+</li>
+</ol>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;ul class=&quot;nav nav-tabs&quot;&gt;</div><div class="line">      &lt;li class=&quot;&quot;&gt;&lt;a v-link=&quot; &apos;/event/list&apos; &quot; &gt;信息列表&lt;/a&gt;&lt;/li&gt;</div><div class="line">      &lt;li&gt;&lt;a v-link=&quot; &apos;/event/create&apos; &quot; &gt;创建事件&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div></pre></td></tr></table></figure>
+</code></pre><p>这边的v-link 跟v-on一样，里面的默认是一个变量，如果想传递字符串进去，需要另加单引号</p>
+<pre><code>同理，@click，看这个例子
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// toggleActive()里面的如果直接是A，会认为是一个变量，无法得到，需要变成字符串</div><div class="line">      &lt;li :class=&quot;[&apos;tab-item&apos;,isA?&apos;tab-active&apos;:&apos;&apos;] &quot; @click=&quot;toggleAcitive(&apos;A&apos;)&quot;&gt;&lt;a v-link=&quot; &apos;/event/list&apos; &quot; &gt;信息列表&lt;/a&gt;&lt;/li&gt; </div><div class="line">      &lt;li :class=&quot;[&apos;tab-item&apos;,!isA?&apos;tab-active&apos;:&apos;&apos;] &quot;  @click=&quot;toggleAcitive(&apos;B&apos;)&quot;&gt;&lt;a v-link=&quot; &apos;/event/create&apos; &quot;&gt;创建事件&lt;/a&gt;&lt;/li&gt;</div></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>class 动态绑定 </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;li class=&quot;pageList[0]===1?&apos;disabled&apos;:&apos;&apos;&quot;&gt;</div></pre></td></tr></table></figure>
+<p> 这样是无法识别的，里面不是三元符，而是就是 一个字符串，需要加bind绑定才会变成三元表达式</p>
+</li>
+<li><p>input checkbox绑定到一个数组的时候，需要指定他们的value，否则相当于一个，会同时选中或不选中，指定后才会各自控制。</p>
+</li>
+<li><p>ajax ui体验优化</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">handleEventEdited(data)&#123;</div><div class="line">        //直接更新</div><div class="line">        var temp = Object.assign(&#123;&#125;,this.eventList);</div><div class="line">        this.eventList = this.eventList.map(event=&gt;&#123;</div><div class="line">          if(event.name==data.name)</div><div class="line">            return Object.assign(&#123;&#125;,event,&#123;name:data.newName&#125;);</div><div class="line">          else return event;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        //发送请求</div><div class="line">        this.$http.post(server_path+&quot;/event&quot;,data).then((response)=&gt;&#123;</div><div class="line">          console.log(&quot;事件修改成功&quot;);</div><div class="line">        &#125;,(err)=&gt;&#123;</div><div class="line">          //修改失败后回退</div><div class="line">          this.eventList = temp;</div><div class="line">          console.log(&quot;事件修改失败&quot;);</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;,</div></pre></td></tr></table></figure>
+</li>
+<li><p>生命周期 </p>
+</li>
+</ol>
+<p>楼主最近的开发过程中遇到这么一个问题，单页应用，最外层组件为app.vue。内层靠路由嵌套了几个子组件。子组件页面一加载就需要去发请求获取数据，而请求的param里面依赖父组件获得的数据。</p>
+<p>在no组件，no单页的情况下，这种可以用一个页面加载同步请求去搞定。但是现在不允许这样。还牵扯到该在哪个合适的生命周期里去发送请求的问题。</p>
+<blockquote>
+<p><strong>困惑点1：<br>之前写react的时候，官方建议在componentDidMount里面进行fetch,但是我比较疑惑的是为什么不在componentWillMount或者render里面操作。因为1，数据取得后就一直存在着，mount以后肯定可以显示。2，难道是因为willMount和render是在dom渲染，可能阻塞ui线程的问题。但是ajax是另开一个线程啊，应该是不影响的啊。</strong></p>
+</blockquote>
+<p>科普一下vue的生命周期，楼主大概打印了一下mount之前的执行顺序。</p>
+<p><img src="http://i1.piimg.com/4851/80f98b174f2b3f6f.png" alt="父子组件生命周期"></p>
+<p>结合官网的生命周期列表，我们可以看到，都会经历如下的过程：</p>
+<p>beforeCreated-&gt; 生成data,computed 这些数据,初始化事件<br>-&gt;created,实例对象被创建<br>-&gt; 在从created到beforeMount过程中编译模板（template）<br>-&gt; 编译完成后将template插入el或者父html中，这就完成了mounted。</p>
+<p>而对于父组件，因为嵌套了子组件，它的mount需要等到子组件都处理完，生成el并插入document后才算完成。也就解释了上面打印的内容。</p>
+<p>现在的规划大概是这样的，在父组件created的时候去fetch数据。然后在子组件中用v-if=’isParentDataGot’ 来确定装载与否。因为上面我们说了，子组件先创建实例，去计算这些data,既然父组件数据还未获取。那么本组件v-if === false。不显示<br>但是子组件的生命周期还在进行。只是当父组件获取到后update,把数据附上去，<br>然后在mounted里面去发送自己的请求。</p>
+<p><strong>困惑点2：</strong><br>楼主想知道是否可以在beforeMount里面return false来控制是否装载。<br><strong>困惑点3：</strong><br>一般是在mounted发送请求，那么vue现在的生命周期中，在created,beforeMount这些里面发送会有什么影响。</p>
+<hr>
+<h3 id="知识回顾"><a href="#知识回顾" class="headerlink" title="知识回顾"></a>知识回顾</h3><ol>
+<li><p>mouseenter mouseover区别<br>mouseenter只在刚进入某个元素时触发，不会冒泡<br>而mouseover在进入，以及在该元素上移动时都会触发</p>
+</li>
+<li><p>git远程合并<br>楼主是项目owner的话，接受远程pull request后merge到dev分支。<br>本地</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git fetch bit-origin dev:new-branch</div><div class="line">git checkout new-branch 查看最新代码。如果可以的话</div><div class="line">git checkout  dev</div><div class="line">git merge new-branch。使得dev为最终代码</div><div class="line">git remove new-branch</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag">#vue</a>
+          
+            <a href="/tags/学习杂项/" rel="tag">#学习杂项</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/27/vue-prev-1/" rel="next" title="vue学习前传(一)">
+                <i class="fa fa-chevron-left"></i> vue学习前传(一)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/27/es6-1/" rel="prev" title="es6 学习笔记(一)">
+                es6 学习笔记(一) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/27/vue-prev-2/"
+           data-title="vue学习前传(二)" data-url="http://yoursite.com/2016/09/27/vue-prev-2/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue"><span class="nav-number">1.</span> <span class="nav-text">vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组件化"><span class="nav-number">1.1.</span> <span class="nav-text">组件化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#props"><span class="nav-number">1.1.1.</span> <span class="nav-text">props:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算属性"><span class="nav-number">1.2.</span> <span class="nav-text">计算属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向props示例"><span class="nav-number">1.3.</span> <span class="nav-text">双向props示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发杂项"><span class="nav-number">1.4.</span> <span class="nav-text">开发杂项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识回顾"><span class="nav-number">1.5.</span> <span class="nav-text">知识回顾</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

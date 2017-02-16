@@ -1,0 +1,819 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="开发,好玩的,css,js,日常玩耍,svg," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="接上一篇玩耍专栏，缩小版是因为写的都是小小小demo，只是因为有些point还比较好玩或者需要记住，就开辟了这个版本，其实应该是很久以前写在作业部落里面的，只是最近迁移到了博客而已。。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FE玩耍专栏（二）之缩小版">
+<meta property="og:url" content="http://yoursite.com/2017/02/01/FE玩耍专栏（二）之缩小版/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="接上一篇玩耍专栏，缩小版是因为写的都是小小小demo，只是因为有些point还比较好玩或者需要记住，就开辟了这个版本，其实应该是很久以前写在作业部落里面的，只是最近迁移到了博客而已。。。">
+<meta property="og:image" content="http://p1.bpimg.com/567571/3d5d2e4679deefec.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/58cc26bdff84a46b.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/7ad2db1f45454399.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/6601a045f5e528c8.png">
+<meta property="og:image" content="http://yoursite.com/media/14871450199328.jpg">
+<meta property="og:image" content="http://yoursite.com/media/14871452080823.jpg">
+<meta property="og:updated_time" content="2017-02-15T15:32:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FE玩耍专栏（二）之缩小版">
+<meta name="twitter:description" content="接上一篇玩耍专栏，缩小版是因为写的都是小小小demo，只是因为有些point还比较好玩或者需要记住，就开辟了这个版本，其实应该是很久以前写在作业部落里面的，只是最近迁移到了博客而已。。。">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/3d5d2e4679deefec.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/01/FE玩耍专栏（二）之缩小版/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> FE玩耍专栏（二）之缩小版 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                FE玩耍专栏（二）之缩小版
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-01T13:09:53+08:00" content="2017-02-01">
+              2017-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/日常开发/" itemprop="url" rel="index">
+                    <span itemprop="name">日常开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/01/FE玩耍专栏（二）之缩小版/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/01/FE玩耍专栏（二）之缩小版/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="末尾显示省略号（ellipsis）"><a href="#末尾显示省略号（ellipsis）" class="headerlink" title="末尾显示省略号（ellipsis）"></a>末尾显示省略号（ellipsis）</h3><p>分两种，单行跟多行。</p>
+<ul>
+<li><p>以单行为例。需要设置一个宽度，这样才有overflow的情况。同时设置超出后显示省略号。除此之外，因为设了宽度，会默认换行，那么就达不到overflow的情况，所以要阻止换行，用nowrap使得一行显示。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.ellipsis-single&#123;</div><div class="line">  width: 200px;</div><div class="line">  overflow: hidden;</div><div class="line">  text-overflow: ellipsis;</div><div class="line">  white-space: nowrap; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>多行的话，设置最多行数(<a href="http://www.css88.com/webkit/-webkit-line-clamp/" target="_blank" rel="external">-webkit-line-clamp</a>)</p>
+</li>
+</ul>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-webkit-line-clamp,</div><div class="line">display: -webkit-box</div><div class="line">-webkit-box-orient</div></pre></td></tr></table></figure>
+
+具体的demo见[codepen]哈
+</code></pre><p></p><p data-height="265" data-theme-id="0" data-slug-hash="ZBBMjW" data-default-tab="result" data-user="luchen" data-embed-version="2" data-pen-title="ellipsis test with single line and multiple lines" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/ZBBMjW/" target="_blank" rel="external">ellipsis test with single line and multiple lines</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><br>    <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script><p></p>
+<hr>
+<h3 id="tagged-input"><a href="#tagged-input" class="headerlink" title="tagged input"></a>tagged input</h3><p></p><p data-height="265" data-theme-id="0" data-slug-hash="VmMQBK" data-default-tab="js,result" data-user="luchen" data-embed-version="2" data-pen-title="tagged input via vue" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/VmMQBK/" target="_blank" rel="external">tagged input via vue</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>这个demo目的是：</p>
+<ol>
+<li>轮子，交互友好，因为常用pocket跟evernote，就有打tag的场景，但是element没有相应的组件。</li>
+<li>实践了一下vue所说的v-model的语法糖。总结来说就是</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">v-model = value+ $emit(&apos;input&apos;)</div></pre></td></tr></table></figure>
+<p>子组件新建一个data,维持从父类传来的props(value)作为初始值，每次子组件data(或者更精确点说是：要传出去的数值)变动时$emit，通知父组件变动。是由内往外的数据传输。</p>
+<hr>
+<h3 id="svg-制作进度环"><a href="#svg-制作进度环" class="headerlink" title="svg 制作进度环"></a>svg 制作进度环</h3><h4 id="part1：基础知识："><a href="#part1：基础知识：" class="headerlink" title="part1：基础知识："></a>part1：基础知识：</h4><ul>
+<li><p>通用指令：<br>stroke stroke-width stroke-color stroke-linecap stroke-dashedarray fill  </p>
+</li>
+<li><p>常用指令：</p>
+<ul>
+<li>circle <code>&lt;circle cx cy r&gt;&lt;/circle&gt;</code></li>
+<li><p>path: <figure class="highlight plain"><figcaption><span>d>```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- polygon：```&lt;polygon points&gt;&lt;/polygon&gt;</div></pre></td></tr></table></figure></p>
+<p>所有的大写表示绝对路径，小写为相对偏移</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">path相关指令：</div><div class="line">M = moveto 标志起点终点等   eg M 100 100</div><div class="line"></div><div class="line">//group2</div><div class="line">L = lineto H = horizontal lineto V = vertical lineto //直线终点</div><div class="line">eg L 100 200</div><div class="line"></div><div class="line">//group3</div><div class="line">C =curveto S = smooth curveto </div><div class="line">Q = quadratic Bézier curve T = smooth </div><div class="line"></div><div class="line">C 为两个控制点+终点，如三次贝塞尔曲线中，会有两个控制点。</div><div class="line">eg.</div><div class="line">&lt;path d=&quot;M70 60 C 70 80, 110 80, 110 60&quot; stroke=&quot;black&quot; fill=&quot;transparent&quot;/&gt;</div><div class="line"></div><div class="line">S:表示简写控制点，表示它的第一个控制点与前面的S/C的控制点的对称点:S C2 endP</div><div class="line"> </div><div class="line">Q 为二次贝塞尔曲线的一个控制点,类似于C</div><div class="line">T前面需要有Q或者T</div><div class="line"></div><div class="line">A = elliptical Arc </div><div class="line">A x-radius y-radius x-rotation large-arc-flag（角度大小）sweep-flag</div><div class="line"></div><div class="line">Z = closepath</div></pre></td></tr></table></figure>
+<p><img src="http://p1.bpimg.com/567571/3d5d2e4679deefec.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="part2：-划重点"><a href="#part2：-划重点" class="headerlink" title="part2： 划重点"></a>part2： 划重点</h4><ol>
+<li>圆环： 用circle+fill:none+stroke绘制而成</li>
+<li>slider：用path+arc指令+fill:none去绘制弧</li>
+<li>注意点：<ul>
+<li>viewbox与svg之间的<strong>scale和坐标映射</strong>问题。整个的绘制是以viewbox为基准的，而交互操作的坐标是需要先转为相对于svg,然后再scale到viewBox的。<strong>关于viewbox，viewport等的问题</strong>，戳张鑫旭大神的文章科普下<a href="http://www.zhangxinxu.com/wordpress/2014/08/svg-viewport-viewbox-preserveaspectratio/" target="_blank" rel="external">理解SVG的viewport,viewBox,preserveAspectRatio</a>。<br>viewbox的一个好处，可以认为是可以自适应container的同时开发人员可以只针对viewbox的坐标系统进行开发。有点类似于移动端设置rem,开发人员只要对750px的去进行编写各种px,最终都会根据环境去相应的映射到正确的宽高大小。</li>
+<li>精度缺失问题： 当percent为100传过去得到弧度制的角度时，因为Math.PI本身无限循环下去，有精度损失。我们看到<br><img src="http://p1.bqimg.com/567571/58cc26bdff84a46b.png" alt=""><br>而正常理解中，sin(360°)应该为0。就导致最终画满格的时候会出现这样的情况。<br><img src="http://p1.bpimg.com/567571/7ad2db1f45454399.png" alt=""><br>所以楼主暗搓搓的检测100%时手动变成了99.9%。捂脸…</li>
+<li>Math.sin等函数接受的是弧度制非角度制，需要预先进行处理</li>
+</ul>
+</li>
+<li>交互方面：<br>设置了点击以及mousemove的部分。<br>对于坐标的检测，检测clientX,并映射到viewbox内。然后根据<code>（x-c1）^2 +(y-c2)^2 = r^2</code>。去计算y，而这个时候得到的会有两个y，对称于直径。那么就需要根据clientY去进行筛选匹配，从而得到正确的圆上坐标。，去绘制arc path。然后根据坐标去计算夹角，得到percent。最终更新data。</li>
+</ol>
+<p>最终的demo戳这个链接，但是不知道为什么放到codepen里面，第三幅图的数据没有更新（func props没有传下去）。实测是可以的。<br>    </p><p data-height="265" data-theme-id="0" data-slug-hash="jVZxqR" data-default-tab="js,result" data-user="luchen" data-embed-version="2" data-pen-title="sliding circle via svg" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/jVZxqR/" target="_blank" rel="external">sliding circle via svg</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<p><strong>补充：</strong><br>    因为同时有click跟mousedown,mousemove,mouseup。为了避免冲突，楼主把mouse部分放在了path上，click放在了circle上。具体场景可以看<br><img src="http://p1.bqimg.com/567571/6601a045f5e528c8.png" alt=""><br>可以看到当在只注册了mousedown,up的path上进行click，会依次执行down,up。<br>如果绑在同一个元素上，就有冲突，会执行三条，那么就需要用时间进行下面的区分操作：</p>
+<blockquote>
+<p>在mousedown的时候,记录当前的时间,然后在mouseup的时候,再取当前时间,然后判断这两个时间差,当它大于某个数值的时候(因为如果是click,那么会在很短时间内产生mouseup),就不认为它是click。更精确的还可以加上mousedown和mouseup的坐标，不同则非click。</p>
+</blockquote>
+<p>网上看到一个setTimeout的解决方案,小于200ms的就执行click操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$(element).click(function()&#123;</div><div class="line">        // click code in here</div><div class="line">    &#125;);</div><div class="line">$(element).MouseDown(function()&#123;</div><div class="line">    onMouseDownFlag = false;</div><div class="line">    mouseDownAndUpTimer = setTimeout(function()&#123;</div><div class="line">        // OnMouseDown Code in here</div><div class="line">        onMouseDownFlag = true;</div><div class="line">    &#125;,200);</div><div class="line">&#125;).MouseUp(function()&#123;</div><div class="line">    if(onMouseDownFlag)&#123;</div><div class="line">        // OnMouseUp Code in here</div><div class="line">    &#125;else&#123;</div><div class="line">        clearTimeout(mouseDownAndUpTimer); // 清除延迟时间</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>PS:<br>楼主之前看到circle还有一种很巧妙的方法。简要来说是用path(arc)+stroke-dasharray去处理。一个环就是一个stoke-dasharray [first second]。first的长度即为当前percent的亮色部分。second即为灰色的部分。<br>但是这种方法不是很好做mousemove。所以楼主就作罢嘞</p>
+<hr>
+<p>对比一下tagged input和circle,这两个都是vue组件的编写，都涉及父子组件的通信，区别在于，第一种是 子组件新建一个data,维持从父类传来的props作为初始值，每次子组件变动时$emit，通知父组件变动。是由内往外的数据传输。<br>第二种的version1版本是父组件传props进内部，外部进行变动，反应到子组件，相应变化。（此时没有data.）当需要增加需求（version2，即需要交互滑动circle）时，就需要增加一个currentValue的data,以props <strong>percent</strong>初始化，一方面需要watch percent的变动（外-&gt;内）,另一方面当自己变化时，需要告知外部，即调用onPercentChange(val) 的props回调。</p>
+<h5 id="references"><a href="#references" class="headerlink" title="references"></a>references</h5><ol>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Paths" target="_blank" rel="external">path in svg</a></li>
+</ol>
+<hr>
+<h3 id="donut-via-d3"><a href="#donut-via-d3" class="headerlink" title="donut via d3"></a>donut via d3</h3><h4 id="首先生成一个饼图："><a href="#首先生成一个饼图：" class="headerlink" title="首先生成一个饼图："></a>首先生成一个饼图：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const arcs = d3.pie()</div><div class="line">                .startAngle(-90 * Math.PI/180)</div><div class="line">                .endAngle(-90 * Math.PI/180 + 2*Math.PI)</div><div class="line">                .value(d=&gt; d.value)</div><div class="line">                .padAngle(.01)</div><div class="line">                .sortValues((a,b)=&gt;(b-a)(innerData);</div></pre></td></tr></table></figure>
+<p>d3.pie()返回一个generator(实际上是一个函数，接受data数组作为参数），d3.pie(data)最终生成一个由data map出来的新数组 arr，arr的每一个元素是一个有以下属性的obj,每一个obj标志了一个arc弧：</p>
+<blockquote>
+<p>data - the input datum; the corresponding element in the input data array.<br>value - the numeric value of the arc.<br>index - the zero-based sorted index of the arc.<br>startAngle - the start angle of the arc.<br>endAngle - the end angle of the arc.<br>padAngle - the pad angle of the arc.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const arc = d3.arc().innerRadius(config.innerRadius)</div><div class="line">                    .outerRadius(config.innerRadius+20)</div><div class="line">                    .cornerRadius(5);</div></pre></td></tr></table></figure>
+<h4 id="生成各部分arc"><a href="#生成各部分arc" class="headerlink" title="生成各部分arc"></a>生成各部分arc</h4><p>arc也是一个函数，对上面绘制的pie进行限定（内外半径+padding）arc(data2)生成<br><code>&quot;M0,-100A100,100,0,0,1,100,0L0,0Z</code>这样的数据，传递给path<br><code>d3.append(&quot;path&quot;).attr(&quot;d&quot;,arc)</code>，最终就出来一条弧。</p>
+<p>注： <code>path.data(innerData).attr(&quot;d&quot;，func)</code>第二个参数为一个函数(这边即为arc函数)，接受innerData中的每一个obj为参数,这些数据作为新的绘制数据被传递给path，从而最终得到饼图。</p>
+<p>该部分代码如下： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//first</span></div><div class="line"><span class="keyword">const</span> pie = d3.pie()</div><div class="line">    .startAngle(<span class="number">0</span>)</div><div class="line">    .endAngle(<span class="number">2</span> * <span class="built_in">Math</span>.PI) <span class="comment">//-90 * Math.PI/180 +</span></div><div class="line">    .value(<span class="function"><span class="params">d</span> =&gt;</span> d.value)</div><div class="line">    .padAngle(<span class="number">.02</span>)</div><div class="line">    .sortValues(<span class="function">(<span class="params">a, b</span>) =&gt;</span> (b - a));</div><div class="line"></div><div class="line"><span class="comment">//second</span></div><div class="line"><span class="keyword">const</span> inner = svg.append(<span class="string">"g"</span>).attr(<span class="string">"class"</span>, <span class="string">"inner"</span>)</div><div class="line">        .attr(<span class="string">"width"</span>, config.width * <span class="number">0.4</span>)</div><div class="line">        .attr(<span class="string">"height"</span>, config.height * <span class="number">0.4</span>)</div><div class="line">        .attr(<span class="string">"transform"</span>, <span class="string">`translate(<span class="subst">$&#123;config.width<span class="regexp">/2&#125;,$&#123;config.height/</span><span class="number">2</span>&#125;</span>)`</span>);</div><div class="line"></div><div class="line">    <span class="keyword">const</span> arc = d3.arc().innerRadius(config.innerRadius)</div><div class="line">        .outerRadius(config.innerRadius + <span class="number">20</span>)</div><div class="line">        .cornerRadius(<span class="number">5</span>);</div><div class="line"></div><div class="line">    <span class="keyword">const</span> arcItem = inner.selectAll(<span class="string">".donutArc"</span>).data(pie(innerData))</div><div class="line">        .enter().append(<span class="string">"g"</span>)</div><div class="line">        .attr(<span class="string">"class"</span>, <span class="string">"donutArc"</span>)</div><div class="line">        .append(<span class="string">"path"</span>)</div><div class="line">        .attr(<span class="string">"d"</span>, arc)</div><div class="line">        .style(<span class="string">'fill'</span>, (d, i) =&gt; d3.schemeCategory10[i]);</div><div class="line"></div><div class="line"></div><div class="line">    arcItem.on(<span class="string">"mouseover"</span>, (d, i) =&gt; &#123;</div><div class="line">        <span class="comment">//...</span></div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<p><strong>总结来说</strong>，<code>d3.pie()(data)</code> 得到【obj1,obj2】,每个obj又赋值给arc<br><code>d3.arc(obj1)</code>，得到path的d属性数据。</p>
+<h3 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h3><p>svg viewport、viewbox、<br>viewPort: 视窗，svg声明width,height的部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;svg width=&quot;800&quot; height=&quot;600&quot; &gt;</div></pre></td></tr></table></figure>
+<p>一建立viewport，就会创建初始的视窗坐标系和用户坐标系</p>
+<ul>
+<li>视窗坐标系是建立在视窗中的，</li>
+<li>用户坐标系是建立在画布上的（viewbox限定），真实坐标系。</li>
+</ul>
+<p>初始时，两者相同，但可以后续设置使之不一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;svg width=&quot;800&quot; height=&quot;600&quot; viewbox=&quot;200 200 400 400&quot;&gt;</div></pre></td></tr></table></figure>
+<p>viewbox属性分别对应： <code>leftTopX,leftTopY,width,height</code><br>声明了一个区域，在viewport中裁切出来，然后拉伸来适应viewPort。</p>
+<p>当viewbox与viewPort的比例不一致的时候，可以用preserveAspectRatio 来保持长宽比，又涉及到两个参数<br>“alignment meet/slice”<br>meet用于按照viewbox大小去按比例适应viewport（设宽比a,高比为b，按照比例小的去适应）,如上面的比例1：1，会适应成600 600.<br>而slice则会（尽可能充满viewport，按照大比例去）适应后去裁切。<br>alignment表明的是viewport与viewbox的按照哪些轴对齐</p>
+<p>参考文章可以看</p>
+<ul>
+<li><a href="http://www.zhangxinxu.com/wordpress/2014/08/svg-viewport-viewbox-preserveaspectratio/" target="_blank" rel="external">张鑫旭的</a>，</li>
+<li>还有这篇<a href="http://www.w3cplus.com/html5/svg-coordinate-systems.html" target="_blank" rel="external">理解SVG坐标系和变换：视窗,viewBox和preserveAspectRatio</a>，</li>
+<li><a href="https://sarasoueidan.com/demos/interactive-svg-coordinate-system/index.html" target="_blank" rel="external">测试网站</a></li>
+<li><a href="http://jonibologna.com/svg-viewbox-and-viewport/" target="_blank" rel="external">A Look At SVG viewBox and viewport</a></li>
+</ul>
+<h4 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h4><ul>
+<li><p>在svg元素上的transform是不会继承给子元素的，只有绑在g element上才可以。如图：<br><img src="/media/14871450199328.jpg" alt=""></p>
+<p>  具体戳这边的链接<br><a href="http://tutorials.jenkov.com/svg/g-element.html" target="_blank" rel="external">Drawback: G Elements Have no X and Y Attributes
+</a><br>否则，得手动一层层的把transform复制给子元素，可以看到下图中，transform直接设置在svg上，inner没有做任何处理，outer需要设置与svg同样的位移才居中。<br><img src="/media/14871452080823.jpg" alt=""></p>
+</li>
+<li><p>transform-origin不存在于svg的属性中，是css的属性</p>
+</li>
+</ul>
+<blockquote>
+<p>First of all, transform-origin is a pure CSS 3 property, it is not related to SVG 1.1 at all. Despite the fact that transform sounds a lot like transform-origin, they apply to different systems. transform exists in both CSS 3 and SVG 1.1 but have separate implementations. transform-origin only exists in CSS 3 and therefore it is not supposed to influence SVG 1.1. The fact that transform-origin has no influence on SVG in Chrome 48 is expected.</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/开发/" rel="tag">#开发</a>
+          
+            <a href="/tags/好玩的/" rel="tag">#好玩的</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+            <a href="/tags/日常玩耍/" rel="tag">#日常玩耍</a>
+          
+            <a href="/tags/svg/" rel="tag">#svg</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/31/design-principle3/" rel="next" title="javascript设计模式（三）">
+                <i class="fa fa-chevron-left"></i> javascript设计模式（三）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/01/Vue实践——Vuex/" rel="prev" title="Vue实践——Vuex">
+                Vue实践——Vuex <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/01/FE玩耍专栏（二）之缩小版/"
+           data-title="FE玩耍专栏（二）之缩小版" data-url="http://yoursite.com/2017/02/01/FE玩耍专栏（二）之缩小版/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#末尾显示省略号（ellipsis）"><span class="nav-number">1.</span> <span class="nav-text">末尾显示省略号（ellipsis）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tagged-input"><span class="nav-number">2.</span> <span class="nav-text">tagged input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#svg-制作进度环"><span class="nav-number">3.</span> <span class="nav-text">svg 制作进度环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#part1：基础知识："><span class="nav-number">3.1.</span> <span class="nav-text">part1：基础知识：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#part2：-划重点"><span class="nav-number">3.2.</span> <span class="nav-text">part2： 划重点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#references"><span class="nav-number">3.2.1.</span> <span class="nav-text">references</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#donut-via-d3"><span class="nav-number">4.</span> <span class="nav-text">donut via d3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先生成一个饼图："><span class="nav-number">4.1.</span> <span class="nav-text">首先生成一个饼图：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成各部分arc"><span class="nav-number">4.2.</span> <span class="nav-text">生成各部分arc</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充知识"><span class="nav-number">5.</span> <span class="nav-text">补充知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点："><span class="nav-number">5.1.</span> <span class="nav-text">注意点：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

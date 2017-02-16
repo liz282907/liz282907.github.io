@@ -1,0 +1,725 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="vue,数据绑定," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="vue学习前传之数据绑定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue学习前传(一)">
+<meta property="og:url" content="http://yoursite.com/2016/09/27/vue-prev-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="vue学习前传之数据绑定">
+<meta property="og:image" content="http://i2.piimg.com/567571/8e5a13fc3bb9fa35.png">
+<meta property="og:image" content="http://i1.buimg.com/567571/fd2163b1cf300413.png">
+<meta property="og:updated_time" content="2017-02-02T14:23:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue学习前传(一)">
+<meta name="twitter:description" content="vue学习前传之数据绑定">
+<meta name="twitter:image" content="http://i2.piimg.com/567571/8e5a13fc3bb9fa35.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/27/vue-prev-1/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> vue学习前传(一) | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                vue学习前传(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T13:32:42+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/开发日常/" itemprop="url" rel="index">
+                    <span itemprop="name">开发日常</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/27/vue-prev-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/vue-prev-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>react的项目结完最近又来了一个可视化的需求，在热力图上定制。好奇宝宝一直想知道angular跟vue的数据绑定跟react有什么区别，就试着上手了下vue，结果有点坑的是，公司的版本是0.12的，有些语法跟1.0的还不一样，比如v-repeat啥的,class的动态绑定比较鸡肋etc…害的我调了半天摔…</p>
+<p>下面就来个demo把。<br><a href="http://codepen.io/luchen/pen/oLryEy" target="_blank" rel="external">vue实例demo</a></p>
+<p></p><p data-height="265" data-theme-id="dark" data-slug-hash="oLryEy" data-default-tab="result" data-user="luchen" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/oLryEy/" target="_blank" rel="external">vue实例demo</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+<p>为什么jsfiddle经常挂= =，作业部落的markdown居然不能支持codepen直接嵌入html…就勉强戳链接看下啦。</p>
+<p><img src="http://i2.piimg.com/567571/8e5a13fc3bb9fa35.png" alt=""><br><img src="http://i1.buimg.com/567571/fd2163b1cf300413.png" alt="截图"><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//html</div><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>测试部分<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">  vue 0.12版本的class绑定<span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">  </div><div class="line">  &#123;&#123;customClass?customClass+' red':"red"&#125;&#125;</div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"&#123;&#123;customClass?customClass +' red':'red'&#125;&#125;"</span>&gt;</span>class test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>实例demo<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-show</span>=<span class="string">"isChaoxi"</span> <span class="attr">class</span>=<span class="string">"target-wrapper clearfix"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-repeat</span>=<span class="string">"product in productLines"</span> <span class="attr">class</span>=<span class="string">"&#123;&#123;'sm-box-item '+product.customClass&#125;&#125;"</span> <span class="attr">v-on</span>=<span class="string">"click:changeProduct(product.name)"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"box-item-data"</span>&gt;</span>&#123;&#123;product.data&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"box-item-name"</span>&gt;</span>&#123;&#123;product.zh_name&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">//css</div><div class="line">.red&#123;</div><div class="line">  color:red;</div><div class="line">&#125;</div><div class="line">.box-border&#123;</div><div class="line">  border:1px solid black;</div><div class="line">&#125;</div><div class="line">.target-wrapper&#123;</div><div class="line">  list-style:none;</div><div class="line">    display: flex;</div><div class="line">  margin-left: -10px;</div><div class="line">&#125;</div><div class="line">.sm-box-item&#123;</div><div class="line">    flex: 1;</div><div class="line">    margin-left: 10px;</div><div class="line">    padding: 10px 20px;</div><div class="line">    height: 78px;</div><div class="line">    box-sizing: border-box;</div><div class="line"></div><div class="line">    font-size: 18px;</div><div class="line">    color: #fff;</div><div class="line">    cursor: pointer;</div><div class="line">&#125;</div><div class="line">.box-item-data,.box-item-name&#123;</div><div class="line">    width: 100%;</div><div class="line">    display: block;</div><div class="line">&#125;</div><div class="line">.box-item-data&#123;</div><div class="line">    text-align: left;</div><div class="line">    font-size: 20px;</div><div class="line">&#125;</div><div class="line">.box-item-name&#123;</div><div class="line">    text-align: right;</div><div class="line">    font-size: 16px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.chaoxi&#123;</div><div class="line">    background-color: #fd6252;</div><div class="line">&#125;</div><div class="line">.kuaiche&#123;</div><div class="line">    background-color:#54c3bc;</div><div class="line">&#125;</div><div class="line">.taxi&#123;</div><div class="line">    background-color: #106ed5;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.sfc&#123;</div><div class="line">    background-color: #00cd99;</div><div class="line">&#125;</div><div class="line">.zhuanche&#123;</div><div class="line">    background-color: #9587e9;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//javascript</span></div><div class="line"><span class="keyword">var</span> testVue = <span class="keyword">new</span> Vue(&#123;</div><div class="line"></div><div class="line">        <span class="attr">el</span>:<span class="string">"#app"</span>,</div><div class="line">    </div><div class="line">    <span class="attr">data</span>:&#123;</div><div class="line">        <span class="attr">show</span>:<span class="literal">false</span>,</div><div class="line">      <span class="attr">customClass</span>:<span class="string">"box-border"</span>,</div><div class="line">      <span class="attr">test</span>:<span class="string">"test"</span></div><div class="line">      </div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> demoVue = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>:<span class="string">".target-wrapper"</span>,</div><div class="line">  <span class="attr">data</span>:&#123;</div><div class="line">    <span class="attr">isChaoxi</span>:<span class="literal">true</span>,</div><div class="line">    <span class="attr">productLines</span>: [</div><div class="line">      &#123;<span class="attr">data</span>:<span class="string">'10000'</span>,<span class="attr">zh_name</span>:<span class="string">"潮汐"</span>,<span class="attr">customClass</span>:<span class="string">'chaoxi'</span>&#125;,</div><div class="line">      &#123;<span class="attr">data</span>:<span class="string">'30000'</span>,<span class="attr">zh_name</span>:<span class="string">"出租车"</span>,<span class="attr">customClass</span>:<span class="string">'taxi'</span>&#125;,</div><div class="line">      &#123;<span class="attr">data</span>:<span class="string">'8000'</span>,<span class="attr">zh_name</span>:<span class="string">"快车"</span>,</div><div class="line">      <span class="attr">customClass</span>:<span class="string">'kuaiche'</span>&#125;,</div><div class="line">      &#123;<span class="attr">data</span>:<span class="string">'200'</span>,<span class="attr">zh_name</span>:<span class="string">"专车"</span>,<span class="attr">customClass</span>:<span class="string">'zhuanche'</span>&#125;,</div><div class="line">      &#123;<span class="attr">data</span>:<span class="string">'100'</span>,<span class="attr">zh_name</span>:<span class="string">"顺风车"</span>,<span class="attr">customClass</span>:<span class="string">'sfc'</span>&#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>关于set,需要注意的是</p>
+<ul>
+<li><p>在new Vue的时候没有设置的属性，是不可以用vobj.key = value来更新的。只能用$set.但是官方建议是在data中进行声明，不要动态设置。</p>
+<p>  原因有两点：</p>
+<ul>
+<li>代码易读性</li>
+<li>动态添加会强制所有的 watcher 重新计算，因为它之前不存在，没有 watcher 追踪它。虽然性能上差别不是很大，但是不建议。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">editVobj.$set(&quot;fenceName&quot;,this.name);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>而且如果key对应的value是一个对象的话，$set设置实际上会进行替换，而不是extend/object.assign。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag">#vue</a>
+          
+            <a href="/tags/数据绑定/" rel="tag">#数据绑定</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/27/vue-todo/" rel="next" title="vue学习前传(三)">
+                <i class="fa fa-chevron-left"></i> vue学习前传(三)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/27/vue-prev-2/" rel="prev" title="vue学习前传(二)">
+                vue学习前传(二) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/27/vue-prev-1/"
+           data-title="vue学习前传(一)" data-url="http://yoursite.com/2016/09/27/vue-prev-1/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

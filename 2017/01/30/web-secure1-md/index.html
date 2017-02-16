@@ -1,0 +1,822 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="读书笔记,白帽子讲web,安全," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="楼主最近在多看上买了道哥的这本久仰大名的书，之前看了一丢丢，但是大概没有学以致用，总觉得有点浮于表层，准备过段时间找一找有没有实验机可以操作下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读书笔记——白帽子讲web安全（一）">
+<meta property="og:url" content="http://yoursite.com/2017/01/30/web-secure1-md/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="楼主最近在多看上买了道哥的这本久仰大名的书，之前看了一丢丢，但是大概没有学以致用，总觉得有点浮于表层，准备过段时间找一找有没有实验机可以操作下。">
+<meta property="og:image" content="http://p1.bqimg.com/567571/77331f43b176663d.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/129dc9f0a2936fb1.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/d3d478f3301eceb4.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/d8935fff28ef47a0.png">
+<meta property="og:updated_time" content="2017-02-02T14:27:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读书笔记——白帽子讲web安全（一）">
+<meta name="twitter:description" content="楼主最近在多看上买了道哥的这本久仰大名的书，之前看了一丢丢，但是大概没有学以致用，总觉得有点浮于表层，准备过段时间找一找有没有实验机可以操作下。">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/77331f43b176663d.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/30/web-secure1-md/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> 读书笔记——白帽子讲web安全（一） | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                读书笔记——白帽子讲web安全（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-30T14:07:28+08:00" content="2017-01-30">
+              2017-01-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/30/web-secure1-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/30/web-secure1-md/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="防止挂马"><a href="#防止挂马" class="headerlink" title="防止挂马"></a>防止挂马</h3><ol>
+<li><p>客户端沙箱（<strong>浏览器保护自己</strong>）<br>通常会有恶意代码注入的问题，为了解决”挂马”对浏览器的影响，浏览器有两种解决方法:<br>sandbox + 多进程。</p>
+<ul>
+<li>浏览器将不被信任的用户代码（用sandbox包裹）与浏览器内核进程隔绝开，只通过IPC通道访问。</li>
+<li>每一个tab页都是一个进程，多进程可以防止某一个崩溃，整个浏览器就崩溃的问题，提升了用户体验。</li>
+</ul>
+</li>
+<li><p>恶意网址拦截（<strong>浏览器保护用户</strong>）<br> 恶意网址包括：</p>
+<ul>
+<li>挂马网站</li>
+<li><p>钓鱼网站</p>
+<p>通常情况下，挂马可能有两种，一种是直接嵌入代码，一种就是恶意网址链接（通过script指向恶意网址）。其实后者是前者的前一步。<br>拦截的方法主要是：浏览器定时从服务获取黑名单匹配。</p>
+<p>（而不是浏览器去进行匹配操作，一方面是因为匹配操作放在浏览器，那么攻击者是可以分析解决的，另一方面，数据量过大）</p>
+<p>除此之外，还有EVSSL证书（全球证书颁发机构与浏览器厂商的增强型证书），比普通的https还要显著。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="跨站脚本攻击"><a href="#跨站脚本攻击" class="headerlink" title="跨站脚本攻击"></a>跨站脚本攻击</h3><h4 id="XSS-payload"><a href="#XSS-payload" class="headerlink" title="XSS payload"></a>XSS payload</h4><ul>
+<li>Cookie劫持</li>
+</ul>
+<pre><code>document.cookie访问后，可以伪造发包，然后模拟登录，然后就可以获取更多的信息了。
+</code></pre><p><strong>解决</strong>：<br>httpOnly不许通过脚本访问cookie。即cookie可以被自动被发送，但是无法获取</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Set-Cookie: USER=123; expires=Wednesday, 09-Nov-99 23:12:40 GMT; HttpOnly</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><p>其他要攻击者多做的事情包括：</p>
+<ul>
+<li>图片验证码.(黑客：可以把图片url发往远程服务器去解析)</li>
+<li>old password：钓鱼</li>
+<li><p>收集信息</p>
+<ul>
+<li>识别用户浏览器：<ol>
+<li>navigator.userAgent(不太准确，因为userAgent可以伪造)</li>
+<li>分析浏览器独特特征，来进行匹配 【学者Gareth Heyes】</li>
+</ol>
+</li>
+<li>识别安装软件、插件、扩展：<ol>
+<li>通过识别是否安装某控件来判断</li>
+<li>是否有某软件的classId来判断<br>扫描Plugins列表，Extension（比如某扩展如果装了就可以显示某个图标，那么放一个src=图标的url，看是否显示）</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>XSS构造技巧</p>
+<ul>
+<li><p>绕过长度限制：</p>
+<ol>
+<li><p>放event事件中（少了”script”）</p>
+<ol>
+<li>location.hash中写（而不是input中）</li>
+<li>利用注释符，把input注释掉，在后面放script</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>     <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;input id=1 type=&quot;text&quot; value=&quot;&quot; /&gt;</div><div class="line">xxxxxxxxxxxxx</div><div class="line">&lt;input id=2 type=&quot;text&quot; value=&quot;&quot; /&gt;</div><div class="line">在第一个input框中，输入：&quot;&gt;&lt;!--</div><div class="line">在第二个input框中，输入：--&gt;&lt;script&gt;alert(/xss/);&lt;/script&gt;</div><div class="line">最终</div><div class="line">&lt;input id=1 type=&quot;text&quot; value=&quot;&quot;&gt;&lt;!--&quot; /&gt; xxxxxxxxxxxxxxxxx &lt;input id=2 type=&quot;text&quot; value=&quot;--&gt;&lt;script&gt;alert(/xss/);&lt;/script&gt;&quot; /&gt;</div></pre></td></tr></table></figure>
+
+
+    4. 使用base：把本页面的所有相对路径，都附上base指向的恶意网址。然后在恶意网址的服务器中构造相应的路径。
+    5. window.name 可以在两个域传输数据
+
+- 变废为宝： apache expect (可注入)
+</code></pre><h4 id="防范XSS"><a href="#防范XSS" class="headerlink" title="防范XSS"></a>防范XSS</h4><h5 id="HttpOnly"><a href="#HttpOnly" class="headerlink" title="HttpOnly"></a>HttpOnly</h5><p>服务器发送指示，要求set-Cookie中某一个cookie httpOnly。那么浏览器会设置所有的cookie。但是设置了httpOnly的cookie是不能被访问的。<br>通过TRACE请求可以绕过这个，它的responseBody里面会返回cookie.</p>
+<h5 id="输入检查"><a href="#输入检查" class="headerlink" title="输入检查"></a>输入检查</h5><ul>
+<li>看是否包括有害特殊字符，匹配XSS特征等</li>
+<li>XSS-filter（但是某些转义可能会违背用户本意）</li>
+</ul>
+<h5 id="输出检查"><a href="#输出检查" class="headerlink" title="输出检查"></a>输出检查</h5><p>escape编码，但是其实也不一定能满足需求。要分场景。</p>
+<h5 id="根本解决方案：列出场景，逐一解决："><a href="#根本解决方案：列出场景，逐一解决：" class="headerlink" title="根本解决方案：列出场景，逐一解决："></a>根本解决方案：列出场景，逐一解决：</h5><ul>
+<li>html: htmlEncode</li>
+<li>script中：保证所有变量都在“”双引号中。</li>
+<li>事件中： javascriptEncode</li>
+</ul>
+<pre><code>![](http://p1.bpimg.com/567571/1236b29deaada5b0.png)
+</code></pre><ul>
+<li>css中：尽可能禁止用户输入变量放在style标签中，用encodeForCSS()</li>
+<li><p>地址（url）中:URLEncode</p>
+<p>  <img src="http://p1.bqimg.com/567571/77331f43b176663d.png" alt=""><br>  <img src="http://p1.bpimg.com/567571/129dc9f0a2936fb1.png" alt=""></p>
+</li>
+<li><p>富文本（用户自定义的html）:禁止“事件”</p>
+</li>
+</ul>
+<ol>
+<li>Dom based XSS</li>
+</ol>
+<p><img src="http://i1.piimg.com/567571/d3d478f3301eceb4.png" alt=""></p>
+<p>首先，在<code>$var</code>输出到<code>&lt;script&gt;</code>时，应该执行一次javascriptEncode；其次，在<code>document.write</code>输出到HTML页面时,要分具体情况看待：如果是输出到事件或者脚本，则要再做一次javascriptEncode；如果是输出到HTML内容或者属性，则要做一次HtmlEncode。</p>
+<hr>
+<h3 id="csrf"><a href="#csrf" class="headerlink" title="csrf"></a>csrf</h3><p>在b.com域名下，有一个img，src为a.com域名下的某个请求A，黑客先诱导用户登录a.com。由于在同一个浏览器下同一个域名的tab页面是共享cookie的，因此A中是携带了cookie的。那么用户访问b页面时，间接访问了a，就达到了跨域执行a页面请求的目的。（第三方cookie）<br>在某些浏览器下，第三方cookie是被禁止的，比如ie,可以避免csrf。但是由于p3p的出现，使得第三方cookie可以被发送，csrf。</p>
+<blockquote>
+<p>P3P Header是W3C制定的一项关于隐私的标准，全称是The Platform for Privacy Prefer-ences。如果网站返回给浏览器的HTTP头中包含有P3P头，则在某种程度上来说，将允许浏览器发送第三方Cookie。</p>
+</blockquote>
+<pre><code>它的防御有
+</code></pre><ul>
+<li>验证码： 因为csrf往往在用户不知情的情况下进行操作，用验证码就是让用户对自己的请求操作知晓、负责。</li>
+<li>Referer Check在互联网中最常见的应用就是“防止图片盗链”。用来验证发送请求的页面是否是应有的页面，或者是否是在同一个域名下。比如之前的b中iframe中有a的请求，它的referer就是b。<br>但是服务端有时候是不能获取到referer的。由于隐私设置等等。</li>
+<li><p>token：一个仅被浏览器与服务器知晓的随机数，每次请求时都需要携带这个token信息来验证身份。（使得攻击者无法知晓token，无法发送请求）。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://host/path/delete?username=abc&amp;item=123&amp;token=[random(seed)]</div></pre></td></tr></table></figure>
+<pre><code>因为csrf请求的前提是攻击者要知道完整的url，如果用token的话，就需要提前知道这个token。而token的获取是随着页面生成/打开才生成的。（可以理解为执行生成，非编译时）。攻击者给出来的只是链接非页面，它无法知道token。所以请求无法构造。但是如果嵌入的是iframe...= =。
+</code></pre><p>具体来说是，每次打开某个请求页面，服务器都会返回一个token，（可以是后端渲染前端页面时直接嵌进表单，如下图）。<br><img src="http://p1.bqimg.com/567571/d8935fff28ef47a0.png" alt=""><br>然后表单请求的时候，服务端读取这个token，跟后端session中的token比对，验证表单是否可信。(实际上，比对可以是前端跟后端，也可以是前端跟前端，就是表单跟cookie比对，因为后端存session中的话是需要消耗一定资源的，如果直接放在cookie中可以减少消耗，在仅仅csrf攻击，不涉及其他的情况下，cookie是不能被更改的，那么验证表单跟cookie中token===表单与session中token)。<br>还有几个注意事项是：</p>
+<ul>
+<li>token生命周期，为了使用方面，可以在某个时间段内都使用同一个token，但是一提交表单就应废弃一个token。</li>
+<li>多个相同页面打开时，如果一个消耗完，其他页面要相应的同步，或者设置几个同时有效的token。</li>
+<li>token应该避免存在url中，（应尽量放在表单中），否则可以由referer被泄露。</li>
+<li>尽量用post代替get，因为get请求的话参数会被暴露到url中，就可能暴露表单提交中的token。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/读书笔记/" rel="tag">#读书笔记</a>
+          
+            <a href="/tags/白帽子讲web/" rel="tag">#白帽子讲web</a>
+          
+            <a href="/tags/安全/" rel="tag">#安全</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/30/design-priciples1-md/" rel="next" title="JavaScript设计模式（一）">
+                <i class="fa fa-chevron-left"></i> JavaScript设计模式（一）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/31/design-principle2/" rel="prev" title="javascript设计模式（二）">
+                javascript设计模式（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/30/web-secure1-md/"
+           data-title="读书笔记——白帽子讲web安全（一）" data-url="http://yoursite.com/2017/01/30/web-secure1-md/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#防止挂马"><span class="nav-number">1.</span> <span class="nav-text">防止挂马</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨站脚本攻击"><span class="nav-number">2.</span> <span class="nav-text">跨站脚本攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS-payload"><span class="nav-number">2.1.</span> <span class="nav-text">XSS payload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防范XSS"><span class="nav-number">2.2.</span> <span class="nav-text">防范XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HttpOnly"><span class="nav-number">2.2.1.</span> <span class="nav-text">HttpOnly</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入检查"><span class="nav-number">2.2.2.</span> <span class="nav-text">输入检查</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出检查"><span class="nav-number">2.2.3.</span> <span class="nav-text">输出检查</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#根本解决方案：列出场景，逐一解决："><span class="nav-number">2.2.4.</span> <span class="nav-text">根本解决方案：列出场景，逐一解决：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#csrf"><span class="nav-number">3.</span> <span class="nav-text">csrf</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

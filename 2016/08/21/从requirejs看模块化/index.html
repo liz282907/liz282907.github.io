@@ -1,0 +1,804 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="requirejs,模块化,AMD,CMD," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="requirejs优势（使用场景）
+防止js加载阻塞页面渲染（async属性）
+避免命名冲突以及为避免冲突所作的若干挣扎…，甚至还有一种情况是：不同版本的依赖库，如jquery，可以通过赋以不同的命名加以区分。
+更好的依赖处理，解决：文件依赖导致需要小心翼翼的放置各js，以确保它们的加载顺序。  教程
+各模块专注于单一的功能，仅暴露出必要的部分
+改善性能问题。按需加载，减少不必要的加载。也可以将很">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从requirejs看模块化">
+<meta property="og:url" content="http://yoursite.com/2016/08/21/从requirejs看模块化/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="requirejs优势（使用场景）
+防止js加载阻塞页面渲染（async属性）
+避免命名冲突以及为避免冲突所作的若干挣扎…，甚至还有一种情况是：不同版本的依赖库，如jquery，可以通过赋以不同的命名加以区分。
+更好的依赖处理，解决：文件依赖导致需要小心翼翼的放置各js，以确保它们的加载顺序。  教程
+各模块专注于单一的功能，仅暴露出必要的部分
+改善性能问题。按需加载，减少不必要的加载。也可以将很">
+<meta property="og:image" content="http://i1.buimg.com/567571/f3f5e288d9ea0ea3.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/98d0f9d0c70ff762.png">
+<meta property="og:updated_time" content="2017-02-02T14:22:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从requirejs看模块化">
+<meta name="twitter:description" content="requirejs优势（使用场景）
+防止js加载阻塞页面渲染（async属性）
+避免命名冲突以及为避免冲突所作的若干挣扎…，甚至还有一种情况是：不同版本的依赖库，如jquery，可以通过赋以不同的命名加以区分。
+更好的依赖处理，解决：文件依赖导致需要小心翼翼的放置各js，以确保它们的加载顺序。  教程
+各模块专注于单一的功能，仅暴露出必要的部分
+改善性能问题。按需加载，减少不必要的加载。也可以将很">
+<meta name="twitter:image" content="http://i1.buimg.com/567571/f3f5e288d9ea0ea3.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/21/从requirejs看模块化/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> 从requirejs看模块化 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从requirejs看模块化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-21T17:10:35+08:00" content="2016-08-21">
+              2016-08-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/intern/" itemprop="url" rel="index">
+                    <span itemprop="name">intern</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/21/从requirejs看模块化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/从requirejs看模块化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="requirejs优势（使用场景）"><a href="#requirejs优势（使用场景）" class="headerlink" title="requirejs优势（使用场景）"></a>requirejs优势（使用场景）</h3><ul>
+<li>防止js加载阻塞页面渲染（async属性）</li>
+<li>避免命名冲突以及为避免冲突所作的若干挣扎…，甚至还有一种情况是：不同版本的依赖库，如jquery，可以通过赋以不同的命名加以区分。</li>
+<li>更好的依赖处理，解决：文件依赖导致需要小心翼翼的放置各js，以确保它们的加载顺序。<br>  <a href="http://www.cnblogs.com/xing901022/p/4658548.html" target="_blank" rel="external">教程</a></li>
+<li>各模块专注于单一的功能，仅暴露出必要的部分</li>
+<li>改善性能问题。按需加载，减少不必要的加载。也可以将很少更新的合并成一个文件，用缓存，经常变动的独立成模块，互不影响。</li>
+</ul>
+<hr>
+<h3 id="实战演练"><a href="#实战演练" class="headerlink" title="实战演练"></a>实战演练</h3><p>define跟require的区别在于一个是用于定义模块的，一个是使用已定义的模块的。<br>以下demo是可以运行的，但是放到codepen中，require存在问题，待解决，此处仅供代码参考。</p>
+<p></p><p data-height="265" data-theme-id="dark" data-slug-hash="dXLEax" data-default-tab="result" data-user="luchen" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/dXLEax/" target="_blank" rel="external">requirejsDemo</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+
+<h3 id="fis中的mod-js里面的require"><a href="#fis中的mod-js里面的require" class="headerlink" title="fis中的mod.js里面的require"></a>fis中的mod.js里面的require</h3><p>实习的过程中最痛心的就是遗留代码的加功能点…之前的fe是用的旧版本的fis中的mod.js，定义了citylist组件，导致页面上要用到这一部分就得使用mod中的require。<br>然后比较神奇的有这么几点</p>
+<ul>
+<li><p>require函数的大体思想就是，定义一个全局对象，然后把引入的js文件作为一个一个的key,value存进去，每次进require函数，就去找这个对象，如果没有，就添加，如果有，就更新，保证全局唯一，某种程度上避免了不同模块是不同的fe写的，然后重复引用js的问题。但是比较坑爹的是，需要手动加script标签引入…如此反人类…当然也提供了require.async来异步引入，这个函数中它是可以createScript的，也就是说，你只要提供url,它会在head中 append script元素。</p>
+</li>
+<li><p>还有一点注意的是，require做了部分兼容，就是如果传给他的是一个数组对象，那么它会调用require.async。</p>
+</li>
+<li><p>关于类比require中的path,mod里面也有resourceMap进行处理，</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.resourceMap(&#123;</div><div class="line">            <span class="attr">res</span>:&#123;</div><div class="line">                <span class="string">'cityList'</span>:&#123;</div><div class="line">                    <span class="attr">url</span>:<span class="string">'/static/js/app/module_cityList.js'</span></div><div class="line">                &#125;,</div><div class="line">                <span class="string">'echarts'</span>:&#123;</div><div class="line">    <span class="attr">url</span>:<span class="string">'/static/hotmap/js/libs/echarts/echarts.common.js'</span></div><div class="line">                &#125;,</div><div class="line">                <span class="string">'moment'</span>:&#123;</div><div class="line">                    <span class="attr">url</span>:<span class="string">"/static/hotmap/js/libs/moment/moment.js"</span></div><div class="line">                &#125;,</div><div class="line">                <span class="string">'BMap'</span>:&#123;</div><div class="line">                    <span class="attr">url</span>:<span class="string">'http://api.map.baidu.com/api?v=2.0&amp;ak=8WEtlKYLwwssirUarD5O7ba0.js'</span></div><div class="line">                &#125;,</div><div class="line">                <span class="string">'heatForm'</span>:&#123;</div><div class="line">                    <span class="attr">url</span>:<span class="string">"/static/hotmap/js/components/formRelated.js"</span></div><div class="line">                &#125;,</div><div class="line">                &#125;,</div><div class="line">                <span class="string">'HeatmapOverlay'</span>:&#123;</div><div class="line">                    <span class="attr">deps</span>:[<span class="string">'BMap'</span>],     <span class="comment">//**类似于shim**</span></div><div class="line">                    url:<span class="string">'http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js'</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>eg.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> moment = <span class="built_in">require</span>([<span class="string">'moment'</span>]);</div></pre></td></tr></table></figure></p>
+<p>并不是我们通常意义上理解的模块、同步、引入。= =</p>
+<p>demo如图。</p>
+<p>其中，heatform的文件映射见上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line">define(<span class="string">'heatForm'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">require,exports, module</span>)</span>&#123;</div><div class="line">     <span class="keyword">var</span> moment = <span class="built_in">require</span>([<span class="string">'moment'</span>]);   </div><div class="line">     <span class="keyword">var</span> $ = <span class="built_in">require</span>([<span class="string">"jquery"</span>]);</div><div class="line">    <span class="keyword">var</span> o = &#123;&#125;;</div><div class="line">    <span class="keyword">var</span> target = $(<span class="string">"#target"</span>); <span class="comment">//指标</span></div><div class="line">    <span class="keyword">var</span> productLine = $(<span class="string">"#productLine"</span>);</div><div class="line">    <span class="keyword">var</span> particleSize = $(<span class="string">"#particleSize"</span>);</div><div class="line">    <span class="keyword">var</span> hourRange = $(<span class="string">"#hourRange"</span>);</div><div class="line">    <span class="keyword">var</span> searchBtn = $(<span class="string">"#searchBtn"</span>);</div><div class="line"></div><div class="line">    <span class="comment">//对应于size的当前时间的format，如粒度为15时，现在7:35，output:7:30-7:45</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getCurStart</span>(<span class="params">size</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (size == <span class="number">0</span>) size = <span class="number">1</span>;</div><div class="line">        <span class="keyword">var</span> intervals = moment().diff(moment(&#123;</div><div class="line">            <span class="attr">h</span>: <span class="number">0</span>,</div><div class="line">            <span class="attr">m</span>: <span class="number">0</span></div><div class="line">        &#125;), <span class="string">'m'</span>);</div><div class="line">        <span class="keyword">var</span> result = moment(&#123; <span class="attr">h</span>: <span class="number">0</span>, <span class="attr">m</span>: <span class="number">0</span> &#125;).add(<span class="built_in">Math</span>.floor(intervals / size) * size, <span class="string">'m'</span>).format(<span class="string">"HH:mm"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//时间段的下拉菜单html</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">generateRangeHtml</span>(<span class="params">size</span>) </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> totalMinutesOneDay = <span class="number">1440</span>,</div><div class="line">            durationsArr = [],</div><div class="line">            intervals;</div><div class="line">        <span class="keyword">if</span> (size === <span class="number">0</span>) &#123;</div><div class="line">            size = <span class="number">1</span>;</div><div class="line">            intervals = moment().diff(moment(&#123;</div><div class="line">                <span class="attr">h</span>: <span class="number">0</span>,</div><div class="line">                <span class="attr">m</span>: <span class="number">0</span></div><div class="line">            &#125;), <span class="string">'m'</span>) + <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span></div><div class="line">            intervals = totalMinutesOneDay / size;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; intervals; i++) &#123;</div><div class="line">            <span class="keyword">var</span> durations = i * size;</div><div class="line">            <span class="keyword">var</span> h = <span class="built_in">Math</span>.floor(durations / <span class="number">60</span>);</div><div class="line">            <span class="keyword">var</span> m = durations - h * <span class="number">60</span>;</div><div class="line"></div><div class="line">            <span class="keyword">var</span> startTime = moment(&#123;</div><div class="line">                <span class="attr">hour</span>: h,</div><div class="line">                <span class="attr">minute</span>: m</div><div class="line">            &#125;);</div><div class="line">            <span class="keyword">var</span> endTime = moment(&#123;</div><div class="line">                <span class="attr">hour</span>: h,</div><div class="line">                <span class="attr">minute</span>: m</div><div class="line">            &#125;).add(size, <span class="string">'m'</span>);</div><div class="line">            durationsArr.push(&#123;</div><div class="line">                <span class="attr">startTime</span>: startTime.format(<span class="string">'HH:mm'</span>),</div><div class="line">                <span class="attr">endTime</span>: endTime.format(<span class="string">"HH:mm"</span>)</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">var</span> curTime = getCurStart(size);</div><div class="line">        <span class="keyword">var</span> newOptions = durationsArr.map(<span class="function"><span class="keyword">function</span>(<span class="params">one</span>) </span>&#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (one.startTime === curTime) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="string">`&lt;option selected=<span class="subst">$&#123;<span class="string">"selected"</span>&#125;</span> value=<span class="subst">$&#123;one.startTime&#125;</span>&gt;<span class="subst">$&#123;one.startTime&#125;</span>-<span class="subst">$&#123;one.endTime&#125;</span>&lt;/option&gt;`</span></div><div class="line">            &#125; <span class="keyword">else</span></div><div class="line">                <span class="keyword">return</span> <span class="string">`&lt;option value=<span class="subst">$&#123;one.startTime&#125;</span>&gt;<span class="subst">$&#123;one.startTime&#125;</span>-<span class="subst">$&#123;one.endTime&#125;</span>&lt;/option&gt;`</span>;</div><div class="line">        &#125;).join(<span class="string">""</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> newOptions;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bindEvent</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">        particleSize.on(<span class="string">"change"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> size = <span class="built_in">parseInt</span>($(<span class="keyword">this</span>).val());</div><div class="line">            <span class="keyword">var</span> newRangeOptions = generateRangeHtml(size);</div><div class="line">            hourRange.html(newRangeOptions);</div><div class="line">        &#125;);</div><div class="line">        productLine.on(<span class="string">"change"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> product = $(<span class="keyword">this</span>).val();</div><div class="line">            <span class="keyword">if</span> (product === <span class="string">"sfc"</span>) &#123;</div><div class="line">                target.html(<span class="string">"&lt;option value='callNum'&gt;呼叫量&lt;/option&gt;"</span>);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                target.html(</div><div class="line">                    [<span class="string">"&lt;option value='needNum'&gt;需求数&lt;/option&gt;"</span>,</div><div class="line">                    <span class="string">"&lt;option value='callNum'&gt;呼叫量&lt;/option&gt;"</span>].join(<span class="string">""</span>));</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        target.on(<span class="string">"change"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">            <span class="keyword">var</span> sfcOption = <span class="string">"&lt;option value='sfc'&gt;顺风车&lt;/option&gt;"</span></div><div class="line">            <span class="keyword">if</span>(($<span class="keyword">this</span>).val()===<span class="string">"needNum"</span>)&#123;</div><div class="line">                productLine.children(<span class="string">".sfc"</span>).remove();</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">if</span>(productLine.children(<span class="string">".sfc"</span>)===<span class="number">-1</span>)</div><div class="line">                    productLine.append(sfcOption);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        <span class="comment">//待加入searchBtn的click事件</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    o.bindEvent = bindEvent;</div><div class="line">    <span class="comment">// return o;</span></div><div class="line">    <span class="built_in">module</span>.exports=o;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//调用</span></div><div class="line"><span class="built_in">require</span>.async(<span class="string">'heatForm'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">heatForm</span>) </span>&#123;</div><div class="line">                heatForm.bindEvent();</div><div class="line">            &#125;)</div></pre></td></tr></table></figure>
+<h3 id="AMD-CMD-UMD概览"><a href="#AMD-CMD-UMD概览" class="headerlink" title="AMD,CMD,UMD概览"></a>AMD,CMD,UMD概览</h3><p>一般 require 用于处理页面首屏所需要的模块，require.async 用于处理首屏外的按需模块。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;script type=&quot;text/javascript&quot;&#125;</div><div class="line">        // 同步调用 jquery</div><div class="line">        var $ = require(&apos;common:widget/jquery/jquery.js&apos;);</div><div class="line"></div><div class="line">        $(&apos;#btn&apos;).click(function() &#123;</div><div class="line">            // 异步调用 respClick 模块</div><div class="line">            require.async([&apos;/widget/ui/respClick/respClick.js&apos;], function() &#123;</div><div class="line">                respClick.hello();</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#123;/script&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="三者代码示例"><a href="#三者代码示例" class="headerlink" title="三者代码示例"></a>三者代码示例</h4><h5 id="AMD"><a href="#AMD" class="headerlink" title="AMD:"></a><strong>AMD</strong>:</h5><p>见上</p>
+<h5 id="CMD"><a href="#CMD" class="headerlink" title="CMD:"></a><strong>CMD</strong>:</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//commonjs</span></div><div class="line"><span class="comment">//    文件名: foo.js</span></div><div class="line"><span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'jquery'</span>);</div><div class="line"><span class="keyword">var</span> _ = <span class="built_in">require</span>(<span class="string">'underscore'</span>);</div><div class="line"></div><div class="line"><span class="comment">//    methods</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;;    <span class="comment">//    私有方法，因为它没在module.exports中 (见下面)</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;&#125;;    <span class="comment">//    公共方法，因为它在module.exports中定义了</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span>&#123;&#125;;    <span class="comment">//    公共方法，因为它在module.exports中定义了</span></div><div class="line"></div><div class="line"><span class="comment">//    暴露公共方法</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">b</span>: b,</div><div class="line">    <span class="attr">c</span>: c</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>此处需要注意exports是module.exports的一个引用，如果直接使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">exports = &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>暴露模块的输出的话，是无效的。因为此时相当于exports的引用对象更改了，两者并不指向同一个对象。module.exports指向的才是。</p>
+<h5 id="UMD"><a href="#UMD" class="headerlink" title="UMD:"></a><strong>UMD</strong>:</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//UMD</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">root, factory</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</div><div class="line">        <span class="comment">// AMD</span></div><div class="line">        define([<span class="string">'jquery'</span>, <span class="string">'underscore'</span>], factory);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</div><div class="line">        <span class="comment">// Node, CommonJS之类的</span></div><div class="line">        <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">'jquery'</span>), <span class="built_in">require</span>(<span class="string">'underscore'</span>));</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 浏览器全局变量(root 即 window)</span></div><div class="line">        root.returnExports = factory(root.jQuery, root._);</div><div class="line">    &#125;</div><div class="line">&#125;(<span class="keyword">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$, _</span>) </span>&#123;</div><div class="line">    <span class="comment">//    方法</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;;    <span class="comment">//    私有方法，因为它没被返回 (见下面)</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;&#125;;    <span class="comment">//    公共方法，因为被返回了</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span>&#123;&#125;;    <span class="comment">//    公共方法，因为被返回了</span></div><div class="line"></div><div class="line">    <span class="comment">//    暴露公共方法</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">b</span>: b,</div><div class="line">        <span class="attr">c</span>: c</div><div class="line">    &#125;</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+<p>函数有两个参数，第一个参数是当前运行时环境，第二个参数是模块的定义体。在执行UMD规范时，会优先判断是当前环境是否支持AMD环境，然后再检验是否支持CommonJS环境，否则认为当前环境为浏览器环境（ window ）。</p>
+<h4 id="从模块加载流程看amd-cmd区别"><a href="#从模块加载流程看amd-cmd区别" class="headerlink" title="从模块加载流程看amd,cmd区别"></a>从模块加载流程看amd,cmd区别</h4><p><strong>总结来说，cmd是异步加载、延迟且同步执行、依赖就近</strong><br><strong>amd是异步加载（下载）、异步执行、依赖前置。</strong></p>
+<p>（1）示例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//AMD</span></div><div class="line">define([<span class="string">"./a"</span>, <span class="string">"./b"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="comment">//BEGIN 1</span></div><div class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</div><div class="line">    a.doSomething();</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">b.doSomething();</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//END</span></div><div class="line">&#125;);</div><div class="line"><span class="comment">//CMD</span></div><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</div><div class="line">   <span class="comment">// BEGIN 2</span></div><div class="line">  <span class="keyword">if</span>(some_condition) &#123;</div><div class="line">    <span class="built_in">require</span>(<span class="string">'./a'</span>).doSomething();</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">require</span>(<span class="string">'./b'</span>).soSomething();</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// END</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>在BEGIN1位置处a、b模块都需要被执行一次。CMD中BEGIN 2处a、b都没有被执行，在END处，a、b只有一个被实际执行过。这就是cmd所说的延迟加载。</p>
+<p>（2）大致流程<br><img src="http://i1.buimg.com/567571/f3f5e288d9ea0ea3.png" alt=""><br>以requirejs为例，其实amd,cmd的流程基本一样，区别在于后面的执行方面。</p>
+<p><strong>requirejs</strong>：用registry（{id:module}）来维持一个全局的模块资源表，保证不重复，每次根据id来查找，有则返回，无则去new Module。new Module的时候会触发Module.init函数，依次进行createScript，loading，将模块的依赖加入到依赖数组里，触发自己的completeLoad事件，在该事件中，依次去get依赖的Module,(在getModule时又会回到上面的步骤，有则返回，无则new Module).再接下来会做 checkLoaded,其中每隔50ms去checkoutLoadTimeoutId，因为模块是异步加载的，所以用这个来保证加载结束。 define函数中进行了兼容，包括无id,无依赖的，commonjs写法的（这种情况下同seajs一样，factory.toString()后正则匹配出依赖项）等多种情况。</p>
+<p><strong>seajs</strong>:<br>异步下载脚本模块,下载后，浏览器会自动执行 define(fn),define 方法会保存 fn 和提取该模块的依赖模块（利用 fn.toString）,按照上面的方法，把依赖模块都下载好<br>接着根据依赖关系，依次执行各个模块的 fn。</p>
+<p>（3）区别/相同点</p>
+<ul>
+<li>同：amd,cmd都是通过设置createElement(script),且设置async属性=true,因此它们都是async,异步下载的。</li>
+<li>异1（执行时刻）：amd是并行加载后就执行，而cmd是as lazy as possible,先并行加载，但是直到require使用时才会执行。因此相对会耗费了时间。<br>举个栗子，amd中，define(id,[],factory),[]指示的依赖数组就相当于cmd里面的那个require,那个require就是执行~</li>
+<li>异2（执行顺序）：amd是异步执行（执行顺序不定），而cmd是同步执行（当然也可以设置require.async去异步执行）</li>
+</ul>
+<p>注：<br>amd,cmd都是基于commonjs的，commonjs服务于服务端，cmd和amd作用于浏览器端，因为cmd中的require是同步执行，需要执行完才能执行下面的代码，对于浏览器端来说，是一个很大的性能问题，因为模块在服务器端，完全拼网速。</p>
+<blockquote>
+<p>“ 因为所有的模块都存放在本地硬盘，可以同步加载完成，等待时间就是硬盘的读取时间。但是，对于浏览器，这却是一个大问题，因为模块都放在服务器端，等待时间取决于网速的快慢，可能要等很长时间，浏览器处于”假死”状态。”                             –阮一峰</p>
+</blockquote>
+<p>（4）补充<br>requirejs性能好点的原因：</p>
+<ul>
+<li>解析依赖时直接就可以知道，不需要像seajs一样 function.to String()后正则匹配require后的依赖</li>
+<li>异步加载执行，而cmd同步执行耗时<br><a href="https://www.zhihu.com/question/21347409#answer-2323656" target="_blank" rel="external">参考amd,cmd</a></li>
+</ul>
+<hr>
+<p>cmd 中require的加载与执行的关系？require的时候实际上是已经加载好了，去执行 exec()<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">seajs.require = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> mod = Module.get(Module.resolve(id))</div><div class="line">  <span class="keyword">if</span> (mod.status &lt; STATUS.EXECUTING) &#123;</div><div class="line">    mod.onload()</div><div class="line">    mod.exec()</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> mod.exports</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="补充知识："><a href="#补充知识：" class="headerlink" title="补充知识："></a><strong>补充知识</strong>：</h3><ol>
+<li>浏览器通常解析script的时候是同步下载、同步阻塞执行。<br>除非手动设置了async，defer等属性<br>具体总结来说<br><img src="http://i2.buimg.com/567571/98d0f9d0c70ff762.png" alt=""></li>
+</ol>
+<ul>
+<li><p>defer:<br>异步下载、最后（document被解析之后）执行，仍然在DOMContentLoaded之前</p>
+</li>
+<li><p>async：<br>异步下载后立刻异步执行（执行时可能页面还在解析，不block parse，顺序不定）<br>且在window的load事件之前执行</p>
+</li>
+<li><p>不设置：<br>同步下载、同步执行，在页面继续解析之前，因此会阻塞</p>
+</li>
+</ul>
+<p>2，动态创建script标签并插入==设置为async</p>
+<hr>
+<h3 id="references"><a href="#references" class="headerlink" title="references"></a>references</h3><ol>
+<li><a href="http://peter.sh/experiments/asynchronous-and-deferred-javascript-execution-explained/" target="_blank" rel="external">Asynchronous and deferred JavaScript execution explained</a></li>
+<li><a href="http://ued.ctrip.com/blog/script-defer-and-async.html" target="_blank" rel="external">script的defer和async</a></li>
+<li><a href="http://www.cnblogs.com/dojo-lzz/p/4707725.html" target="_blank" rel="external">以代码爱好者角度来看AMD与CMD</a></li>
+<li><a href="https://segmentfault.com/a/1190000000471722" target="_blank" rel="external">seajs 源码解读</a></li>
+</ol>
+<hr>
+<h3 id="to-think"><a href="#to-think" class="headerlink" title="to think:"></a>to think:</h3><ol>
+<li>es6中的module机制以及webpack的处理</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/requirejs/" rel="tag">#requirejs</a>
+          
+            <a href="/tags/模块化/" rel="tag">#模块化</a>
+          
+            <a href="/tags/AMD/" rel="tag">#AMD</a>
+          
+            <a href="/tags/CMD/" rel="tag">#CMD</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/测试/" rel="next" title="github+hexo搭建博客">
+                <i class="fa fa-chevron-left"></i> github+hexo搭建博客
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/27/图解http/" rel="prev" title="图解http(一)">
+                图解http(一) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/21/从requirejs看模块化/"
+           data-title="从requirejs看模块化" data-url="http://yoursite.com/2016/08/21/从requirejs看模块化/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#requirejs优势（使用场景）"><span class="nav-number">1.</span> <span class="nav-text">requirejs优势（使用场景）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实战演练"><span class="nav-number">2.</span> <span class="nav-text">实战演练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fis中的mod-js里面的require"><span class="nav-number">3.</span> <span class="nav-text">fis中的mod.js里面的require</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD-CMD-UMD概览"><span class="nav-number">4.</span> <span class="nav-text">AMD,CMD,UMD概览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三者代码示例"><span class="nav-number">4.1.</span> <span class="nav-text">三者代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AMD"><span class="nav-number">4.1.1.</span> <span class="nav-text">AMD:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CMD"><span class="nav-number">4.1.2.</span> <span class="nav-text">CMD:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UMD"><span class="nav-number">4.1.3.</span> <span class="nav-text">UMD:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从模块加载流程看amd-cmd区别"><span class="nav-number">4.2.</span> <span class="nav-text">从模块加载流程看amd,cmd区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充知识："><span class="nav-number">5.</span> <span class="nav-text">补充知识：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#references"><span class="nav-number">6.</span> <span class="nav-text">references</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#to-think"><span class="nav-number">7.</span> <span class="nav-text">to think:</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

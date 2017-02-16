@@ -1,0 +1,847 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="http," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="chapter1 web及网络基础思维导图
+
+
+
+chapter2 简单的http协议
+
+http协议用于客户端和服务器之间通信。
+请求报文： 
+ 12GET /index.htm HTTP/1.1Host: hackr.jp
+
+请求方法
+请求URI
+协议版本     以上三个位请求行
+请求头+内容实体
+
+
+响应报文
+
+http 不保存状态（stateless）但实际中，需要保持状态，比如用户登录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解http(一)">
+<meta property="og:url" content="http://yoursite.com/2016/09/27/图解http/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="chapter1 web及网络基础思维导图
+
+
+
+chapter2 简单的http协议
+
+http协议用于客户端和服务器之间通信。
+请求报文： 
+ 12GET /index.htm HTTP/1.1Host: hackr.jp
+
+请求方法
+请求URI
+协议版本     以上三个位请求行
+请求头+内容实体
+
+
+响应报文
+
+http 不保存状态（stateless）但实际中，需要保持状态，比如用户登录">
+<meta property="og:image" content="http://i4.buimg.com/567571/58b9689419e9053a.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/c5807e22d5b81b0a.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/2a672dcda2b41efc.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/0204118ff2ec23c7.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/aac4dee753ea2d8c.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/ebf0f775d0942172.png">
+<meta property="og:updated_time" content="2016-09-27T04:44:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图解http(一)">
+<meta name="twitter:description" content="chapter1 web及网络基础思维导图
+
+
+
+chapter2 简单的http协议
+
+http协议用于客户端和服务器之间通信。
+请求报文： 
+ 12GET /index.htm HTTP/1.1Host: hackr.jp
+
+请求方法
+请求URI
+协议版本     以上三个位请求行
+请求头+内容实体
+
+
+响应报文
+
+http 不保存状态（stateless）但实际中，需要保持状态，比如用户登录">
+<meta name="twitter:image" content="http://i4.buimg.com/567571/58b9689419e9053a.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/27/图解http/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> 图解http(一) | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                图解http(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T12:37:46+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/27/图解http/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/图解http/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="chapter1-web及网络基础"><a href="#chapter1-web及网络基础" class="headerlink" title="chapter1 web及网络基础"></a>chapter1 web及网络基础</h3><p><a href="https://coggle.it/diagram/V9SeG8rZzClFGC8k/a6ad8cd302a5841bf8a4c2513ba5e0cd13e9e303028f62066055518584e6bffe" target="_blank" rel="external">思维导图</a></p>
+<iframe width="853" height="480" src="https://embed.coggle.it/diagram/V9SeG8rZzClFGC8k/a6ad8cd302a5841bf8a4c2513ba5e0cd13e9e303028f62066055518584e6bffe" frameborder="0" allowfullscreen></iframe>
+
+<hr>
+<h3 id="chapter2-简单的http协议"><a href="#chapter2-简单的http协议" class="headerlink" title="chapter2 简单的http协议"></a>chapter2 简单的http协议</h3><p><img src="http://i4.buimg.com/567571/58b9689419e9053a.png" alt=""></p>
+<ol>
+<li>http协议用于客户端和服务器之间通信。</li>
+<li><p>请求报文： </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GET /index.htm HTTP/1.1</div><div class="line">Host: hackr.jp</div></pre></td></tr></table></figure>
+<ul>
+<li>请求方法</li>
+<li>请求URI</li>
+<li>协议版本     以上三个位请求行</li>
+<li>请求头+内容实体<br><img src="http://i2.buimg.com/567571/c5807e22d5b81b0a.png" alt="请求报文的构成"></li>
+</ul>
+</li>
+<li><p>响应报文<br><img src="http://i2.buimg.com/567571/2a672dcda2b41efc.png" alt=""></p>
+</li>
+<li><p>http 不保存状态（stateless）<br>但实际中，需要保持状态，比如用户登录信息，这个时候利用cookie等。</p>
+</li>
+<li><p>http方法</p>
+<ul>
+<li>get</li>
+<li>post</li>
+<li><p>put：传输文件，状态码如204，表示该文件已经存在于服务器上。<br>由于HTTP1.1中的put方法自身不带验证机制，任何人都可以上传文件，存在安全问题。一般网站不使用该方法，除非有自定义的验证机制/rest标准设计。<br>put是幂等的。</p>
+</li>
+<li><p>HEAD(同get,但不返回报文主体内容，用于确认URI有效性及资源更新的内容),</p>
+</li>
+<li><p>DELETE：删除文件，同put一样，不安全，响应：204（no content）</p>
+</li>
+<li><p>TRACE: 讲之前的请求通信环回给客户端。</p>
+</li>
+<li>Connect：用隧道协议连接代理，主要用SSL。TLS协议把通信内容加密后经网络隧道传输。<br><img src="http://i4.buimg.com/567571/0204118ff2ec23c7.png" alt=""></li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>持久连接</p>
+<p> <img src="http://i4.buimg.com/567571/aac4dee753ea2d8c.png" alt=""><br>最开始的时候，每请求（指http）一次就要断开tcp再新建一次连接（包括，tcp三次握手建立连接，请求，响应，四次握手断开tcp连接）。开销太大。(比如一个html中还有图片资源，这个也是请求。)<br>为解决上述问题，提出了持久连接。（只要一方不提出断连，就一直保持tcp连接，可以多个http请求。）<br>http1.1默认持久连接，但1.0不是<br>引申：使得pipeline成为可能，多个请求可以并行发送。</p>
+</li>
+<li><p>cookie<br>第一次客户端请求后，服务端生成cookie，要求客户端set cookie，然后下次客户端请求时便会自动加入cookie信息，服务端再根据这个进行判别。服务端仍然是无状态的。</p>
+</li>
+</ol>
+<hr>
+<h3 id="chapter3-http报文内的http信息"><a href="#chapter3-http报文内的http信息" class="headerlink" title="chapter3 http报文内的http信息"></a>chapter3 http报文内的http信息</h3><p><img src="http://i4.buimg.com/567571/ebf0f775d0942172.png" alt=""></p>
+<ol>
+<li><p>请求报文</p>
+<p> 三部分：</p>
+<ul>
+<li>报文首部（请求头）<pre><code>+  请求行：方法、URI、协议版本
++  首部字段： 通用首部、请求首部|响应首部、实体首部
+            +  其他：如cookie
+</code></pre></li>
+<li>空行、</li>
+<li>报文主体</li>
+</ul>
+</li>
+<li><p>内容协商以返回最合适的内容</p>
+<p> 比如访问macy.com，梅西百货，它会根据浏览器的默认语言，返回相应的web页面，如中文版。<br> 以相应资源的字符集、编码方式、语言作为判断的基准。</p>
+</li>
+</ol>
+<hr>
+<h3 id="chapter4-http状态码"><a href="#chapter4-http状态码" class="headerlink" title="chapter4 http状态码"></a>chapter4 http状态码</h3><ol>
+<li>2XX成功<ul>
+<li>200 ok</li>
+<li>204 no content:在服务器不需要向客户端返回信息时用</li>
+<li>206 partial content, 范围请求</li>
+</ul>
+</li>
+<li>3XX重定向<ul>
+<li>301 moved parmanantly .永久性重定向，如保存的书签需要更新。</li>
+<li>302 found 临时性重定向，仅一次</li>
+<li>303 see other，请求资源有另一个URI，需要用<strong>get</strong>方法重定向获取。部分区别于302</li>
+<li>304 not modified</li>
+</ul>
+</li>
+<li>4XX 客户端错误<ul>
+<li>400 bad request 请求报文中有语法错误</li>
+<li>401 unauthorized 要登录/登录失败’</li>
+<li>403 forbidden 权限问题</li>
+<li>404 not found </li>
+</ul>
+</li>
+<li>5XX 服务器错误<ul>
+<li>500 internal server error。</li>
+<li>503 service unavailable，服务器在超负载正忙retry-after字段</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/http/" rel="tag">#http</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/21/从requirejs看模块化/" rel="next" title="从requirejs看模块化">
+                <i class="fa fa-chevron-left"></i> 从requirejs看模块化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/27/图解http之二/" rel="prev" title="图解http(二)">
+                图解http(二) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/27/图解http/"
+           data-title="图解http(一)" data-url="http://yoursite.com/2016/09/27/图解http/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter1-web及网络基础"><span class="nav-number">1.</span> <span class="nav-text">chapter1 web及网络基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter2-简单的http协议"><span class="nav-number">2.</span> <span class="nav-text">chapter2 简单的http协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter3-http报文内的http信息"><span class="nav-number">3.</span> <span class="nav-text">chapter3 http报文内的http信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter4-http状态码"><span class="nav-number">4.</span> <span class="nav-text">chapter4 http状态码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

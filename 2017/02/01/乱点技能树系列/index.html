@@ -1,0 +1,750 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="乱点技能树,CSS,每日阅读清单," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1. 响应式图片
+html中选择： srcset+ dpr
+
+1234&amp;lt;img srcset=&amp;quot;  examples/images/image-384.jpg 1x,   examples/images/image-768.jpg 2x&amp;quot; alt=&amp;quot;…&amp;quot;&amp;gt;
+
+css media query+ dpr
+
+12345678910.img &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="乱点技能树系列">
+<meta property="og:url" content="http://yoursite.com/2017/02/01/乱点技能树系列/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 响应式图片
+html中选择： srcset+ dpr
+
+1234&amp;lt;img srcset=&amp;quot;  examples/images/image-384.jpg 1x,   examples/images/image-768.jpg 2x&amp;quot; alt=&amp;quot;…&amp;quot;&amp;gt;
+
+css media query+ dpr
+
+12345678910.img &amp;#123;">
+<meta property="og:image" content="http://i1.piimg.com/567571/b95f6b65a2cc90e0.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/95feb19c4e782edd.png">
+<meta property="og:updated_time" content="2017-02-02T14:26:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="乱点技能树系列">
+<meta name="twitter:description" content="1. 响应式图片
+html中选择： srcset+ dpr
+
+1234&amp;lt;img srcset=&amp;quot;  examples/images/image-384.jpg 1x,   examples/images/image-768.jpg 2x&amp;quot; alt=&amp;quot;…&amp;quot;&amp;gt;
+
+css media query+ dpr
+
+12345678910.img &amp;#123;">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/b95f6b65a2cc90e0.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/01/乱点技能树系列/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> 乱点技能树系列 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                乱点技能树系列
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-01T13:47:51+08:00" content="2017-02-01">
+              2017-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/杂/" itemprop="url" rel="index">
+                    <span itemprop="name">杂</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/01/乱点技能树系列/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/01/乱点技能树系列/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-响应式图片"><a href="#1-响应式图片" class="headerlink" title="1. 响应式图片"></a>1. <a href="http://www.zcfy.cc/article/responsive-images-in-css-1512.html" target="_blank" rel="external">响应式图片</a></h4><ul>
+<li>html中选择： srcset+ dpr</li>
+</ul>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;img srcset=&quot;</div><div class="line">  examples/images/image-384.jpg 1x, </div><div class="line">  examples/images/image-768.jpg 2x</div><div class="line">&quot; alt=&quot;…&quot;&gt;</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li>css media query+ dpr</li>
+</ul>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.img &#123;</div><div class="line">  background-image: url(examples/images/image-384.jpg); </div><div class="line">&#125;</div><div class="line">@media </div><div class="line">  (-webkit-min-device-pixel-ratio: 2), </div><div class="line">  (min-resolution: 192dpi) &#123; </div><div class="line">  .img &#123;</div><div class="line">    background-image: url(examples/images/image-768.jpg);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+这种方法还可以这么写。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    &lt;picture&gt;</div><div class="line">  &lt;source srcset=&quot;extralarge.jpg&quot; media=&quot;(min-width: 1000px)&quot;&gt;</div><div class="line">  &lt;source srcset=&quot;large.jpg&quot; media=&quot;(min-width: 800px)&quot;&gt;</div><div class="line">  &lt;img srcset=&quot;medium.jpg&quot; alt=&quot;…&quot;&gt;</div><div class="line">&lt;/picture&gt;</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><p>sizes in css + srcset</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;img</div><div class="line">sizes=&quot;(min-width: 400px) 80vw, 100vw&quot;</div><div class="line">srcset=&quot;examples/images/small.jpg 375w,</div><div class="line">     examples/images/big.jpg 1500w&quot;</div><div class="line">alt=&quot;…&quot;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p> 浏览器通过计算不同大小的图片的 size/(视图尺寸<em>dpr) ，选择最接近1的。比如上面就是<br> 375/(320</em>2） 1500/(320*2)。假设像素比为2.</p>
+<h4 id="2-CSS变量和预处理变量有什么不同"><a href="#2-CSS变量和预处理变量有什么不同" class="headerlink" title="2. CSS变量和预处理变量有什么不同"></a>2. <a href="http://www.zcfy.cc/article/what-is-the-difference-between-css-variables-and-preprocessor-variables-1567.html" target="_blank" rel="external">CSS变量和预处理变量有什么不同</a></h4><p>css变量可以跟预处理变量达到同样的效果。同时在js中还可以访问到这些变量（属性）。那么就可以达到这样的效果： 通过js改变这些变量来统一变更样式，这样的好处是可以实现响应式栅格这种，嗯，楼主还想到了一键换肤=。=。<br><img src="http://i1.piimg.com/567571/b95f6b65a2cc90e0.png" alt=""></p>
+<h4 id="3-underscore学习"><a href="#3-underscore学习" class="headerlink" title="3. underscore学习"></a>3. underscore学习</h4><h5 id="curry化"><a href="#curry化" class="headerlink" title="curry化"></a>curry化</h5><p>将很多参数转为连锁的函数调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var property = function(key) &#123;</div><div class="line">   return function(obj) &#123;</div><div class="line">     return obj == null ? void 0 : obj[key];</div><div class="line">   &#125;;</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<h5 id="void-0代替undefined原因"><a href="#void-0代替undefined原因" class="headerlink" title="void 0代替undefined原因"></a>void 0代替undefined原因</h5><ul>
+<li>undefined在低版本浏览器中可以被重写，在局部作用域内也可以被重写（包括chrome）。<br><img src="http://p1.bpimg.com/567571/95feb19c4e782edd.png" alt=""></li>
+<li><p>那么该用什么来代替<br>undefined： void+表达式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">void (3+4)  //undefined</div></pre></td></tr></table></figure>
+</li>
+<li><p>除此之外，void 0要比undefined空间小，省下不少字节。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/乱点技能树/" rel="tag">#乱点技能树</a>
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+            <a href="/tags/每日阅读清单/" rel="tag">#每日阅读清单</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/01/util笔记/" rel="next" title="util笔记">
+                <i class="fa fa-chevron-left"></i> util笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/01/乱点技能树系列/"
+           data-title="乱点技能树系列" data-url="http://yoursite.com/2017/02/01/乱点技能树系列/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-响应式图片"><span class="nav-number">1.</span> <span class="nav-text">1. 响应式图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-CSS变量和预处理变量有什么不同"><span class="nav-number">2.</span> <span class="nav-text">2. CSS变量和预处理变量有什么不同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-underscore学习"><span class="nav-number">3.</span> <span class="nav-text">3. underscore学习</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#curry化"><span class="nav-number">3.1.</span> <span class="nav-text">curry化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#void-0代替undefined原因"><span class="nav-number">3.2.</span> <span class="nav-text">void 0代替undefined原因</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

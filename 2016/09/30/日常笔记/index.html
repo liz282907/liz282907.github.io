@@ -1,0 +1,809 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="奇舞周刊,前端博文," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，或者一些需要注意的点:)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日常笔记">
+<meta property="og:url" content="http://yoursite.com/2016/09/30/日常笔记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，或者一些需要注意的点:)">
+<meta property="og:updated_time" content="2017-02-02T14:21:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日常笔记">
+<meta name="twitter:description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，或者一些需要注意的点:)">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/30/日常笔记/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> 日常笔记 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                日常笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-30T17:22:36+08:00" content="2016-09-30">
+              2016-09-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/日常阅读笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">日常阅读笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/30/日常笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/30/日常笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，或者一些需要注意的点,也加入了自己的一些想法 :)</p>
+<h4 id="1-const-var-let区别"><a href="#1-const-var-let区别" class="headerlink" title="1.const var let区别"></a>1.const var let区别</h4><ul>
+<li><p>let const的作用域更小，为块作用域（{}）,var为函数作用域。如果是for循环中的let ，如</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var x = 0;</div><div class="line"></div><div class="line">for (let i = 0; i &lt; 10; i++) &#123;</div><div class="line">    x += 10;</div><div class="line">    //i只在该作用域存在</div><div class="line">&#125;</div><div class="line"></div><div class="line">try &#123;</div><div class="line">    console.log(i);</div><div class="line">&#125; catch(e) &#123;</div><div class="line">    console.log(</div><div class="line">        &apos;i does not exist here!&apos;</div><div class="line">    );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  输出为： ‘i does not exist here!’</p>
+</li>
+<li><p>const只能在声明时初始化，它表示它所代表的引用（可以认为是指针）是不可变的，所指向的内容实际是可以变的。如</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const a = &#123;&#125;;</div><div class="line">a[&apos;b&apos;] = 1;</div><div class="line"></div><div class="line">const b = [];</div><div class="line">b.push(1)</div></pre></td></tr></table></figure>
+</li>
+<li><p>三者都会变量提升(hoist),只是var提升时会默认设置初始值 undefined，而let,const不会。<br>因此，如果在声明时没有初始化，然后就去访问值的话，var会报出undefined，而let,const会抛出ReferenceError</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//类似于介个样子</span></div><div class="line"><span class="keyword">var</span> a;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"a"</span>,a);   <span class="comment">//undefined</span></div><div class="line">a = <span class="number">3</span>;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-this-总结"><a href="#2-this-总结" class="headerlink" title="2. this 总结"></a>2. this 总结</h4><pre><code>最近写ife的task的时候遇到这么一个问题，
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Queue.prototype = &#123;</div><div class="line">    ...</div><div class="line">    bubbleSort:function()&#123;</div><div class="line">        var swap  = false,that = this,firstRound = true;</div><div class="line">        var arr = this.queue,</div><div class="line">            i = 1,</div><div class="line">            lastIndexOfNotSortedArr = arr.length-1;</div><div class="line">    </div><div class="line">        var bubbleSortId = setInterval(_runSort,interval);</div><div class="line">    </div><div class="line">        function _runSort()&#123;</div><div class="line">          ...</div><div class="line">          this.render();      </div><div class="line">          //这边的this实际上是window，而不是new出来的对象</div><div class="line">    </div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p>记得 <strong>你不知道的javascript</strong>里面有讲解过，好不容易翻出来一点，回忆一下。</p>
+<ul>
+<li>a. 全局/function中的this都指向window对象</li>
+<li>b. 显示调用如 a.func()，或者用构造函数新建对象b = new B()时，里面的this 分别指向a,b</li>
+<li>c. apply,call,bind指向绑定的对象</li>
+<li><p>d. 内部函数中的this指向window <strong>此处</strong>就印证了上面的代码中的问题</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">还有这样的栗子</div><div class="line">function Foo() &#123;</div><div class="line">    this.value = 42;</div><div class="line">    this.method = function() &#123;</div><div class="line">        // this refers to the global object</div><div class="line">        console.log(this.value); // undefined</div><div class="line">        console.log(this === window); // true</div><div class="line">    &#125;;</div><div class="line">    setTimeout(this.method, 500);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="补充栗子"><a href="#补充栗子" class="headerlink" title="补充栗子"></a>补充栗子</h5><p>除此之外，还有一个栗子需要特别注意，对照着看b,d两条。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="JRgRNr" data-default-tab="js,result" data-user="luchen" data-embed-version="2" data-pen-title="this in event" class="codepen">See the Pen <a href="http://codepen.io/luchen/pen/JRgRNr/" target="_blank" rel="external">this in event</a> by lu (<a href="http://codepen.io/luchen" target="_blank" rel="external">@luchen</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var element = document.getElementById(&apos;element&apos;);</div><div class="line"></div><div class="line">var user = &#123;</div><div class="line"> firstname: &apos;Bob&apos;,</div><div class="line"> greeting: function()&#123;</div><div class="line">   alert(&apos;My name is &apos; + this.firstname);</div><div class="line"> &#125;</div><div class="line">&#125;;</div><div class="line">user.greeting();      // attention1: My name is Bob</div><div class="line"></div><div class="line">// Attach user.greeting as a callback</div><div class="line">element.addEventListener(&apos;click&apos;, user.greeting);</div><div class="line">// attention2: My name is undefined</div></pre></td></tr></table></figure>
+<p>attention1处符合b的规则，而attention2中，则实际上是因为：事件绑定函数时，会以当前元素为作用域执行。<br>（虽然楼主最开始以为是把user.greeting函数赋给一个匿名回调函数，function(){} = user.greeting.因此在触发它的时候this其实是丢失了的）。不过测试了下，貌似确实是把this绑在了元素上的。具体看codepen里面this.nodeName。<br>关于这个问题的解决方案有两种：</p>
+<ul>
+<li><p>包裹在另一个匿名函数中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">element.addEventListener(&apos;click&apos;, function()&#123;user.greeting()&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>bind user</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">element.addEventListener(&apos;click&apos;, user.greeting.bind(user));</div><div class="line">//或者一步到位：</div><div class="line"> user.greeting = user.greeting.bind(user);</div><div class="line"> element.addEventListener(&apos;click&apos;, user.greeting);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>—————— 这是一条栗子分割线 end —————</p>
+<p>具体的解决方案有三种：</p>
+<ul>
+<li>var that = this</li>
+<li>bind</li>
+<li>es6箭头函数，实际上也是用的第一种方法（经babel转译后可以看到，里面是没有this的，是沿用的外部的this）<br>具体见<a href="https://www.zybuluo.com/mdeditor#463109" target="_blank" rel="external">bi项目开发总结第26条</a></li>
+</ul>
+<p><strong>===更新</strong><br>上面我们说到过元素的事件中this是与元素绑定的，那么如果在事件函数中另外定义的回调函数会丢失this.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">document.getElementById(&apos;div&apos;).onclick = function()&#123;</div><div class="line">    console.log(this.id); //div</div><div class="line">    var func = function()&#123;</div><div class="line">        console.log(this.id)   //undefined</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果</p>
+<p><code>var getId = document.getElementById</code>。<br>然后执行 <code>getId(&#39;div&#39;)</code>。会实际上变成调用普通函数<code>getElementById</code>,this就指向了windows,而不是document.因此需要进行绑定document。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">document.getElementById = (</div><div class="line">    return function(func)&#123;</div><div class="line">        return func.apply(document,arguments)</div><div class="line">    &#125;</div><div class="line">)(document.getElementById);</div></pre></td></tr></table></figure>
+<h4 id="3-中文正则"><a href="#3-中文正则" class="headerlink" title="3.中文正则"></a>3.中文正则</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/\u4E00-\u9FA5/</div></pre></td></tr></table></figure>
+</code></pre><h4 id="4-跨域总结"><a href="#4-跨域总结" class="headerlink" title="4.跨域总结"></a>4.跨域总结</h4><p>在公司开发的过程中其实也遇到过这个问题，是像另一个服务器post请求，是的，坑有两个，一个是跨域，一个是跨域没法用post =。=。但是当时时间紧迫,后端同学不是很会配置，就粗暴的都用jsonp+get解决了</p>
+<h5 id="4-1-场景"><a href="#4-1-场景" class="headerlink" title="4.1 场景"></a>4.1 场景</h5><p>同源策略，出于防范跨站脚本的攻击，禁止客户端脚本（如 JavaScript）对不同域的服务进行跨站调用。跨站调用主要指，只要网站的</p>
+<ul>
+<li>协议名protocol</li>
+<li>主机host</li>
+<li>端口号port </li>
+</ul>
+<p>这三个中的任意一个不同，网站间的数据<strong>请求与传输</strong>（ajax请求）便构成了跨域调用。<br>而用script标签请求和解析则可以正常运作。</p>
+<p>有一点需要注意的是，<strong>跨域请求并非是浏览器限制了发起跨站请求，而是请求可以正常发起，到达服务器端，但是服务器返回的结果会被浏览器拦截。</strong></p>
+<p>更直白一点的解释就是，以钓鱼网站（get服务器数据）为例。ta0bao.com，用户提交信息，那么黑客会发送ajax到taobao.com，然后taobao那边的服务器返回数据，如果没有同源策略的话，这个数据就会被获取到。但是有了同源策略，浏览器那边可以得到这个数据，但是黑客在代码里是得不到的。被浏览器拦截了，就不给你就不给你=。=。</p>
+<p>同源只能限制不被获取数据，但是发送其实是限制不了的。比如获取用户的私密信息。比如xss。黑客可以在用户提交信息（加上现在在a.com下）时发送两个ajax,一个给正常的网站（a.com），一个给自己的服务器(b.com)。这个是米有办法阻拦哒，要不然钓鱼网站也不会辣么猖狂…摊手。</p>
+<p>这实际上也说明了跨域出现的原因及解决方案（用获取script代替ajax请求）</p>
+<h5 id="4-2-解决方案：JSONP"><a href="#4-2-解决方案：JSONP" class="headerlink" title="4.2 解决方案：JSONP"></a>4.2 解决方案：JSONP</h5><blockquote>
+<p>JSONP是 JSON 的一种使用模式，可以解决主流浏览器的跨域数据访问问题。其原理是根据 XmlHttpRequest 对象受到同源策略的影响，而 script 标签元素却不受同源策略影响，可以加载跨域服务器上的脚本，网页可以从其他来源动态产生 JSON 资料。用 JSONP 获取的不是 JSON 数据，而是可以直接运行的 JavaScript 语句。<br>json数据被封装在回调函数里，就是所谓的json with padding（json填充）</p>
+</blockquote>
+<p>我们通常会直接用jquery的jsonp的解决方案，用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">requestDict[&quot;update&quot;] = $.ajax(&#123;</div><div class="line">            url: urls.update+encodeURIComponent(JSON.stringify(queriesObj)),</div><div class="line">            type: &quot;get&quot;,</div><div class="line">            dataType: &quot;jsonp&quot;,</div><div class="line">            jsonp: &quot;callback&quot;,</div><div class="line">            jsonpCallback: &quot;handleServerPolyData&quot;,//回调</div><div class="line">            success: function(serverData) &#123;</div><div class="line">            &#125;,</div><div class="line">          );</div></pre></td></tr></table></figure>
+<p>最终发出的url是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://bigdata.xiaojukeji.com/hotmap/getHeatmapOverlay?productLine=taxi?callback=handleServerHeatData?</div></pre></td></tr></table></figure>
+<p>但实际上它是做了一层封装，会有点误导。返回的实际上还是javascript语句，jquery进行了解析，正确时会调用success，同时把里面的数据存为上面的serverData。让你看起来jsonp跟普通的ajax请求没有任何区别。</p>
+<p>实际上如果自己实现的话，应该是这样的：<br>server1 请求页面有一个script标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src = &apos;http://localhost:3001/jsonServerResponse?jsonp=jsonpCallback&apos;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>或者在代码里手动createElement(“script”)，然后设置src后append到head中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//server1请求页面的js代码只有下面的回调</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonpCallback</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"jsonpCallback: "</span>+data.name)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// server2处理请求</div><div class="line">app.get(&apos;/jsonServerResponse&apos;, function(req, res) &#123;</div><div class="line">    var cb = req.query.jsonp</div><div class="line">    console.log(cb)</div><div class="line">    var data = &apos;var data = &#123;&apos; + &apos;name: $(&quot;#name&quot;).val() + &quot; - server 3001 jsonp process&quot;,&apos; + &apos;id: $(&quot;#id&quot;).val() + &quot; - server 3001 jsonp process&quot;&apos; + &apos;&#125;;&apos;</div><div class="line">    var debug = &apos;console.log(data);&apos;</div><div class="line">    var callback = &apos;$(&quot;#submit&quot;).click(function() &#123;&apos; + data + cb + &apos;(data);&apos; + debug + &apos;&#125;);&apos;</div><div class="line">    res.send(callback)</div><div class="line">    res.end()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>可以看出，服务端返回的应该是一段立即执行的js代码。</p>
+<h5 id="4-3-优缺点"><a href="#4-3-优缺点" class="headerlink" title="4.3 优缺点"></a>4.3 优缺点</h5><ul>
+<li>优点：解析快+解决跨域。jsonp中，由于数据是被当成原生的javascript，因此解析和原生的一样快，所以数据传输时，时间（下载+解析）中的解析部分几乎为0</li>
+<li>缺点（动态脚本注入引起的）： <ul>
+<li>不安全</li>
+<li>只能get请求</li>
+<li>不能设置请求的头信息，也就不能设缓存。也不可以访问请求的头信息</li>
+<li>不能失败处理</li>
+<li>需要等到所有数据返回才可以访问</li>
+</ul>
+</li>
+</ul>
+<p>针对jsonp不能支持post等请求的问题，解决方案是cors(Cross-Origin Resource Sharing)<br>主要是服务器对响应头进行了处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//Access-Control-Allow-Origin</div><div class="line">res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);</div></pre></td></tr></table></figure>
+<p>reference:<a href="http://web.jobbole.com/87885/" target="_blank" rel="external">前端跨域请求原理及实践</a></p>
+<p>===2016/11/20更新<br>        本次更新是针对jsonp不能post的问题。之前我们说了可以用cors，这个楼主还没有试过。楼主这次是用前端代理的方法，本质是本地请求本地服务器，本地服务器去做转发，服务器间的转发是没有跨域这个概念的。因此可以解决，而这种方法下，服务端实际上不需要像cors那样进行变更。（场景是，本地开发需要访问另一个域名下的数据）。<br>        具体方法是：</p>
+<ul>
+<li>vue-cli中，是使用了http-proxy-middleware的中间件（<a href="https://github.com/nodejitsu/node-http-proxy#proxytable-api" target="_blank" rel="external">node-http-proxy</a>）进行处理，如下</li>
+</ul>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proxyTable: &#123;</div><div class="line">    &apos;/ip/serverInfo&apos;: &#123;</div><div class="line">        target: &apos;https://cnodejs.org&apos;, //origin,域名部分</div><div class="line">        pathRewrite:&#123;&apos;^/ip/serverInfo&apos;: &apos;/api/v1/topics&apos;&#125;,</div><div class="line">        changeOrigin: true</div><div class="line">    &#125;,</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><a href="https://webpack.github.io/docs/webpack-dev-server.html#proxy" target="_blank" rel="external">webpack</a>中有专门的配置，其实也是利用的http-proxy-middleware</li>
+</ul>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">    // In webpack.config.js</div><div class="line">&#123;</div><div class="line">  devServer: &#123;</div><div class="line">    proxy: &#123;</div><div class="line">      &apos;/api&apos;: &#123;</div><div class="line">        target: &apos;https://other-server.example.com&apos;,</div><div class="line">        secure: false</div><div class="line">      &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</code></pre><h4 id="5-即时搜索"><a href="#5-即时搜索" class="headerlink" title="5. 即时搜索"></a>5. 即时搜索</h4><pre><code>监听v-model变化，每次变动就取消上一次请求。当超过500ms的时候就发送搜索请求。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">watch: &#123;</div><div class="line">   searchInput(newValue, oldValue)&#123;</div><div class="line">       clearTimeout(timer);</div><div class="line">       if(newValue.trim() !==oldValue.trim())</div><div class="line">           timer = setTimeout(this.fetchKeywordList,500);</div><div class="line">   &#125;</div><div class="line"> &#125;,</div></pre></td></tr></table></figure>
+</code></pre><h4 id="6-cookie-js代码赏析"><a href="#6-cookie-js代码赏析" class="headerlink" title="6. cookie.js代码赏析"></a>6. <a href="https://github.com/franciscop/cookies.js/blob/master/cookies.js" target="_blank" rel="external">cookie.js代码赏析</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var value = document.cookie.split(/;\s*/)</div><div class="line">     .map(opt.autoencode ? opt.decode : function (d) &#123; return d; &#125;)</div><div class="line">     .map(function (part) &#123; return part.split(&apos;=&apos;); &#125;)</div><div class="line">     .reduce(function (parts, part) &#123;</div><div class="line">       parts[part[0]] = part[1];</div><div class="line">       return parts;</div><div class="line">     &#125;, &#123;&#125;)[data];</div></pre></td></tr></table></figure>
+<p>demo:</p>
+<blockquote>
+<p>var arr = [{“id”:3,”zh_name”:”test”},{“id”:5,”zh_name”:””lili}]<br>结果：Object {3: “test”, 5: “lili”}</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">arr.reduce((prev,cur)=&gt;&#123;</div><div class="line">   prev[cur[&quot;id&quot;]] = cur[&quot;zh_name&quot;];</div><div class="line">   return prev;</div><div class="line">&#125;,&#123;&#125;)</div></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/奇舞周刊/" rel="tag">#奇舞周刊</a>
+          
+            <a href="/tags/前端博文/" rel="tag">#前端博文</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/27/es6-4/" rel="next" title="es6 学习笔记(四)">
+                <i class="fa fa-chevron-left"></i> es6 学习笔记(四)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/31/vue组件学习-upload-md/" rel="prev" title="vue组件学习-upload">
+                vue组件学习-upload <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/30/日常笔记/"
+           data-title="日常笔记" data-url="http://yoursite.com/2016/09/30/日常笔记/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-const-var-let区别"><span class="nav-number">1.</span> <span class="nav-text">1.const var let区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-this-总结"><span class="nav-number">2.</span> <span class="nav-text">2. this 总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#补充栗子"><span class="nav-number">2.1.</span> <span class="nav-text">补充栗子</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-中文正则"><span class="nav-number">3.</span> <span class="nav-text">3.中文正则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-跨域总结"><span class="nav-number">4.</span> <span class="nav-text">4.跨域总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-场景"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-解决方案：JSONP"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 解决方案：JSONP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-优缺点"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 优缺点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-即时搜索"><span class="nav-number">5.</span> <span class="nav-text">5. 即时搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-cookie-js代码赏析"><span class="nav-number">6.</span> <span class="nav-text">6. cookie.js代码赏析</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

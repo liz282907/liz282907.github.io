@@ -102,7 +102,7 @@
 主线程中执行会产生堆、栈，也同时会调用外部的api，会不断往任务队列中加入事件（click,mouseover…）。一旦执行栈中任务结束，就读取任务队列中，如果发现任务队列中某个异步事件有结果了（进入回调了），就拖到">
 <meta property="og:image" content="http://yoursite.com/media/14874674683014.jpg">
 <meta property="og:image" content="http://yoursite.com/media/14874869698329.jpg">
-<meta property="og:updated_time" content="2017-02-28T05:18:33.000Z">
+<meta property="og:updated_time" content="2017-02-28T08:11:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="早读课">
 <meta name="twitter:description" content="event-loopjavascript：
@@ -367,7 +367,7 @@ var _hmt = _hmt || [];
 <li>异步任务：任务队列中(更确切的说是<em>回调队列</em>，queue,先进先出，但是有settimeout的特例)</li>
 </ul>
 <p>主线程中执行会产生堆、栈，也同时会调用外部的api，会不断往任务队列中加入事件（click,mouseover…）。一旦执行栈中任务结束，就读取任务队列中，如果发现任务队列中某个异步事件有结果了（进入回调了），就拖到主线程的执行栈中执行。</p>
-<p>event-loop是指：程序从主线程执行-&gt;调用外部api，在任务队列中放置事件-&gt;继续执行主线程-&gt;主线程清空/异步任务进入回调，执行任务队列中。（<strong>更新</strong>，更确切的说是，将task queue里面的函数提升到stack中去执行的这个事件一个一个循环的步骤）<br><img src="/media/14874674683014.jpg" alt=""></p>
+<p>event-loop是指：程序从主线程执行-&gt;调用外部api，在任务队列中放置事件-&gt;继续执行主线程-&gt;主线程清空/异步任务进入回调，执行任务队列中。（<strong>更新</strong>，更确切的说是，将task queue里面的函数提升到stack中去执行的这个事件一个一个循环的步骤）<br><img src="media/14874674683014.jpg" alt="14874674683014"></p>
 <p><strong>======更新</strong><br>之前看阮大大的博客，后来被推荐看<a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank" rel="external">jsConf上的个视频</a><br>讲解的很清楚，这边总结来说是：<br><code>setTimeout(fn,delay)</code>:</p>
 <p>webapis将事件隔delay时间后插入task queue，即使将delay设为0，也只是表示立刻将fn插入task queue（尾部），但是什么时候执行，时间不定，要等<strong>当前代码执行完（执行栈清空）以后</strong>，即eventloop需要等到stack清空以后再push task(callback)queue中的fn到stack中去执行</p>
 <p>对于ajax这些，是等数据返回后，再把回调放入queue中。</p>
@@ -395,7 +395,8 @@ var _hmt = _hmt || [];
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">const EventEmitter = require(&apos;events&apos;);</div><div class="line">const util = require(&apos;util&apos;);</div><div class="line"></div><div class="line">function MyEmitter() &#123;</div><div class="line">  EventEmitter.call(this);</div><div class="line">  this.emit(&apos;event&apos;); //1</div><div class="line">  //2</div><div class="line">  //process.nextTick(function () &#123;</div><div class="line">  //  this.emit(&apos;event&apos;);</div><div class="line">  //&#125;.bind(this));</div><div class="line">&#125;</div><div class="line">util.inherits(MyEmitter, EventEmitter);</div><div class="line"></div><div class="line">const myEmitter = new MyEmitter();</div><div class="line">myEmitter.on(&apos;event&apos;, function() &#123;</div><div class="line">  console.log(&apos;an event occurred!&apos;);//3</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>用new执行完MyEmitter构造函数后，按理说要emit,但是这个时候其实并没有执行到下面（下面的on事件的注册也在执行栈中，不过还没调用到），因此emit要触发时还未定义。为了解决这个问题，应该将1处更改为2，那么，emit的触发会先暂缓，下面继续执行，event被注册，3处的回调被放入callback queue，然后这一步执行完后（也就是当前栈中的所有都已经执行完，只剩下刚刚nextTick中的emit）,此时，事件已注册，因此触发，栈清空，event-loop开始，回调被挪入stack中执行。</p>
 <h4 id="课后小测试"><a href="#课后小测试" class="headerlink" title="课后小测试"></a>课后小测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">(function () &#123;</div><div class="line"></div><div class="line">  console.log(&apos;this is the start&apos;);</div><div class="line"></div><div class="line">  setTimeout(function cb() &#123;</div><div class="line">    console.log(&apos;this is a msg from call back&apos;);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  console.log(&apos;this is just a message&apos;);</div><div class="line"></div><div class="line">  setTimeout(function cb1() &#123;</div><div class="line">    console.log(&apos;this is a msg from call back1&apos;);</div><div class="line">  &#125;, 0);</div><div class="line"></div><div class="line">  console.log(&apos;this is the  end&apos;);</div><div class="line"></div><div class="line">&#125;)();</div><div class="line">//</div></pre></td></tr></table></figure>
-<p>答案：<br><img src="/media/14874869698329.jpg" alt=""></p>
+<p>答案：</p>
+<p><img src="media/14874869698329.jpg" alt="14874869698329"></p>
 
       
     </div>

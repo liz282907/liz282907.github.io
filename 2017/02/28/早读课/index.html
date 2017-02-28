@@ -1,0 +1,750 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="event-loop setTimeout," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="event-loopjavascript：
+
+同步任务（主线程）：存放于执行栈
+异步任务：任务队列中(更确切的说是回调队列，queue,先进先出，但是有settimeout的特例)
+
+主线程中执行会产生堆、栈，也同时会调用外部的api，会不断往任务队列中加入事件（click,mouseover…）。一旦执行栈中任务结束，就读取任务队列中，如果发现任务队列中某个异步事件有结果了（进入回调了），就拖到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="早读课">
+<meta property="og:url" content="http://yoursite.com/2017/02/28/早读课/index.html">
+<meta property="og:site_name" content="luchen">
+<meta property="og:description" content="event-loopjavascript：
+
+同步任务（主线程）：存放于执行栈
+异步任务：任务队列中(更确切的说是回调队列，queue,先进先出，但是有settimeout的特例)
+
+主线程中执行会产生堆、栈，也同时会调用外部的api，会不断往任务队列中加入事件（click,mouseover…）。一旦执行栈中任务结束，就读取任务队列中，如果发现任务队列中某个异步事件有结果了（进入回调了），就拖到">
+<meta property="og:image" content="http://yoursite.com/media/14874674683014.jpg">
+<meta property="og:image" content="http://yoursite.com/media/14874869698329.jpg">
+<meta property="og:updated_time" content="2017-02-28T05:18:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="早读课">
+<meta name="twitter:description" content="event-loopjavascript：
+
+同步任务（主线程）：存放于执行栈
+异步任务：任务队列中(更确切的说是回调队列，queue,先进先出，但是有settimeout的特例)
+
+主线程中执行会产生堆、栈，也同时会调用外部的api，会不断往任务队列中加入事件（click,mouseover…）。一旦执行栈中任务结束，就读取任务队列中，如果发现任务队列中某个异步事件有结果了（进入回调了），就拖到">
+<meta name="twitter:image" content="http://yoursite.com/media/14874674683014.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/28/早读课/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> 早读课 | luchen </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">luchen</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                早读课
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-28T13:12:14+08:00" content="2017-02-28">
+              2017-02-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/日常阅读笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">日常阅读笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/28/早读课/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/早读课/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="event-loop"><a href="#event-loop" class="headerlink" title="event-loop"></a><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">event-loop</a></h3><p>javascript：</p>
+<ul>
+<li>同步任务（主线程）：存放于执行栈</li>
+<li>异步任务：任务队列中(更确切的说是<em>回调队列</em>，queue,先进先出，但是有settimeout的特例)</li>
+</ul>
+<p>主线程中执行会产生堆、栈，也同时会调用外部的api，会不断往任务队列中加入事件（click,mouseover…）。一旦执行栈中任务结束，就读取任务队列中，如果发现任务队列中某个异步事件有结果了（进入回调了），就拖到主线程的执行栈中执行。</p>
+<p>event-loop是指：程序从主线程执行-&gt;调用外部api，在任务队列中放置事件-&gt;继续执行主线程-&gt;主线程清空/异步任务进入回调，执行任务队列中。（<strong>更新</strong>，更确切的说是，将task queue里面的函数提升到stack中去执行的这个事件一个一个循环的步骤）<br><img src="/media/14874674683014.jpg" alt=""></p>
+<p><strong>======更新</strong><br>之前看阮大大的博客，后来被推荐看<a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank" rel="external">jsConf上的个视频</a><br>讲解的很清楚，这边总结来说是：<br><code>setTimeout(fn,delay)</code>:</p>
+<p>webapis将事件隔delay时间后插入task queue，即使将delay设为0，也只是表示立刻将fn插入task queue（尾部），但是什么时候执行，时间不定，要等<strong>当前代码执行完（执行栈清空）以后</strong>，即eventloop需要等到stack清空以后再push task(callback)queue中的fn到stack中去执行</p>
+<p>对于ajax这些，是等数据返回后，再把回调放入queue中。</p>
+<p>render queue跟callback queue一样，只不过有更高的优先级，当stack清空完以后，会首先执行它，<br>因此如果是同步操作的话，会一直阻塞，让stack一直执行，render queue无法被call到，因此推荐异步，可以在执行间隙，每隔16ms（就会去访问下render queue，把它提上来（前提是stack清空））。</p>
+<p>=======更新 end</p>
+<h4 id="Nodejs中的event-loop"><a href="#Nodejs中的event-loop" class="headerlink" title="Nodejs中的event-loop"></a>Nodejs中的event-loop</h4><p>添加了两个函数<code>process.nextTick</code>和<code>setImmediate</code></p>
+<ul>
+<li><code>process.nextTick</code>: 始终在当前<strong>执行栈</strong>的尾部添加（如果有多个process.nextTick语句，不管它们是否嵌套，将全部在当前”执行栈”执行。）</li>
+<li><code>setImmediate</code>：始终在当前”任务队列”的尾部添加事件，如果嵌套，则下一轮，再下一轮..</li>
+<li><code>setTimeout</code>: 指定时间的话，是从当前执行开始计时，到时间就插入到task queue中，在任务队列的尾部添加。</li>
+</ul>
+<p>关于setTimeout与setImmediate的执行顺序不定：<br>（<a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/" target="_blank" rel="external">官方文档</a>中说是在非I/O context下，两者执行顺序不定，由进程的性能决定，但是在I/o环境中，比如fs的回调中，setImmedite始终在setTimeout之前决定）但是：</p>
+<blockquote>
+<p>Node.js文档中称，setImmediate指定的回调函数，总是排在setTimeout前面。实际上，这种情况只发生在递归调用的时候。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//在Immediate中有两个函数Im和setTimeout, im的回调A始终在timeout之前，</div><div class="line">//在当前执行队列的最后，而B则是在下一轮event-loop，执行队列尾部</div><div class="line"></div><div class="line">setImmediate(function ()&#123;</div><div class="line"> setImmediate(function A() &#123;</div><div class="line">   console.log(1);</div><div class="line">   setImmediate(function B()&#123;console.log(2);&#125;);</div><div class="line"> &#125;);</div><div class="line">    </div><div class="line"> setTimeout(function timeout() &#123;</div><div class="line">   console.log(&apos;TIMEOUT FIRED&apos;);</div><div class="line"> &#125;, 0);</div><div class="line">&#125;);</div><div class="line">// 1</div><div class="line">// TIMEOUT FIRED</div><div class="line">// 2</div></pre></td></tr></table></figure>
+<p><strong>结论：</strong></p>
+<pre><code>&gt;我们由此得到了process.nextTick和setImmediate的一个重要区别：
+多个process.nextTick语句总是在当前&quot;执行栈&quot;一次执行完，
+多个setImmediate可能则需要多次loop才能执行完。
+</code></pre><p>因此，当递归调用process.nextTick的话，会被⚠️要求用immediate替代，因为这样会一直在执行栈中，不会去检查任务队列。</p>
+<h4 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h4><p>楼主看了下<a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/" target="_blank" rel="external">node里面介绍</a>，关于process.nextTick，因为上面说它有一堆问题（什么递归调用会导致线程阻塞啊blahblah，那干嘛还要有这个api）。主要的原因是，比如在进入event-loop之前去做一些其他操作（有点点像finally），比如throw error以后，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function apiCall (arg, callback) &#123;</div><div class="line">  if (typeof arg !== &apos;string&apos;)</div><div class="line">    return process.nextTick(callback,</div><div class="line">      new TypeError(&apos;argument should be string&apos;));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>要执行error回调之前（event-loop）想执行其他操作，比如一些unneeded资源的回收，或者请求重传等等。<br>还有的情况是诸如保证变量/函数定义、执行的先后顺序，<br>看下面一个例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">const EventEmitter = require(&apos;events&apos;);</div><div class="line">const util = require(&apos;util&apos;);</div><div class="line"></div><div class="line">function MyEmitter() &#123;</div><div class="line">  EventEmitter.call(this);</div><div class="line">  this.emit(&apos;event&apos;); //1</div><div class="line">  //2</div><div class="line">  //process.nextTick(function () &#123;</div><div class="line">  //  this.emit(&apos;event&apos;);</div><div class="line">  //&#125;.bind(this));</div><div class="line">&#125;</div><div class="line">util.inherits(MyEmitter, EventEmitter);</div><div class="line"></div><div class="line">const myEmitter = new MyEmitter();</div><div class="line">myEmitter.on(&apos;event&apos;, function() &#123;</div><div class="line">  console.log(&apos;an event occurred!&apos;);//3</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>用new执行完MyEmitter构造函数后，按理说要emit,但是这个时候其实并没有执行到下面（下面的on事件的注册也在执行栈中，不过还没调用到），因此emit要触发时还未定义。为了解决这个问题，应该将1处更改为2，那么，emit的触发会先暂缓，下面继续执行，event被注册，3处的回调被放入callback queue，然后这一步执行完后（也就是当前栈中的所有都已经执行完，只剩下刚刚nextTick中的emit）,此时，事件已注册，因此触发，栈清空，event-loop开始，回调被挪入stack中执行。</p>
+<h4 id="课后小测试"><a href="#课后小测试" class="headerlink" title="课后小测试"></a>课后小测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">(function () &#123;</div><div class="line"></div><div class="line">  console.log(&apos;this is the start&apos;);</div><div class="line"></div><div class="line">  setTimeout(function cb() &#123;</div><div class="line">    console.log(&apos;this is a msg from call back&apos;);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  console.log(&apos;this is just a message&apos;);</div><div class="line"></div><div class="line">  setTimeout(function cb1() &#123;</div><div class="line">    console.log(&apos;this is a msg from call back1&apos;);</div><div class="line">  &#125;, 0);</div><div class="line"></div><div class="line">  console.log(&apos;this is the  end&apos;);</div><div class="line"></div><div class="line">&#125;)();</div><div class="line">//</div></pre></td></tr></table></figure>
+<p>答案：<br><img src="/media/14874869698329.jpg" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/event-loop-setTimeout/" rel="tag">#event-loop setTimeout</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/01/乱点技能树系列/" rel="next" title="乱点技能树系列">
+                <i class="fa fa-chevron-left"></i> 乱点技能树系列
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/28/express-mongodb开发总结之crypto与session篇/" rel="prev" title="express+mongodb开发总结之crypto与session篇">
+                express+mongodb开发总结之crypto与session篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/28/早读课/"
+           data-title="早读课" data-url="http://yoursite.com/2017/02/28/早读课/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description">所有的大人都曾是小孩子.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#event-loop"><span class="nav-number">1.</span> <span class="nav-text">event-loop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nodejs中的event-loop"><span class="nav-number">1.1.</span> <span class="nav-text">Nodejs中的event-loop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充知识"><span class="nav-number">1.2.</span> <span class="nav-text">补充知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#课后小测试"><span class="nav-number">1.3.</span> <span class="nav-text">课后小测试</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

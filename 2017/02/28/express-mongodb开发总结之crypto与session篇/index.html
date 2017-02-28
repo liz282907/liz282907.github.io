@@ -1,0 +1,798 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="express crypto session," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="做了很多个前端项目，依然不清楚session，cookie的机制，那么让我们来实践一下吧~(预告，本篇在开发过程中写成，因此掺杂着“我和XXX的一百件事的写作风格”...)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express+mongodb开发总结之crypto与session篇">
+<meta property="og:url" content="http://yoursite.com/2017/02/28/express-mongodb开发总结之crypto与session篇/index.html">
+<meta property="og:site_name" content="luchen">
+<meta property="og:description" content="做了很多个前端项目，依然不清楚session，cookie的机制，那么让我们来实践一下吧~(预告，本篇在开发过程中写成，因此掺杂着“我和XXX的一百件事的写作风格”...)">
+<meta property="og:image" content="http://p1.bqimg.com/567571/09169556d6276b44.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/c4c316bb332efa44.png">
+<meta property="og:updated_time" content="2017-02-28T05:57:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="express+mongodb开发总结之crypto与session篇">
+<meta name="twitter:description" content="做了很多个前端项目，依然不清楚session，cookie的机制，那么让我们来实践一下吧~(预告，本篇在开发过程中写成，因此掺杂着“我和XXX的一百件事的写作风格”...)">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/09169556d6276b44.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6319805539781969000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/28/express-mongodb开发总结之crypto与session篇/"/>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c83c076520ba3feaa0ac025cafc4823d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <title> express+mongodb开发总结之crypto与session篇 | luchen </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">luchen</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="/works" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            menu.works
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                express+mongodb开发总结之crypto与session篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-28T13:16:33+08:00" content="2017-02-28">
+              2017-02-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/28/express-mongodb开发总结之crypto与session篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/express-mongodb开发总结之crypto与session篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>hash.update()方法就是将字符串相加，然后在hash.digest()将字符串加密返回</li>
+<li>client先用certificate（得到server公钥）验证server身份，然后用这个公钥解密server发来的<br>hello信息，ssl验证身份完以后 client随机生成一个大数，用server的公钥加密，传过去，server来解密得到，以后<br>就用这个随机数作为master secret,然后双方用master secret生成最后的sessionkey，作为对称加密的key</li>
+</ol>
+<h4 id="crypto："><a href="#crypto：" class="headerlink" title="crypto："></a>crypto：</h4><ul>
+<li><p>不可逆，hash里面的hash模块，hmac模块（放置彩虹表攻击，在hash的基础上加了一个key）<br> hash中，常用的用sha1就可以，时间长度都还可以，md5（32位）</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//对于登录密码，可以存key+密文，彩虹表也推不出来</div><div class="line">//对于登陆密码来说，是不需要考虑解密的，通常都会用不可逆的算法，像md5,sha-1等</div><div class="line">&#123;</div><div class="line">  username: &apos;xxxx&apos;</div><div class="line">  password: &apos;aead69a72da77d0615a854dda1086d885807574a&apos;,</div><div class="line">  passkey:&apos;abc&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><p>可逆算法，crypto里面也有支持，cipher,decipher</p>
+<p>   rc4和aes-256-cbc是表现不错的算法，加密和解密时间都比较短，<br> 加密时间:解密时间=1:3；对于服务端加密，客户端解密的，aes-256-cbc算法的计算时间比例就可以。</p>
+</li>
+<li><p>签名和认证</p>
+<p>   还需要判断数据在传输过程中，是否真实际和完整，是否被篡改了。那么就需要用到签名和验证的算法，利用不对称加密算法，通过私钥进行数字签名，公钥验证数据的真实性。</p>
+<p>   签名： data -&gt; hashedData -&gt; 私钥加密 + 证书 -&gt; 签名后的。<br>   解密： 更复杂一点的是，用认证机构的公钥去解密证书，得到公钥，用这个公钥（与签名者给的公钥比对，看是否是正确的公钥，签名者对不对）（<strong>这边验证了通信双方</strong>）。<br>   用这个公钥去 解密 加密的数据，得到hashedData. === hash（data）.（<strong>这边验证数据是否完整</strong>）都正确的话就是身份认证结束。<br>   用库的话，流程上就是： openssl命令生成公私钥，用私钥与数据得到数字签名（sign），用公钥，数据，数字签名去verifyverify(algorithm,pubkey,sig,data)</p>
+<ul>
+<li>salt： hash(text+salt)  crypto.pbkdf2()函数，默认会调用hmac算法，用sha1的散列函数，并且可以设置迭代次数和密文长度<br>salt也可以随机</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="bcrypt与native-crypto库里面的方法的区别："><a href="#bcrypt与native-crypto库里面的方法的区别：" class="headerlink" title="bcrypt与native crypto库里面的方法的区别："></a>bcrypt与native crypto库里面的方法的区别：</h4><p>bcrypt因为采用了Blowfish 算法， which has a computationally expensive key setup phase。常用于slow 加解密，比如那些不想让attacker获取的数据，比如 password,而crypto可以用于任何regular的情况，比如hmac也行。</p>
+<hr>
+<h4 id="mongo命令"><a href="#mongo命令" class="headerlink" title="mongo命令"></a>mongo命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.users.update(&#123;username:&apos;some&apos;&#125;,&#123;$set:&#123;&quot;pass&quot;:&quot;barrymore&quot;&#125;&#125;)</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="用户注册流程"><a href="#用户注册流程" class="headerlink" title="用户注册流程"></a>用户注册流程</h4><p> 逻辑上，注册完成后（假设要邮箱验证），则hash(name,pass,secret),生成一个token给邮件的链接</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">    </div><div class="line"><span class="string">'&lt;a href  = "'</span> + SITE_ROOT_URL + <span class="string">'/active_account?key='</span> + token + <span class="string">'&amp;name='</span> + name + <span class="string">'"&gt;激活链接&lt;/a&gt;'</span></div></pre></td></tr></table></figure>
+<p>然后用户请求激活账户这个action，后端用a标签中的token与自己存的token进行比对，看是否是用户发送的请求（csrf攻击的防范）</p>
+<p>如果不需要邮箱验证，则直接后端调用login 的action（把刚刚得到的pass，与存进数据库的hash的pass传给verify的函数），验证成功。</p>
+<p>然后再generateSessionID,(每次登录过后都要重新生成)，那么从登录到下一次登陆之前的请求，都用这个sessionId来验证</p>
+<hr>
+<h4 id="res-cookie中的-signed-true-到底做了什么操作"><a href="#res-cookie中的-signed-true-到底做了什么操作" class="headerlink" title="res.cookie中的{signed:true}到底做了什么操作"></a>res.cookie中的{signed:true}到底做了什么操作</h4><p>因为signed本质是用hmac对data(plain cookie)做了处理，之前我们讲签名的时候就提到过，对data去hash一遍，这个hash就采用的hmac，因此要用到额外的key(secret)，就是传给cookieParser(key)的值，（本质做加盐防彩虹表），<del>然后用底层的私钥去做了加密处理</del>，最终设置到cookie里面。</p>
+<p>楼主看了下这部分的代码，其实并没有做想象中的signed，（跟上面的openssl里面的数字签名还是不一样的）。cookie-parse调用了<br><strong>node-cookie-signature</strong>中的<a href="https://github.com/tj/node-cookie-signature/blob/60f3be29232145e445aada51d520d370b0a52161/index.js#L16" target="_blank" rel="external">sign</a>和unsign函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">exports.sign = <span class="function"><span class="keyword">function</span>(<span class="params">val, secret</span>)</span>&#123;</div><div class="line">     <span class="keyword">if</span> (<span class="string">'string'</span> != <span class="keyword">typeof</span> val) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'cookie required'</span>);</div><div class="line">     <span class="keyword">if</span> (<span class="string">'string'</span> != <span class="keyword">typeof</span> secret) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'secret required'</span>);</div><div class="line">     <span class="keyword">return</span> val + <span class="string">'.'</span> + crypto</div><div class="line">       .createHmac(<span class="string">'sha256'</span>, secret)</div><div class="line">       .update(val)</div><div class="line">       .digest(<span class="string">'base64'</span>)</div><div class="line">       .replace(<span class="regexp">/\=+$/</span>, <span class="string">''</span>);</div><div class="line">    &#125;;</div><div class="line"><span class="comment">//hmac(data,secret) =&gt; 'data.signedData'</span></div></pre></td></tr></table></figure>
+<p>实际上只做了一次hmac的加密。<br>当服务端收到req时，可以用req.signedCookies来访问解析后的cookie,本质是用<a href="https://github.com/expressjs/cookie-parser/blob/master/index.js#L128" target="_blank" rel="external">cookie-parser来解析</a>传过来的signedcookie</p>
+<p>需要注意的是用cookie-parser中间件的时候要传入secret,否则不会启用signedCookie</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">signedCookie</span> (<span class="params">str, secret</span>) </span>&#123;</div><div class="line">    </div><div class="line">     <span class="comment">//...省略部分代码，具体见链接</span></div><div class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; secrets.length; i++) &#123;</div><div class="line">       <span class="keyword">var</span> val = signature.unsign(str.slice(<span class="number">2</span>), secrets[i])</div><div class="line">   </div><div class="line">       <span class="keyword">if</span> (val !== <span class="literal">false</span>) &#123;</div><div class="line">         <span class="keyword">return</span> val</div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">   </div><div class="line">     <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">   &#125;</div><div class="line"><span class="comment">//node-cookie-signature 包</span></div><div class="line">exports.unsign = <span class="function"><span class="keyword">function</span>(<span class="params">val, secret</span>)</span>&#123;<span class="comment">//val: 签名了的cookie(在express这边返回的实际上是刑如：`$&#123;plainCookie&#125;.$&#123;sign(plainCookie,secret&#125;`的值)）</span></div><div class="line"> <span class="keyword">if</span> (<span class="string">'string'</span> != <span class="keyword">typeof</span> val) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'cookie required'</span>);</div><div class="line"> <span class="keyword">if</span> (<span class="string">'string'</span> != <span class="keyword">typeof</span> secret) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'secret required'</span>);</div><div class="line"> <span class="keyword">var</span> str = val.slice(<span class="number">0</span>, val.lastIndexOf(<span class="string">'.'</span>))</div><div class="line">   , mac = exports.sign(str, secret);     <span class="comment">//用plainCookie，与secret去再次hmac得到的值，与收到的signed去比对，因为hmac不可逆..所以需要知道原始的plainData去重复操作验证</span></div><div class="line"> <span class="comment">// 因为收到的是plain.signed 这个整体。（因为secret是server私有的（重点！，attacker无法知晓）），所以如果更改了这个,就会导致验证失败。</span></div><div class="line"> <span class="comment">// 原始： var a = hmac('123','secret') =&gt; '123.a'， 如果attacker更改为'123.b' hmac(123,secret)！== '123.b'，验证失败</span></div><div class="line">  <span class="comment">//疑问就是，那这个都仰仗secret的话，不是可以穷举secret么...因为express这边显示的把plain给写出来了，应该很容易穷举啊.</span></div><div class="line">  <span class="comment">//普通的hmac是不好破解的，因为我们知道它本身就是防范彩虹表攻击的，但是在express这边，感觉有点不安全...</span></div><div class="line">   </div><div class="line"> <span class="keyword">return</span> sha1(mac) == sha1(val) ? str : <span class="literal">false</span>; <span class="comment">//如果验证成功的话返回str,就是req.signedCookie</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h5 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h5><ul>
+<li><p>为什么要session，不用cookie？</p>
+<p> 答： session存放在服务端，通常情况下不会被窃取。</p>
+</li>
+<li><p>为什么要session 随机 &amp; 每次登陆后都重新生成</p>
+<p> 答： 随机，不容易被爆破，每次重新生成是防止一次窃取后每次都可以用它登陆。</p>
+</li>
+<li><p>session跟signedCookie有什么关系</p>
+<p> 答： 没有= =，两者不冲突，signedCookie只是用来防止数据<a href="http://www.ciphertech.com.tw/Datasheet/imperva/knowledgeBase/Cookie_Poisoning.htm" target="_blank" rel="external">被篡改的</a>，session是用来验证身份的，有可能身份验证正确但是数据被篡改，因此cnode中同时设置了这个，<br>并且可以设置httpOnly缓解XSS攻击（js不能访问带有该属性的cookie）。（因为cookie其实还是会被窃取的。）</p>
+</li>
+<li><p>signedCookie关键在于 默认 secret是private的</p>
+</li>
+<li><p>补充： httpOnly是使得js不能访问带有该属性的cookie，同源策略是使得不能跨域访问</p>
+</li>
+</ul>
+<p>#####【碎碎念】</p>
+<p>楼主装了editThisCookie的插件，里面有这么几个选项</p>
+<p><img src="http://p1.bqimg.com/567571/09169556d6276b44.jpg" alt=""></p>
+<p>分别是，secure:是否启用https, session:是否是session-cookie(与有expiration的固定cookie相对，每次关闭浏览器后就会erase掉，而<br>persistent cookie则是除非expire或者手动erase，否则不会清除，他们都可以remember your action)</p>
+<p>There are two different types of cookies:</p>
+<blockquote>
+<p>Session cookies - these are temporary and are erased when you close your browser at the end of your surfing session. The next time you visit that particular site it will not recognise you and will treat you as a completely new visitor as there is nothing in your browser to let the site know that you have visited before (more on session cookies).</p>
+<p>Persistent cookies - these remain on your hard drive until you erase them or they expire. How long a cookie remains on your browser depends on how long the visited website has programmed the cookie to last (more on persistent cookies).</p>
+</blockquote>
+<hr>
+<h4 id="前端所知道的”一次登录后，maxAge时间内就不需要验证”，到底做了什么？"><a href="#前端所知道的”一次登录后，maxAge时间内就不需要验证”，到底做了什么？" class="headerlink" title="前端所知道的”一次登录后，maxAge时间内就不需要验证”，到底做了什么？"></a>前端所知道的”一次登录后，maxAge时间内就不需要验证”，到底做了什么？</h4><p> 实际上是，登录后，server生成随机的sessionID信息放到cookie/signedCookie里面，（并）然后下次req的时候，会自动携带cookie信息，<br> 那么server对cookie里面的sessionID读取，并根据这个sessionID，去查与user的映射关系（就是存放session的地方，比如数据库），如果查找成功，则说明当前用户验证成功，<br> 然后在maxAge时间内都进行这个操作。</p>
+<p> <img src="http://p1.bqimg.com/567571/c4c316bb332efa44.png" alt=""></p>
+<p> 所以说，不需要验证只是对前台不可见，实际上还是要做的。</p>
+<p> （cnode的后台部分，就是把每一个请求的这一验证部分抽取成了authUser的中间件，先进行这一步操作，并挂在了req.session上，目的有二：</p>
+<ul>
+<li>一是不要每次深层次查找数据，可以理解为一个快捷方式</li>
+<li>另一方面其实是用了类似于<a href="https://github.com/jdesboeufs/connect-mongo/blob/master/src/index.js/#L193" target="_blank" rel="external">connect-mongo</a>的store中间件，用于sessionID与req.session的映射关系的存取，内部可以触发session存到store里面，监听maxAge等等，相当于用另外一张表来存取映射关系，而不是直接放在user表里面）</li>
+</ul>
+<p>楼主后来又看了下<a href="https://sourcegraph.com/github.com/expressjs/session@master/-/blob/index.js#L95:29-95:33" target="_blank" rel="external">session库</a>，大致做了这么些操作，刚开始请求的时候，检查cookie信息，去设置req.sessionID,如果发现没有，则generate一个sessionID,req.session对象（Session类对象），进入next()，即后续<br> 的其他路由、中间件等，有session的话return。但是在session函数里面其实还做了两件事件：</p>
+<ul>
+<li><p>一个是onHeader函数，即，在要向浏览器发送数据包的时候，去<a href="https://github.com/expressjs/session/blob/master/index.js/#L242" target="_blank" rel="external">setCookie</a>. </p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//用上面提到的node-cookie-signature去签名，（hmac(sessionID,secret)） -&gt; setCookie(name,signedCookie)</span></div><div class="line">   setcookie(res, name, req.sessionID, secrets[<span class="number">0</span>], req.session.cookie.data);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>另一件是包抄res.end函数，在里面多加了一个<br><a href="https://github.com/expressjs/session/blob/master/session/session.js/#L71" target="_blank" rel="external">save到store</a>的过程，即以sessionID为key，把req.session对象写入数据库中。</p>
+<p><strong>======更新===================</strong></p>
+<p>更确切的说是，检测shouldSave(req),然后再看是否要save到store中，shouldsave中判断了sessionID以及session前后的hash值，有变动则save</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// check if session has been modified</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isModified</span>(<span class="params">sess</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> originalId !== sess.id || originalHash !== hash(sess);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而要做到session与user的关联，是要手动触发的，（是不会去主动监听的…）即当创建一个report时，要设置user.reportCount++（save到数据库）时，希望req.session.user里面也相应的更新的话，就要手动去改变。</p>
+<p>在上面的shouldsave里面我们可以看到，可以直接操作req.session.user.replyCount，也可以将刚刚改变的user对象重新付给req.session，引用及数据变化，hash出来的自然不一样。就会在res.end中去<br>更新session了。</p>
+<p> <strong>======更新===================</strong></p>
+<p>以后每次请求都直接读取req.session即可。也就是说，简化了每次从req.cookie里面解析sessionID,然后查找之前建立的sessionid-&gt;user的映射表，以及后续的<br>超时自动清除数据表等等其他收尾工作。维持一个”全局”对象（req.session）在一个登录有效期（多req）内持久存在的目的。</p>
+<p>而用了session的中间件，你所需要做的就是告诉它name，secret(用于签名,required)，即可（不告诉genid的函数都可以，内部它用uid去创建的），然后<br>把要放到cookie里面的东西挂在req.session对象上…奏是这么简单…</p>
+<h4 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h4><p> session.save的options说明</p>
+<ul>
+<li>sessionresave : 是指每次请求都重新设置session cookie，假设你的cookie是10分钟过期，每次请求都会再设置10分钟</li>
+<li>Uninitialized: 是指无论有没有session cookie，每次请求都自动设置个session cookie ，默认给个标示为 connect.sid。一般建议用false，使得有权限才可以<br>setcookie，同时也减轻server的压力。</li>
+</ul>
+<p>secure: 应用在https</p>
+<hr>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><ul>
+<li><a href="http://ju.outofmemory.cn/entry/118198" target="_blank" rel="external">Node.js加密算法库Crypto</a></li>
+<li><a href="http://stackoverflow.com/questions/6951867/nodejs-bcrypt-vs-native-crypto" target="_blank" rel="external">NodeJS: bcrypt vs native crypto</a></li>
+<li><a href="http://stackoverflow.com/questions/11897965/what-are-signed-cookies-in-connect-expressjs" target="_blank" rel="external">What are “signed” cookies in connect/expressjs?</a></li>
+<li><a href="http://www.allaboutcookies.org/manage-cookies/index.html" target="_blank" rel="external">all about cookie</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/express-crypto-session/" rel="tag">#express crypto session</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/28/早读课/" rel="next" title="早读课">
+                <i class="fa fa-chevron-left"></i> 早读课
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/28/express-mongodb开发总结之crypto与session篇/"
+           data-title="express+mongodb开发总结之crypto与session篇" data-url="http://yoursite.com/2017/02/28/express-mongodb开发总结之crypto与session篇/">
+      </div>
+    
+  </div>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"luchen-blog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="luchen" />
+          <p class="site-author-name" itemprop="name">luchen</p>
+          <p class="site-description motion-element" itemprop="description">所有的大人都曾是小孩子.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liz282907" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/136840342/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lu-chen-60" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#crypto："><span class="nav-number">1.</span> <span class="nav-text">crypto：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bcrypt与native-crypto库里面的方法的区别："><span class="nav-number">2.</span> <span class="nav-text">bcrypt与native crypto库里面的方法的区别：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mongo命令"><span class="nav-number">3.</span> <span class="nav-text">mongo命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户注册流程"><span class="nav-number">4.</span> <span class="nav-text">用户注册流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#res-cookie中的-signed-true-到底做了什么操作"><span class="nav-number">5.</span> <span class="nav-text">res.cookie中的{signed:true}到底做了什么操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#小结："><span class="nav-number">5.1.</span> <span class="nav-text">小结：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端所知道的”一次登录后，maxAge时间内就不需要验证”，到底做了什么？"><span class="nav-number">6.</span> <span class="nav-text">前端所知道的”一次登录后，maxAge时间内就不需要验证”，到底做了什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充知识"><span class="nav-number">7.</span> <span class="nav-text">补充知识</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reference"><span class="nav-number"></span> <span class="nav-text">reference</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"luchen-blog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

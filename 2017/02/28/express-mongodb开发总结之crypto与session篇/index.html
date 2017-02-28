@@ -92,7 +92,7 @@
 <meta property="og:description" content="做了很多个前端项目，依然不清楚session，cookie的机制，那么让我们来实践一下吧~(预告，本篇在开发过程中写成，因此掺杂着“我和XXX的一百件事的写作风格”...)">
 <meta property="og:image" content="http://p1.bqimg.com/567571/09169556d6276b44.jpg">
 <meta property="og:image" content="http://p1.bqimg.com/567571/c4c316bb332efa44.png">
-<meta property="og:updated_time" content="2017-02-28T05:57:17.000Z">
+<meta property="og:updated_time" content="2017-02-28T06:09:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="express+mongodb开发总结之crypto与session篇">
 <meta name="twitter:description" content="做了很多个前端项目，依然不清楚session，cookie的机制，那么让我们来实践一下吧~(预告，本篇在开发过程中写成，因此掺杂着“我和XXX的一百件事的写作风格”...)">
@@ -352,19 +352,18 @@ var _hmt = _hmt || [];
 </ol>
 <h4 id="crypto："><a href="#crypto：" class="headerlink" title="crypto："></a>crypto：</h4><ul>
 <li><p>不可逆，hash里面的hash模块，hmac模块（放置彩虹表攻击，在hash的基础上加了一个key）<br> hash中，常用的用sha1就可以，时间长度都还可以，md5（32位）</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//对于登录密码，可以存key+密文，彩虹表也推不出来</div><div class="line">//对于登陆密码来说，是不需要考虑解密的，通常都会用不可逆的算法，像md5,sha-1等</div><div class="line">&#123;</div><div class="line">  username: &apos;xxxx&apos;</div><div class="line">  password: &apos;aead69a72da77d0615a854dda1086d885807574a&apos;,</div><div class="line">  passkey:&apos;abc&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</code></pre><ul>
-<li><p>可逆算法，crypto里面也有支持，cipher,decipher</p>
-<p>   rc4和aes-256-cbc是表现不错的算法，加密和解密时间都比较短，<br> 加密时间:解密时间=1:3；对于服务端加密，客户端解密的，aes-256-cbc算法的计算时间比例就可以。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//对于登录密码，可以存key+密文，彩虹表也推不出来</div><div class="line">//对于登陆密码来说，是不需要考虑解密的，通常都会用不可逆的算法，像md5,sha-1等</div><div class="line">&#123;</div><div class="line">username: &apos;xxxx&apos;</div><div class="line">password: &apos;aead69a72da77d0615a854dda1086d885807574a&apos;,</div><div class="line">passkey:&apos;abc&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>可逆算法，crypto里面也有支持——cipher,decipher</p>
+<p>rc4和aes-256-cbc是表现不错的算法，加密和解密时间都比较短，加密时间:解密时间=1:3；对于服务端加密，客户端解密的，aes-256-cbc算法的计算时间比例就可以。</p>
 </li>
 <li><p>签名和认证</p>
-<p>   还需要判断数据在传输过程中，是否真实际和完整，是否被篡改了。那么就需要用到签名和验证的算法，利用不对称加密算法，通过私钥进行数字签名，公钥验证数据的真实性。</p>
-<p>   签名： data -&gt; hashedData -&gt; 私钥加密 + 证书 -&gt; 签名后的。<br>   解密： 更复杂一点的是，用认证机构的公钥去解密证书，得到公钥，用这个公钥（与签名者给的公钥比对，看是否是正确的公钥，签名者对不对）（<strong>这边验证了通信双方</strong>）。<br>   用这个公钥去 解密 加密的数据，得到hashedData. === hash（data）.（<strong>这边验证数据是否完整</strong>）都正确的话就是身份认证结束。<br>   用库的话，流程上就是： openssl命令生成公私钥，用私钥与数据得到数字签名（sign），用公钥，数据，数字签名去verifyverify(algorithm,pubkey,sig,data)</p>
-<ul>
-<li>salt： hash(text+salt)  crypto.pbkdf2()函数，默认会调用hmac算法，用sha1的散列函数，并且可以设置迭代次数和密文长度<br>salt也可以随机</li>
-</ul>
+<p> 还需要判断数据在传输过程中，是否真实际和完整，是否被篡改了。那么就需要用到签名和验证的算法，利用不对称加密算法，通过私钥进行数字签名，公钥验证数据的真实性。</p>
+<p> 签名： data -&gt; hashedData -&gt; 私钥加密 + 证书 -&gt; 签名后的。<br> 解密： 更复杂一点的是，用认证机构的公钥去解密证书，得到公钥，用这个公钥（与签名者给的公钥比对，看是否是正确的公钥，签名者对不对）（<strong>这边验证了通信双方</strong>）。<br> 用这个公钥去 解密 加密的数据，得到hashedData. === hash（data）.（<strong>这边验证数据是否完整</strong>）都正确的话就是身份认证结束。<br> 用库的话，流程上就是： openssl命令生成公私钥，用私钥与数据得到数字签名（sign），用公钥，数据，数字签名去verifyverify(algorithm,pubkey,sig,data)</p>
 </li>
-</ul>
+<li><p>salt： hash(text+salt)  crypto.pbkdf2()函数，默认会调用hmac算法，用sha1的散列函数，并且可以设置迭代次数和密文长度<br>salt也可以随机</p>
 </li>
 </ul>
 <hr>
@@ -424,17 +423,16 @@ var _hmt = _hmt || [];
 </li>
 </ul>
 <ul>
-<li><p>另一件是包抄res.end函数，在里面多加了一个<br><a href="https://github.com/expressjs/session/blob/master/session/session.js/#L71" target="_blank" rel="external">save到store</a>的过程，即以sessionID为key，把req.session对象写入数据库中。</p>
-<p><strong>======更新===================</strong></p>
-<p>更确切的说是，检测shouldSave(req),然后再看是否要save到store中，shouldsave中判断了sessionID以及session前后的hash值，有变动则save</p>
-</li>
+<li>另一件是包抄res.end函数，在里面多加了一个<br><a href="https://github.com/expressjs/session/blob/master/session/session.js/#L71" target="_blank" rel="external">save到store</a>的过程，即以sessionID为key，把req.session对象写入数据库中。</li>
 </ul>
+<p><strong>======更新===================</strong></p>
+<p> 更确切的说是，检测shouldSave(req),然后再看是否要save到store中，shouldsave中判断了sessionID以及session前后的hash值，有变动则save</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// check if session has been modified</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isModified</span>(<span class="params">sess</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> originalId !== sess.id || originalHash !== hash(sess);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>而要做到session与user的关联，是要手动触发的，（是不会去主动监听的…）即当创建一个report时，要设置user.reportCount++（save到数据库）时，希望req.session.user里面也相应的更新的话，就要手动去改变。</p>
-<p>在上面的shouldsave里面我们可以看到，可以直接操作req.session.user.replyCount，也可以将刚刚改变的user对象重新付给req.session，引用及数据变化，hash出来的自然不一样。就会在res.end中去<br>更新session了。</p>
+<p>在上面的shouldsave里面我们可以看到，可以直接操作req.session.user.replyCount，也可以将刚刚改变的user对象重新付给req.session，引用及数据变化，hash出来的自然不一样。就会在res.end中去更新session了。</p>
 <p> <strong>======更新===================</strong></p>
 <p>以后每次请求都直接读取req.session即可。也就是说，简化了每次从req.cookie里面解析sessionID,然后查找之前建立的sessionid-&gt;user的映射表，以及后续的<br>超时自动清除数据表等等其他收尾工作。维持一个”全局”对象（req.session）在一个登录有效期（多req）内持久存在的目的。</p>
-<p>而用了session的中间件，你所需要做的就是告诉它name，secret(用于签名,required)，即可（不告诉genid的函数都可以，内部它用uid去创建的），然后<br>把要放到cookie里面的东西挂在req.session对象上…奏是这么简单…</p>
+<p>而用了session的中间件，你所需要做的就是告诉它name，secret(用于签名,required)，即可（不告诉genid的函数都可以，内部它用uid去创建的），然后把要放到cookie里面的东西挂在req.session对象上…奏是这么简单…</p>
 <h4 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h4><p> session.save的options说明</p>
 <ul>
 <li>sessionresave : 是指每次请求都重新设置session cookie，假设你的cookie是10分钟过期，每次请求都会再设置10分钟</li>

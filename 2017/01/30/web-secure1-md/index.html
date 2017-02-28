@@ -88,13 +88,13 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="读书笔记——白帽子讲web安全（一）">
 <meta property="og:url" content="http://yoursite.com/2017/01/30/web-secure1-md/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="luchen">
 <meta property="og:description" content="楼主最近在多看上买了道哥的这本久仰大名的书，之前看了一丢丢，但是大概没有学以致用，总觉得有点浮于表层，准备过段时间找一找有没有实验机可以操作下。">
 <meta property="og:image" content="http://p1.bqimg.com/567571/77331f43b176663d.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/129dc9f0a2936fb1.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/d3d478f3301eceb4.png">
 <meta property="og:image" content="http://p1.bqimg.com/567571/d8935fff28ef47a0.png">
-<meta property="og:updated_time" content="2017-02-02T14:27:00.000Z">
+<meta property="og:updated_time" content="2017-02-28T05:01:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读书笔记——白帽子讲web安全（一）">
 <meta name="twitter:description" content="楼主最近在多看上买了道哥的这本久仰大名的书，之前看了一丢丢，但是大概没有学以致用，总觉得有点浮于表层，准备过段时间找一找有没有实验机可以操作下。">
@@ -132,7 +132,7 @@ var _hmt = _hmt || [];
 })();
 </script>
 
-  <title> 读书笔记——白帽子讲web安全（一） | Hexo </title>
+  <title> 读书笔记——白帽子讲web安全（一） | luchen </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -163,7 +163,7 @@ var _hmt = _hmt || [];
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Hexo</span>
+      <span class="site-title">luchen</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -448,23 +448,30 @@ var _hmt = _hmt || [];
 <blockquote>
 <p>P3P Header是W3C制定的一项关于隐私的标准，全称是The Platform for Privacy Prefer-ences。如果网站返回给浏览器的HTTP头中包含有P3P头，则在某种程度上来说，将允许浏览器发送第三方Cookie。</p>
 </blockquote>
-<pre><code>它的防御有
-</code></pre><ul>
+<p>它的防御有</p>
+<ul>
 <li>验证码： 因为csrf往往在用户不知情的情况下进行操作，用验证码就是让用户对自己的请求操作知晓、负责。</li>
 <li>Referer Check在互联网中最常见的应用就是“防止图片盗链”。用来验证发送请求的页面是否是应有的页面，或者是否是在同一个域名下。比如之前的b中iframe中有a的请求，它的referer就是b。<br>但是服务端有时候是不能获取到referer的。由于隐私设置等等。</li>
-<li><p>token：一个仅被浏览器与服务器知晓的随机数，每次请求时都需要携带这个token信息来验证身份。（使得攻击者无法知晓token，无法发送请求）。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://host/path/delete?username=abc&amp;item=123&amp;token=[random(seed)]</div></pre></td></tr></table></figure>
-<pre><code>因为csrf请求的前提是攻击者要知道完整的url，如果用token的话，就需要提前知道这个token。而token的获取是随着页面生成/打开才生成的。（可以理解为执行生成，非编译时）。攻击者给出来的只是链接非页面，它无法知道token。所以请求无法构造。但是如果嵌入的是iframe...= =。
-</code></pre><p>具体来说是，每次打开某个请求页面，服务器都会返回一个token，（可以是后端渲染前端页面时直接嵌进表单，如下图）。<br><img src="http://p1.bqimg.com/567571/d8935fff28ef47a0.png" alt=""><br>然后表单请求的时候，服务端读取这个token，跟后端session中的token比对，验证表单是否可信。(实际上，比对可以是前端跟后端，也可以是前端跟前端，就是表单跟cookie比对，因为后端存session中的话是需要消耗一定资源的，如果直接放在cookie中可以减少消耗，在仅仅csrf攻击，不涉及其他的情况下，cookie是不能被更改的，那么验证表单跟cookie中token===表单与session中token)。<br>还有几个注意事项是：</p>
-<ul>
-<li>token生命周期，为了使用方面，可以在某个时间段内都使用同一个token，但是一提交表单就应废弃一个token。</li>
-<li>多个相同页面打开时，如果一个消耗完，其他页面要相应的同步，或者设置几个同时有效的token。</li>
-<li>token应该避免存在url中，（应尽量放在表单中），否则可以由referer被泄露。</li>
-<li>尽量用post代替get，因为get请求的话参数会被暴露到url中，就可能暴露表单提交中的token。</li>
+<li>token：一个仅被浏览器与服务器知晓的随机数，每次请求时都需要携带这个token信息来验证身份。（使得攻击者无法知晓token，无法发送请求）。</li>
 </ul>
-</li>
-</ul>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://host/path/delete?username=abc&amp;item=123&amp;token=[random(seed)]</div></pre></td></tr></table></figure>
 
+因为csrf请求的前提是攻击者要知道完整的url，如果用token的话，就需要提前知道这个token。而token的获取是随着页面生成/打开才生成的。（可以理解为执行生成，非编译时）。攻击者给出来的只是链接非页面，它无法知道token。所以请求无法构造。但是如果嵌入的是iframe...= =。
+
+具体来说是，每次打开某个请求页面，服务器都会返回一个token，（可以是后端渲染前端页面时直接嵌进表单，如下图）。
+</code></pre><p><img src="http://p1.bqimg.com/567571/d8935fff28ef47a0.png" alt=""><br>然后表单请求的时候，服务端读取这个token，跟后端session中的token比对，验证表单是否可信。(实际上，比对可以是前端跟后端，也可以是前端跟前端，就是表单跟cookie比对，因为后端存session中的话是需要消耗一定资源的，如果直接放在cookie中可以减少消耗，在仅仅csrf攻击，不涉及其他的情况下，cookie是不能被更改的，那么验证表单跟cookie中token===表单与session中token)。</p>
+<pre><code>还有几个注意事项是：
+
+- token生命周期，为了使用方面，可以在某个时间段内都使用同一个token，但是一提交表单就应废弃一个token。
+- 多个相同页面打开时，如果一个消耗完，其他页面要相应的同步，或者设置几个同时有效的token。
+- token应该避免存在url中，（应尽量放在表单中），否则可以由referer被泄露。
+- 尽量用post代替get，因为get请求的话参数会被暴露到url中，就可能暴露表单提交中的token。
+
+why it works?
+
+- 难猜到
+- 难获取：攻击者需要通过某种手段获取你站点的CSRF token， 他们只能使用JavaScript来做，但是如果站点不支持CORS，跨域的话，那么他们就没有办法来获取CSRF token。因此确保CSRF token不能通过AJAX访问到。
+</code></pre>
       
     </div>
 
@@ -587,7 +594,7 @@ var duoshuoQuery = {short_name:"luchen-blog"};
                src="/images/avatar.jpg"
                alt="luchen" />
           <p class="site-author-name" itemprop="name">luchen</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+          <p class="site-description motion-element" itemprop="description">所有的大人都曾是小孩子.</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">

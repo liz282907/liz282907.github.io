@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="http," />
+  <meta name="keywords" content="http,ssl," />
 
 
 
@@ -84,12 +84,12 @@
 
 
 
-<meta name="description" content="本篇主要介绍图解http的第二大部分，包括web服务器相关的内容、http报文的一些字段，针对http不满足需求而追加的协议、功能，web安全等方面">
+<meta name="description" content="本篇主要介绍图解http的第二大部分，包括web服务器相关的内容、http报文的一些字段，针对http不满足需求而追加的协议、功能，web安全等方面。and   虽然是笔记，但是里面不定期穿插着楼主的思考跟总结，特别是ssl的部分思密达">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图解http(二)">
 <meta property="og:url" content="http://yoursite.com/2016/09/27/图解http之二/index.html">
 <meta property="og:site_name" content="luchen">
-<meta property="og:description" content="本篇主要介绍图解http的第二大部分，包括web服务器相关的内容、http报文的一些字段，针对http不满足需求而追加的协议、功能，web安全等方面">
+<meta property="og:description" content="本篇主要介绍图解http的第二大部分，包括web服务器相关的内容、http报文的一些字段，针对http不满足需求而追加的协议、功能，web安全等方面。and   虽然是笔记，但是里面不定期穿插着楼主的思考跟总结，特别是ssl的部分思密达">
 <meta property="og:image" content="http://i2.buimg.com/567571/6278696fe47fe1ca.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/64bc4d6963d03c43.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/814760987d95e102.png">
@@ -102,10 +102,10 @@
 <meta property="og:image" content="http://i4.piimg.com/567571/46ee7a1431b61437.jpg">
 <meta property="og:image" content="http://i4.piimg.com/567571/2f0931c41200f41e.jpg">
 <meta property="og:image" content="http://i4.piimg.com/567571/1177a43818ba98b8.jpg">
-<meta property="og:updated_time" content="2017-03-25T05:08:57.000Z">
+<meta property="og:updated_time" content="2017-03-25T05:33:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解http(二)">
-<meta name="twitter:description" content="本篇主要介绍图解http的第二大部分，包括web服务器相关的内容、http报文的一些字段，针对http不满足需求而追加的协议、功能，web安全等方面">
+<meta name="twitter:description" content="本篇主要介绍图解http的第二大部分，包括web服务器相关的内容、http报文的一些字段，针对http不满足需求而追加的协议、功能，web安全等方面。and   虽然是笔记，但是里面不定期穿插着楼主的思考跟总结，特别是ssl的部分思密达">
 <meta name="twitter:image" content="http://i2.buimg.com/567571/6278696fe47fe1ca.png">
 
 
@@ -440,6 +440,9 @@ var _hmt = _hmt || [];
 <h3 id="chapter9-基于http的追加功能、协议"><a href="#chapter9-基于http的追加功能、协议" class="headerlink" title="chapter9 基于http的追加功能、协议"></a>chapter9 基于http的追加功能、协议</h3><p><img src="http://i4.piimg.com/567571/2f0931c41200f41e.jpg" alt=""></p>
 <hr>
 <h3 id="chapter11-web攻击"><a href="#chapter11-web攻击" class="headerlink" title="chapter11 web攻击"></a>chapter11 web攻击</h3><p><img src="http://i4.piimg.com/567571/1177a43818ba98b8.jpg" alt=""></p>
+<h3 id="references"><a href="#references" class="headerlink" title="references"></a>references</h3><ol>
+<li><a href="http://blog.csdn.net/ly131420/article/details/38400583#t4" target="_blank" rel="external">数字证书原理,公钥私钥加密原理</a></li>
+</ol>
 
       
     </div>
@@ -463,6 +466,8 @@ var _hmt = _hmt || [];
         <div class="post-tags">
           
             <a href="/tags/http/" rel="tag">#http</a>
+          
+            <a href="/tags/ssl/" rel="tag">#ssl</a>
           
         </div>
       
@@ -581,7 +586,7 @@ var duoshuoQuery = {short_name:"luchen-blog"};
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -639,7 +644,7 @@ var duoshuoQuery = {short_name:"luchen-blog"};
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter5-与http有关的web服务器"><span class="nav-number">1.</span> <span class="nav-text">chapter5 与http有关的web服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter6-http首部"><span class="nav-number">2.</span> <span class="nav-text">chapter6 http首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter7-确保web安全的https"><span class="nav-number">3.</span> <span class="nav-text">chapter7 确保web安全的https</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#part1-起因"><span class="nav-number">3.1.</span> <span class="nav-text">part1: 起因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#part2-HTTPS"><span class="nav-number">3.2.</span> <span class="nav-text">part2 HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-使用ssl时，就从通常的http与tcp通信变成http-gt-ssl-gt-tcp-gt-ip"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. 使用ssl时，就从通常的http与tcp通信变成http->ssl->tcp->ip..</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-https采取了共享秘钥加密-公开秘钥加密的混合加密方式"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. https采取了共享秘钥加密+公开秘钥加密的混合加密方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-证书"><span class="nav-number">3.2.3.</span> <span class="nav-text">3. 证书</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-完整版本的https-通信机制"><span class="nav-number">3.2.4.</span> <span class="nav-text">4. 完整版本的https 通信机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-ssl速度"><span class="nav-number">3.2.5.</span> <span class="nav-text">5. ssl速度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter8-确认用户身份的认证"><span class="nav-number">4.</span> <span class="nav-text">chapter8 确认用户身份的认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter9-基于http的追加功能、协议"><span class="nav-number">5.</span> <span class="nav-text">chapter9 基于http的追加功能、协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter11-web攻击"><span class="nav-number">6.</span> <span class="nav-text">chapter11 web攻击</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter5-与http有关的web服务器"><span class="nav-number">1.</span> <span class="nav-text">chapter5 与http有关的web服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter6-http首部"><span class="nav-number">2.</span> <span class="nav-text">chapter6 http首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter7-确保web安全的https"><span class="nav-number">3.</span> <span class="nav-text">chapter7 确保web安全的https</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#part1-起因"><span class="nav-number">3.1.</span> <span class="nav-text">part1: 起因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#part2-HTTPS"><span class="nav-number">3.2.</span> <span class="nav-text">part2 HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-使用ssl时，就从通常的http与tcp通信变成http-gt-ssl-gt-tcp-gt-ip"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. 使用ssl时，就从通常的http与tcp通信变成http->ssl->tcp->ip..</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-https采取了共享秘钥加密-公开秘钥加密的混合加密方式"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. https采取了共享秘钥加密+公开秘钥加密的混合加密方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-证书"><span class="nav-number">3.2.3.</span> <span class="nav-text">3. 证书</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-完整版本的https-通信机制"><span class="nav-number">3.2.4.</span> <span class="nav-text">4. 完整版本的https 通信机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-ssl速度"><span class="nav-number">3.2.5.</span> <span class="nav-text">5. ssl速度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter8-确认用户身份的认证"><span class="nav-number">4.</span> <span class="nav-text">chapter8 确认用户身份的认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter9-基于http的追加功能、协议"><span class="nav-number">5.</span> <span class="nav-text">chapter9 基于http的追加功能、协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter11-web攻击"><span class="nav-number">6.</span> <span class="nav-text">chapter11 web攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#references"><span class="nav-number">7.</span> <span class="nav-text">references</span></a></li></ol></div>
             
           </div>
         </section>

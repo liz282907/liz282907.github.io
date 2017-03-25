@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="开发,好玩的," />
+  <meta name="keywords" content="开发,好玩的,事件," />
 
 
 
@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，还包括自己在开发过程中遇到的一些很有意思的功能点。不定期更新">
+<meta name="description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，还包括自己在开发过程中遇到的一些很有意思的功能点。不定期更新。本篇划重点主要是JavaScript中的事件跟涉及到的节流抖动~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="日常笔记-二">
 <meta property="og:url" content="http://yoursite.com/2016/10/31/日常笔记-二/index.html">
 <meta property="og:site_name" content="luchen">
-<meta property="og:description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，还包括自己在开发过程中遇到的一些很有意思的功能点。不定期更新">
+<meta property="og:description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，还包括自己在开发过程中遇到的一些很有意思的功能点。不定期更新。本篇划重点主要是JavaScript中的事件跟涉及到的节流抖动~">
 <meta property="og:image" content="http://i1.piimg.com/567571/519ba7ba77f69c94.png">
-<meta property="og:updated_time" content="2017-02-28T05:01:34.000Z">
+<meta property="og:updated_time" content="2017-03-25T05:32:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="日常笔记-二">
-<meta name="twitter:description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，还包括自己在开发过程中遇到的一些很有意思的功能点。不定期更新">
+<meta name="twitter:description" content="这边的笔记主要记载自己看周刊或者不错的文章中的一些good points，还包括自己在开发过程中遇到的一些很有意思的功能点。不定期更新。本篇划重点主要是JavaScript中的事件跟涉及到的节流抖动~">
 <meta name="twitter:image" content="http://i1.piimg.com/567571/519ba7ba77f69c94.png">
 
 
@@ -345,8 +345,7 @@ var _hmt = _hmt || [];
       
 
       
-        <h3 id="JavaScript-和事件"><a href="#JavaScript-和事件" class="headerlink" title="JavaScript 和事件"></a><a href="http://yujiangshui.com/javascript-event/" target="_blank" rel="external">JavaScript 和事件</a></h3><p>划重点就是：</p>
-<h4 id="1-监听事件方法："><a href="#1-监听事件方法：" class="headerlink" title="1. 监听事件方法："></a>1. 监听事件方法：</h4><ul>
+        <h3 id="JavaScript-和事件"><a href="#JavaScript-和事件" class="headerlink" title="JavaScript 和事件"></a><a href="http://yujiangshui.com/javascript-event/" target="_blank" rel="external">JavaScript 和事件</a></h3><h4 id="1-监听事件方法："><a href="#1-监听事件方法：" class="headerlink" title="1. 监听事件方法："></a>1. 监听事件方法：</h4><ul>
 <li><p>html内联属性<br>避免使用，因为与html耦合</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button onclick=&quot;alert(&apos;你点击了这个按钮&apos;);&quot;&gt;点击这个按钮&lt;/button&gt;</div></pre></td></tr></table></figure>
 </li>
@@ -399,8 +398,8 @@ use-capture设为false主要是因为ie不支持捕获阶段的事件响应。�
 <li>如果想打包的话，但是公用库不想打包进去，可以用externals指定。同时在html里面引用一下外部cdn。<br>其他的芝士看前端外刊，以及<a href="https://github.com/lcxfs1991/blog" target="_blank" rel="external">这个博客</a></li>
 </ul>
 <h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p><img src="http://i1.piimg.com/567571/519ba7ba77f69c94.png" alt=""></p>
-<h3 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function format(time,fmt)&#123;</div><div class="line">  let dateObj = new Date(parseInt(time));</div><div class="line">  var o = &#123;</div><div class="line">        &quot;M+&quot;: dateObj.getMonth() + 1, //月份</div><div class="line">        &quot;d+&quot;: dateObj.getDate(), //日</div><div class="line">        &quot;h+&quot;: dateObj.getHours(), //小时</div><div class="line">        &quot;m+&quot;: dateObj.getMinutes(), //分</div><div class="line">        &quot;s+&quot;: dateObj.getSeconds(), //秒</div><div class="line">    &#125;;</div><div class="line">    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (dateObj.getFullYear() + &quot;&quot;).substr(4 - RegExp.$1.length));</div><div class="line">    for (let k in o)</div><div class="line">    if (new RegExp(&quot;(&quot; + k + &quot;)&quot;).test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : ((&quot;00&quot; + o[k]).substr((&quot;&quot; + o[k]).length)));</div><div class="line">    return fmt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</code></pre>
+<h3 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function format(time,fmt)&#123;</div><div class="line"> let dateObj = new Date(parseInt(time));</div><div class="line"> var o = &#123;</div><div class="line">       &quot;M+&quot;: dateObj.getMonth() + 1, //月份</div><div class="line">       &quot;d+&quot;: dateObj.getDate(), //日</div><div class="line">       &quot;h+&quot;: dateObj.getHours(), //小时</div><div class="line">       &quot;m+&quot;: dateObj.getMinutes(), //分</div><div class="line">       &quot;s+&quot;: dateObj.getSeconds(), //秒</div><div class="line">   &#125;;</div><div class="line">   if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (dateObj.getFullYear() + &quot;&quot;).substr(4 - RegExp.$1.length));</div><div class="line">   for (let k in o)</div><div class="line">   if (new RegExp(&quot;(&quot; + k + &quot;)&quot;).test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : ((&quot;00&quot; + o[k]).substr((&quot;&quot; + o[k]).length)));</div><div class="line">   return fmt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -425,6 +424,8 @@ use-capture设为false主要是因为ie不支持捕获阶段的事件响应。�
             <a href="/tags/开发/" rel="tag">#开发</a>
           
             <a href="/tags/好玩的/" rel="tag">#好玩的</a>
+          
+            <a href="/tags/事件/" rel="tag">#事件</a>
           
         </div>
       
@@ -543,7 +544,7 @@ var duoshuoQuery = {short_name:"luchen-blog"};
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

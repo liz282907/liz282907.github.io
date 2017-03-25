@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://i4.piimg.com/567571/46ee7a1431b61437.jpg">
 <meta property="og:image" content="http://i4.piimg.com/567571/2f0931c41200f41e.jpg">
 <meta property="og:image" content="http://i4.piimg.com/567571/1177a43818ba98b8.jpg">
-<meta property="og:updated_time" content="2017-03-25T05:36:06.000Z">
+<meta property="og:updated_time" content="2017-03-25T05:47:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解http(二)">
 <meta name="twitter:description" content="问：https的s到底解决了什么问题? 请戳本文..">
@@ -427,6 +427,7 @@ var _hmt = _hmt || [];
 <h5 id="4-完整版本的https-通信机制"><a href="#4-完整版本的https-通信机制" class="headerlink" title="4. 完整版本的https 通信机制"></a>4. 完整版本的https 通信机制</h5><p>正确的流程是：<br><strong>服务器：</strong><br>服务器<del>每次传送，都需</del>要发：<br>//服务器sendData = 信息+ signature +数字证书。<br>//signature =  md5(信息)+ 服务器私钥加密<br>//数字证书 = 服务器公钥 + 机构私钥 加密后结果</p>
 <p><strong>客户端</strong><br>客户端拿到以后，用浏览器的机构公钥解密，得到服务器公钥，然后去解谜收到的东西，得到的就是 md5以后的 信息 A。然后将信件本身md5后生成B 。AB进行判断是否相等。就可以看信件是否篡改了。</p>
 <p>在这个过程中，先用机构公钥解密验证 身份，再用服务器公钥揭秘再比对实现 篡改验证。</p>
+<p>更好的的应该是客户端把握掌控权：客户端发一段随机串给服务器，让他用私钥加密后传过来，客户端用公钥解密，发现与之前的一致，说明公私钥正确，服务器身份可信。</p>
 <p><strong>=== 更新 2017/03/25</strong><br>这边还是有没说清楚的地方，<br>客户端得到公钥后可以来验证服务器身份，（<strong>验证通信方身份</strong>）但是发送数据不能直接这么发送，因为每个人都可以持有公钥，那么信息就会被窃取。<br>因此，客户端应该在下一个会话中告诉服务器： </p>
 <blockquote>
 <p>我把我们以后会话所需要用的<strong><em>加密算法</em></strong>和<strong><em>密钥</em></strong>用你的公钥加密了，喏，拿去哈。</p>
